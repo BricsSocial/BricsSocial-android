@@ -2,6 +2,7 @@ import 'package:app_kit/app_kit.dart';
 import 'package:flutter/material.dart';
 
 import 'general_screen/general_screen.dart';
+import 'resume_screen/resume_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -20,8 +21,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
       body: DefaultTabController(
         length: 2,
         child: Column(
-          children: [
-            const TabBar(
+          children: const [
+            TabBar(
               tabs: [
                 Tab(text: 'General'),
                 Tab(text: 'Resume'),
@@ -30,8 +31,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
             Expanded(
               child: TabBarView(
                 children: [
-                  const ProfileGeneralScreen(),
-                  Container(),
+                  ProfileGeneralScreen(),
+                  ResumeScreen(),
                 ],
               ),
             )
