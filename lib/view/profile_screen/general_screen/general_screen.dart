@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 import '../../../core/ui/color_schemes.dart';
-import '../../common/country_dropdown.dart';
+import '../../common/country_dropdown/country_dropdown.dart';
 
 class ProfileGeneralScreen extends StatefulWidget {
   const ProfileGeneralScreen({super.key});

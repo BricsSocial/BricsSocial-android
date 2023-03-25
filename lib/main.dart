@@ -1,14 +1,14 @@
 import 'package:easy_localization/easy_localization.dart';
 
+import 'core/di/di.dart';
 import 'core/ui/router/router.gr.dart';
-import 'view/auth/sign_up_screen/sign_up_screen.dart';
-import 'view/home_screen/home_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'core/ui/color_schemes.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  configureDependencies();
   await EasyLocalization.ensureInitialized();
 
   runApp(
@@ -44,12 +44,23 @@ class App extends StatelessWidget {
           elevation: 0,
           backgroundColor: lightColorScheme.background,
         ),
+        textButtonTheme: TextButtonThemeData(
+          style: ButtonStyle(
+            textStyle: MaterialStateProperty.all(
+              const TextStyle(fontWeight: FontWeight.w600),
+            ),
+          ),
+        ),
         inputDecorationTheme: InputDecorationTheme(
           hintStyle: const TextStyle(color: hintColor),
           prefixIconColor: hintColor,
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(16),
             borderSide: const BorderSide(color: hintColor),
+          ),
+          errorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(16),
+            borderSide: const BorderSide(color: hintColor, width: 2),
           ),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(16),

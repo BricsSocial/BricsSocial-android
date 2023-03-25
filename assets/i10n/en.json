@@ -1,3 +1,24 @@
 {
-    "sign_up_title": "Sign up"
+    "unknown_error": "Unknown error",
+    "connection_error" :"Connection error",
+    "sign_up_title": "Sign up",
+    "sign_up_description": "You're signing up as a specialist, enter your account details",
+    "first_name_label": "First name",
+    "first_name_hint": "Mohandas",
+    "last_name_label": "Last name",
+    "last_name_hint": "Gandhi",
+    "email_label": "E-mail",
+    "email_hint": "example@mail.com",
+    "sign_up_button": "Sign up",
+    "sign_in_title": "Sign in",
+    "sign_in_description": "You're signing in as a specialist",
+    "password_label": "Password",
+    "create_account": "Create specialist account",
+    "sign_in_button": "Sign in",
+    "user_not_found": "User not found",
+    "brazil": "Brazil",
+    "russia": "Russia",
+    "china": "China",
+    "india": "India",
+    "south_africa": "South Africa"
 }
