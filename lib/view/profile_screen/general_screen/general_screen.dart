@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
-import '../../../assets/color_schemes.dart';
-import '../../../assets/countries.dart';
+import '../../../core/ui/color_schemes.dart';
+import '../../common/country_dropdown.dart';
 
 class ProfileGeneralScreen extends StatefulWidget {
   const ProfileGeneralScreen({super.key});
@@ -12,7 +12,7 @@ class ProfileGeneralScreen extends StatefulWidget {
 }
 
 class _ProfileGeneralScreenState extends State<ProfileGeneralScreen> {
-  final _currentCountry = ValueNotifier(countries.keys.first);
+  final _currentCountry = ValueNotifier(bricsCountries.first);
 
   @override
   Widget build(BuildContext context) {
@@ -48,42 +48,13 @@ class _ProfileGeneralScreenState extends State<ProfileGeneralScreen> {
           const SizedBox(height: 16),
           ValueListenableBuilder(
             valueListenable: _currentCountry,
-            builder: (context, String country, _) {
-              return Container(
-                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 6),
-                decoration: BoxDecoration(
-                  border: Border.all(color: hintColor),
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                child: DropdownButtonHideUnderline(
-                  child: DropdownButton(
-                    value: country,
-                    borderRadius: BorderRadius.circular(16),
-                    elevation: 1,
-                    isExpanded: true,
-                    icon: const Icon(Icons.keyboard_arrow_down),
-                    iconEnabledColor: hintColor,
-                    items: countries.keys.map<DropdownMenuItem>((key) {
-                      return DropdownMenuItem(
-                        value: key,
-                        onTap: () {
-                          _currentCountry.value = key;
-                        },
-                        child: Row(
-                          children: [
-                            Text(
-                              countries[key]!,
-                              style: const TextStyle(fontSize: 24),
-                            ),
-                            const SizedBox(width: 12),
-                            Text(key),
-                          ],
-                        ),
-                      );
-                    }).toList(growable: false),
-                    onChanged: (_) {},
-                  ),
-                ),
+            builder: (context, CountryEntry country, _) {
+              return CountryDropdown(
+                currentCountry: country,
+                onChoosed: (entry) {
+                  _currentCountry.value = entry;
+                },
+                countries: bricsCountries,
               );
             },
           )
