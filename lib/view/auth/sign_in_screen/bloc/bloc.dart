@@ -28,23 +28,27 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
 
     final result = await signInUseCase(SignInParams(email: event.email, password: event.password));
 
-    emit(
-      result.fold(
-        (failure) {
-          if (failure is ConnectionFailure) {
-            return SignInState.failed(message: 'connection_error'.tr());
-          } else if (failure is AccountWrongPasswordFailure) {
-            return SignInState.passwordFailed(message: 'incorrect_password_error'.tr());
-          } else if (failure is WrongFormatFailure) {
-            return SignInState.passwordFailed(message: 'wrong_format_error'.tr());
-          } else if (failure is AccountNotFoundFailure) {
-            return SignInState.emailFailed(message: 'account_not_found_error'.tr());
-          }
+    final state = result.fold(
+      (failure) {
+        if (failure is ConnectionFailure) {
+          return SignInState.failed(message: 'connection_error'.tr());
+        } else if (failure is AccountWrongPasswordFailure) {
+          return SignInState.passwordFailed(message: 'incorrect_password_error'.tr());
+        } else if (failure is WrongFormatFailure) {
+          return SignInState.passwordFailed(message: 'wrong_format_error'.tr());
+        } else if (failure is AccountNotFoundFailure) {
+          return SignInState.emailFailed(message: 'account_not_found_error'.tr());
+        }
 
-          return SignInState.failed(message: 'unknown_error'.tr());
-        },
-        (_) => const SignInState.success(),
-      ),
+        return SignInState.failed(message: 'unknown_error'.tr());
+      },
+      (_) => const SignInState.success(),
     );
+
+    emit(state);
+    if (state is _SignInFailedState) {
+      await Future.delayed(const Duration(seconds: 2));
+      emit(const SignInState.base());
+    }
   }
 }

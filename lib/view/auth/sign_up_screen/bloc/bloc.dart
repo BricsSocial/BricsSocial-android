@@ -35,19 +35,23 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
       ),
     );
 
-    emit(
-      result.fold(
-        (failure) {
-          if (failure is ConnectionFailure) {
-            return SignUpState.failed(message: 'connection_error'.tr());
-          } else if (failure is WrongFormatFailure) {
-            return SignUpState.failed(message: 'wrong_format_error'.tr());
-          }
+    final state = result.fold(
+      (failure) {
+        if (failure is ConnectionFailure) {
+          return SignUpState.failed(message: 'connection_error'.tr());
+        } else if (failure is WrongFormatFailure) {
+          return SignUpState.failed(message: 'wrong_format_error'.tr());
+        }
 
-          return SignUpState.failed(message: 'unknown_error'.tr());
-        },
-        (_) => const SignUpState.success(),
-      ),
+        return SignUpState.failed(message: 'unknown_error'.tr());
+      },
+      (_) => const SignUpState.success(),
     );
+
+    emit(state);
+    if (state is _SignUpFailedState) {
+      await Future.delayed(const Duration(seconds: 2));
+      emit(const SignUpState.base());
+    }
   }
 }

@@ -13,7 +13,7 @@ part 'event.dart';
 part 'state.dart';
 part 'bloc.freezed.dart';
 
-const _pageSize = 1;
+const _pageSize = 3;
 
 @injectable
 class VacanciesBloc extends Bloc<VacanciesEvent, VacanciesState> {
