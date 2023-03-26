@@ -4,17 +4,11 @@ part of 'bloc.dart';
 class ProfileState with _$ProfileState {
   const factory ProfileState.loading() = _ProfileLoadingState;
 
+  const factory ProfileState.saving() = _ProfileSavingState;
+
   const factory ProfileState.profile({
-    required int id,
-    required String email,
-    required String firstName,
-    required String lastName,
-    required String bio,
-    required String about,
-    required String skillTags,
-    required File? photo,
-    required int countryId,
-  }) = _SignInSuccessState;
+    required ProfileEntity profile,
+  }) = _ProfileSuccessState;
 
   const factory ProfileState.failed({
     required String message,

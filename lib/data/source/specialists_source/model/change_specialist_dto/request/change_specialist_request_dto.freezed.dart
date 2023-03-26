@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'current_specialist_response_dto.dart';
+part of 'change_specialist_request_dto.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,54 +14,49 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-CurrentSpecialistResponseDto _$CurrentSpecialistResponseDtoFromJson(
+ChangeSpecialistRequestDto _$ChangeSpecialistRequestDtoFromJson(
     Map<String, dynamic> json) {
-  return _CurrentSpecialistResponseDto.fromJson(json);
+  return _ChangeSpecialistRequestDto.fromJson(json);
 }
 
 /// @nodoc
-mixin _$CurrentSpecialistResponseDto {
+mixin _$ChangeSpecialistRequestDto {
   int get id => throw _privateConstructorUsedError;
-  String get email => throw _privateConstructorUsedError;
   String get firstName => throw _privateConstructorUsedError;
   String get lastName => throw _privateConstructorUsedError;
   String get bio => throw _privateConstructorUsedError;
   String get about => throw _privateConstructorUsedError;
   String get skillTags => throw _privateConstructorUsedError;
   String? get photo => throw _privateConstructorUsedError;
-  int get countryId => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $CurrentSpecialistResponseDtoCopyWith<CurrentSpecialistResponseDto>
+  $ChangeSpecialistRequestDtoCopyWith<ChangeSpecialistRequestDto>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $CurrentSpecialistResponseDtoCopyWith<$Res> {
-  factory $CurrentSpecialistResponseDtoCopyWith(
-          CurrentSpecialistResponseDto value,
-          $Res Function(CurrentSpecialistResponseDto) then) =
-      _$CurrentSpecialistResponseDtoCopyWithImpl<$Res,
-          CurrentSpecialistResponseDto>;
+abstract class $ChangeSpecialistRequestDtoCopyWith<$Res> {
+  factory $ChangeSpecialistRequestDtoCopyWith(ChangeSpecialistRequestDto value,
+          $Res Function(ChangeSpecialistRequestDto) then) =
+      _$ChangeSpecialistRequestDtoCopyWithImpl<$Res,
+          ChangeSpecialistRequestDto>;
   @useResult
   $Res call(
       {int id,
-      String email,
       String firstName,
       String lastName,
       String bio,
       String about,
       String skillTags,
-      String? photo,
-      int countryId});
+      String? photo});
 }
 
 /// @nodoc
-class _$CurrentSpecialistResponseDtoCopyWithImpl<$Res,
-        $Val extends CurrentSpecialistResponseDto>
-    implements $CurrentSpecialistResponseDtoCopyWith<$Res> {
-  _$CurrentSpecialistResponseDtoCopyWithImpl(this._value, this._then);
+class _$ChangeSpecialistRequestDtoCopyWithImpl<$Res,
+        $Val extends ChangeSpecialistRequestDto>
+    implements $ChangeSpecialistRequestDtoCopyWith<$Res> {
+  _$ChangeSpecialistRequestDtoCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -72,24 +67,18 @@ class _$CurrentSpecialistResponseDtoCopyWithImpl<$Res,
   @override
   $Res call({
     Object? id = null,
-    Object? email = null,
     Object? firstName = null,
     Object? lastName = null,
     Object? bio = null,
     Object? about = null,
     Object? skillTags = null,
     Object? photo = freezed,
-    Object? countryId = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      email: null == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String,
       firstName: null == firstName
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
@@ -114,67 +103,55 @@ class _$CurrentSpecialistResponseDtoCopyWithImpl<$Res,
           ? _value.photo
           : photo // ignore: cast_nullable_to_non_nullable
               as String?,
-      countryId: null == countryId
-          ? _value.countryId
-          : countryId // ignore: cast_nullable_to_non_nullable
-              as int,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$_CurrentSpecialistResponseDtoCopyWith<$Res>
-    implements $CurrentSpecialistResponseDtoCopyWith<$Res> {
-  factory _$$_CurrentSpecialistResponseDtoCopyWith(
-          _$_CurrentSpecialistResponseDto value,
-          $Res Function(_$_CurrentSpecialistResponseDto) then) =
-      __$$_CurrentSpecialistResponseDtoCopyWithImpl<$Res>;
+abstract class _$$_ChangeSpecialistRequestDtoCopyWith<$Res>
+    implements $ChangeSpecialistRequestDtoCopyWith<$Res> {
+  factory _$$_ChangeSpecialistRequestDtoCopyWith(
+          _$_ChangeSpecialistRequestDto value,
+          $Res Function(_$_ChangeSpecialistRequestDto) then) =
+      __$$_ChangeSpecialistRequestDtoCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
       {int id,
-      String email,
       String firstName,
       String lastName,
       String bio,
       String about,
       String skillTags,
-      String? photo,
-      int countryId});
+      String? photo});
 }
 
 /// @nodoc
-class __$$_CurrentSpecialistResponseDtoCopyWithImpl<$Res>
-    extends _$CurrentSpecialistResponseDtoCopyWithImpl<$Res,
-        _$_CurrentSpecialistResponseDto>
-    implements _$$_CurrentSpecialistResponseDtoCopyWith<$Res> {
-  __$$_CurrentSpecialistResponseDtoCopyWithImpl(
-      _$_CurrentSpecialistResponseDto _value,
-      $Res Function(_$_CurrentSpecialistResponseDto) _then)
+class __$$_ChangeSpecialistRequestDtoCopyWithImpl<$Res>
+    extends _$ChangeSpecialistRequestDtoCopyWithImpl<$Res,
+        _$_ChangeSpecialistRequestDto>
+    implements _$$_ChangeSpecialistRequestDtoCopyWith<$Res> {
+  __$$_ChangeSpecialistRequestDtoCopyWithImpl(
+      _$_ChangeSpecialistRequestDto _value,
+      $Res Function(_$_ChangeSpecialistRequestDto) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? id = null,
-    Object? email = null,
     Object? firstName = null,
     Object? lastName = null,
     Object? bio = null,
     Object? about = null,
     Object? skillTags = null,
     Object? photo = freezed,
-    Object? countryId = null,
   }) {
-    return _then(_$_CurrentSpecialistResponseDto(
+    return _then(_$_ChangeSpecialistRequestDto(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      email: null == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String,
       firstName: null == firstName
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
@@ -199,35 +176,27 @@ class __$$_CurrentSpecialistResponseDtoCopyWithImpl<$Res>
           ? _value.photo
           : photo // ignore: cast_nullable_to_non_nullable
               as String?,
-      countryId: null == countryId
-          ? _value.countryId
-          : countryId // ignore: cast_nullable_to_non_nullable
-              as int,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$_CurrentSpecialistResponseDto implements _CurrentSpecialistResponseDto {
-  const _$_CurrentSpecialistResponseDto(
+class _$_ChangeSpecialistRequestDto implements _ChangeSpecialistRequestDto {
+  const _$_ChangeSpecialistRequestDto(
       {required this.id,
-      required this.email,
       required this.firstName,
       required this.lastName,
       required this.bio,
       required this.about,
       required this.skillTags,
-      required this.photo,
-      required this.countryId});
+      required this.photo});
 
-  factory _$_CurrentSpecialistResponseDto.fromJson(Map<String, dynamic> json) =>
-      _$$_CurrentSpecialistResponseDtoFromJson(json);
+  factory _$_ChangeSpecialistRequestDto.fromJson(Map<String, dynamic> json) =>
+      _$$_ChangeSpecialistRequestDtoFromJson(json);
 
   @override
   final int id;
-  @override
-  final String email;
   @override
   final String firstName;
   @override
@@ -240,21 +209,18 @@ class _$_CurrentSpecialistResponseDto implements _CurrentSpecialistResponseDto {
   final String skillTags;
   @override
   final String? photo;
-  @override
-  final int countryId;
 
   @override
   String toString() {
-    return 'CurrentSpecialistResponseDto(id: $id, email: $email, firstName: $firstName, lastName: $lastName, bio: $bio, about: $about, skillTags: $skillTags, photo: $photo, countryId: $countryId)';
+    return 'ChangeSpecialistRequestDto(id: $id, firstName: $firstName, lastName: $lastName, bio: $bio, about: $about, skillTags: $skillTags, photo: $photo)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_CurrentSpecialistResponseDto &&
+            other is _$_ChangeSpecialistRequestDto &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.email, email) || other.email == email) &&
             (identical(other.firstName, firstName) ||
                 other.firstName == firstName) &&
             (identical(other.lastName, lastName) ||
@@ -263,51 +229,45 @@ class _$_CurrentSpecialistResponseDto implements _CurrentSpecialistResponseDto {
             (identical(other.about, about) || other.about == about) &&
             (identical(other.skillTags, skillTags) ||
                 other.skillTags == skillTags) &&
-            (identical(other.photo, photo) || other.photo == photo) &&
-            (identical(other.countryId, countryId) ||
-                other.countryId == countryId));
+            (identical(other.photo, photo) || other.photo == photo));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, email, firstName, lastName,
-      bio, about, skillTags, photo, countryId);
+  int get hashCode => Object.hash(
+      runtimeType, id, firstName, lastName, bio, about, skillTags, photo);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CurrentSpecialistResponseDtoCopyWith<_$_CurrentSpecialistResponseDto>
-      get copyWith => __$$_CurrentSpecialistResponseDtoCopyWithImpl<
-          _$_CurrentSpecialistResponseDto>(this, _$identity);
+  _$$_ChangeSpecialistRequestDtoCopyWith<_$_ChangeSpecialistRequestDto>
+      get copyWith => __$$_ChangeSpecialistRequestDtoCopyWithImpl<
+          _$_ChangeSpecialistRequestDto>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_CurrentSpecialistResponseDtoToJson(
+    return _$$_ChangeSpecialistRequestDtoToJson(
       this,
     );
   }
 }
 
-abstract class _CurrentSpecialistResponseDto
-    implements CurrentSpecialistResponseDto {
-  const factory _CurrentSpecialistResponseDto(
+abstract class _ChangeSpecialistRequestDto
+    implements ChangeSpecialistRequestDto {
+  const factory _ChangeSpecialistRequestDto(
       {required final int id,
-      required final String email,
       required final String firstName,
       required final String lastName,
       required final String bio,
       required final String about,
       required final String skillTags,
-      required final String? photo,
-      required final int countryId}) = _$_CurrentSpecialistResponseDto;
+      required final String? photo}) = _$_ChangeSpecialistRequestDto;
 
-  factory _CurrentSpecialistResponseDto.fromJson(Map<String, dynamic> json) =
-      _$_CurrentSpecialistResponseDto.fromJson;
+  factory _ChangeSpecialistRequestDto.fromJson(Map<String, dynamic> json) =
+      _$_ChangeSpecialistRequestDto.fromJson;
 
   @override
   int get id;
-  @override
-  String get email;
   @override
   String get firstName;
   @override
@@ -321,9 +281,7 @@ abstract class _CurrentSpecialistResponseDto
   @override
   String? get photo;
   @override
-  int get countryId;
-  @override
   @JsonKey(ignore: true)
-  _$$_CurrentSpecialistResponseDtoCopyWith<_$_CurrentSpecialistResponseDto>
+  _$$_ChangeSpecialistRequestDtoCopyWith<_$_ChangeSpecialistRequestDto>
       get copyWith => throw _privateConstructorUsedError;
 }

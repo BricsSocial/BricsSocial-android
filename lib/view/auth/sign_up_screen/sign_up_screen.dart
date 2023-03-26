@@ -8,6 +8,7 @@ import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 import '../../../core/di/di.dart';
 import '../../../core/ui/color_schemes.dart';
 import '../../../domain/countries/entity/country_entity.dart';
+import '../../common/button/button.dart';
 import '../../common/country_dropdown/country_dropdown.dart';
 import '../../common/loading_indicator.dart';
 import '../common/password_field.dart';
@@ -34,9 +35,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
       child: BlocListener<SignUpBloc, SignUpState>(
         listener: (context, state) async {
           state.maybeMap(
-            failed: (value) {
-              showToast(value.message, context: context);
-            },
             success: (value) async {
               Future.delayed(const Duration(seconds: 1), () {
                 context.router.pop();
@@ -103,67 +101,41 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     _countryEntity = entity;
                   },
                 ),
-                const SizedBox(height: 52 + 16 + 16)
+                const SizedBox(height: kButtonHeight + 16 + 16)
               ],
             ),
           ),
           floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-          floatingActionButton: Container(
-            width: MediaQuery.of(context).size.width,
-            padding: const EdgeInsets.symmetric(horizontal: 24),
-            child: BlocBuilder<SignUpBloc, SignUpState>(
-              builder: (context, state) {
-                return SizedBox(
-                  height: 52,
-                  child: TextButton(
-                    onPressed: () async {
-                      if (_countryEntity != null) {
-                        context.read<SignUpBloc>().add(
-                              SignUpEvent.signUp(
-                                firstName: _firstNameTextController.text,
-                                lastName: _lastNameTextController.text,
-                                email: _emailTextController.text,
-                                password: _passwordTextController.text,
-                                countryId: _countryEntity!.id,
-                              ),
-                            );
-                      }
-                    },
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.resolveWith((states) {
-                        return state.maybeMap(
-                          success: (_) => greenColor,
-                          orElse: () => lightColorScheme.primaryContainer,
+          floatingActionButton: BlocBuilder<SignUpBloc, SignUpState>(
+            builder: (context, state) {
+              return AppButton(
+                margin: const EdgeInsets.symmetric(horizontal: 24),
+                onPressed: () {
+                  if (_countryEntity != null) {
+                    context.read<SignUpBloc>().add(
+                          SignUpEvent.signUp(
+                            firstName: _firstNameTextController.text,
+                            lastName: _lastNameTextController.text,
+                            email: _emailTextController.text,
+                            password: _passwordTextController.text,
+                            countryId: _countryEntity!.id,
+                          ),
                         );
-                      }),
-                    ),
-                    child: AnimatedSwitcher(
-                      duration: const Duration(milliseconds: 400),
-                      child: state.maybeMap(
-                        loading: (_) {
-                          return const AppLoadingIndicator(
-                            height: 24,
-                            width: 24,
-                          );
-                        },
-                        success: (_) {
-                          return Text(
-                            'ok'.tr(),
-                            style: const TextStyle(color: whiteColor),
-                          );
-                        },
-                        orElse: () {
-                          return Padding(
-                            padding: const EdgeInsets.all(8),
-                            child: Text('sign_up_button'.tr()),
-                          );
-                        },
-                      ),
+                  }
+                },
+                state: state.maybeMap(
+                  loading: (_) => const AppButtonState.loading(),
+                  success: (_) => const AppButtonState.success(),
+                  failed: (state) => AppButtonState.failed(message: state.message),
+                  orElse: () => AppButtonState.base(
+                    child: Text(
+                      'sign_up_button'.tr(),
+                      style: TextStyle(color: lightColorScheme.primary, fontWeight: FontWeight.w600),
                     ),
                   ),
-                );
-              },
-            ),
+                ),
+              );
+            },
           ),
         ),
       ),

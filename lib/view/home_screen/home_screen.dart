@@ -1,6 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import '../profile_screen/profile_screen.dart';
-import '../../core/ui/color_schemes.dart';
+import '../vacancies_screen/vacancies_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -18,7 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: IndexedStack(
         index: _currentIndex,
         children: [
-          Container(),
+          const VacanciesScreen(),
           Container(),
           const ProfileScreen(),
         ],
@@ -31,15 +32,15 @@ class _HomeScreenState extends State<HomeScreen> {
           });
         },
         destinations: [
-          const NavigationDestination(
-            icon: Icon(Icons.work_outline),
-            selectedIcon: Icon(Icons.work),
-            label: 'Home',
+          NavigationDestination(
+            icon: const Icon(Icons.work_outline),
+            selectedIcon: const Icon(Icons.work),
+            label: 'vacancies_label'.tr(),
           ),
-          const NavigationDestination(
-            icon: Icon(Icons.list_alt_outlined),
-            selectedIcon: Icon(Icons.list_alt),
-            label: 'Replies',
+          NavigationDestination(
+            icon: const Icon(Icons.list_alt_outlined),
+            selectedIcon: const Icon(Icons.list_alt),
+            label: 'replies_label'.tr(),
           ),
           // Align(
           //   alignment: Alignment.topCenter,
@@ -58,10 +59,10 @@ class _HomeScreenState extends State<HomeScreen> {
           //   ),
           // ),
 
-          const NavigationDestination(
-            icon: Icon(Icons.person_outline),
-            selectedIcon: Icon(Icons.person),
-            label: 'Profile',
+          NavigationDestination(
+            icon: const Icon(Icons.person_outline),
+            selectedIcon: const Icon(Icons.person),
+            label: 'profile_label'.tr(),
           )
         ],
       ),

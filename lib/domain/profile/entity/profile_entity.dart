@@ -13,8 +13,22 @@ class ProfileEntity with _$ProfileEntity {
     required String lastName,
     required String bio,
     required String about,
-    required String skillTags,
+    required List<String> skillTags,
     required File? photo,
     required int countryId,
   }) = _ProfileEntity;
+
+  factory ProfileEntity.empty() {
+    return ProfileEntity(
+      id: 0,
+      email: '',
+      firstName: '',
+      lastName: '',
+      bio: '',
+      about: '',
+      skillTags: [],
+      photo: null,
+      countryId: 1,
+    );
+  }
 }

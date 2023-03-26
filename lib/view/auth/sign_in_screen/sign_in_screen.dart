@@ -7,6 +7,7 @@ import '../../../core/ui/color_schemes.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
+import '../../common/button/button.dart';
 import '../../common/loading_indicator.dart';
 import '../common/password_field.dart';
 import 'bloc/bloc.dart';
@@ -42,9 +43,6 @@ class SignInScreenState extends State<SignInScreen> {
             },
             passwordFailed: (state) {
               _passwordErrorText.value = state.message;
-            },
-            failed: (state) {
-              showToast(state.message, context: context);
             },
             orElse: () {},
           );
@@ -122,59 +120,36 @@ class SignInScreenState extends State<SignInScreen> {
                     ),
                   ),
                 ),
-                const SizedBox(height: 52 + 16 + 16)
+                const SizedBox(height: kButtonHeight + 16 + 16)
               ],
             ),
           ),
           floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-          floatingActionButton: Container(
-            width: MediaQuery.of(context).size.width,
-            padding: const EdgeInsets.symmetric(horizontal: 24),
-            child: BlocBuilder<SignInBloc, SignInState>(
-              builder: (context, state) {
-                return SizedBox(
-                  height: 52,
-                  child: TextButton(
-                    onPressed: () async {
-                      context.read<SignInBloc>().add(
-                            SignInEvent.signIn(
-                              email: _emailTextController.text,
-                              password: _passwordTextController.text,
-                            ),
-                          );
-                    },
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.resolveWith((states) {
-                        return state.maybeMap(
-                          success: (_) => greenColor,
-                          orElse: () => lightColorScheme.primaryContainer,
-                        );
-                      }),
-                    ),
-                    child: AnimatedSwitcher(
-                      duration: const Duration(milliseconds: 400),
-                      child: state.maybeMap(
-                        loading: (_) {
-                          return const AppLoadingIndicator(
-                            height: 24,
-                            width: 24,
-                          );
-                        },
-                        success: (_) {
-                          return Text(
-                            'ok'.tr(),
-                            style: const TextStyle(color: whiteColor),
-                          );
-                        },
-                        orElse: () {
-                          return Text('sign_in_button'.tr());
-                        },
-                      ),
+          floatingActionButton: BlocBuilder<SignInBloc, SignInState>(
+            builder: (context, state) {
+              return AppButton(
+                margin: const EdgeInsets.symmetric(horizontal: 24),
+                onPressed: () {
+                  context.read<SignInBloc>().add(
+                        SignInEvent.signIn(
+                          email: _emailTextController.text,
+                          password: _passwordTextController.text,
+                        ),
+                      );
+                },
+                state: state.maybeMap(
+                  loading: (_) => const AppButtonState.loading(),
+                  success: (_) => const AppButtonState.success(),
+                  failed: (state) => AppButtonState.failed(message: state.message),
+                  orElse: () => AppButtonState.base(
+                    child: Text(
+                      'sign_in_button'.tr(),
+                      style: TextStyle(color: lightColorScheme.primary, fontWeight: FontWeight.w600),
                     ),
                   ),
-                );
-              },
-            ),
+                ),
+              );
+            },
           ),
         ),
       ),

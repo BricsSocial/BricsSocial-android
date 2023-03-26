@@ -47,7 +47,7 @@ class _CountryDropdownState extends State<CountryDropdown> {
                       _currentCountry = state.countries.firstWhere((element) => element.id == widget.initialCountryId);
                     }
 
-                    widget.onChoosed(_currentCountry!);
+                    widget.onChoosed.call(_currentCountry!);
                   }
                 },
                 orElse: () {},
@@ -79,7 +79,7 @@ class _CountryDropdownState extends State<CountryDropdown> {
                           setState(() {
                             _currentCountry = entry;
                           });
-                          widget.onChoosed(entry);
+                          widget.onChoosed.call(entry);
                         },
                         child: Row(
                           children: [

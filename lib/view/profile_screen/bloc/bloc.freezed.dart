@@ -18,52 +18,25 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ProfileEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            int id,
-            String email,
-            String firstName,
-            String lastName,
-            String bio,
-            String about,
-            String skillTags,
-            File? photo,
-            int countryId)
-        profile,
+    required TResult Function(ProfileEntity profile) profile,
     required TResult Function() update,
+    required TResult Function(ProfileEntity profile) change,
     required TResult Function(String message) failed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-            int id,
-            String email,
-            String firstName,
-            String lastName,
-            String bio,
-            String about,
-            String skillTags,
-            File? photo,
-            int countryId)?
-        profile,
+    TResult? Function(ProfileEntity profile)? profile,
     TResult? Function()? update,
+    TResult? Function(ProfileEntity profile)? change,
     TResult? Function(String message)? failed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            int id,
-            String email,
-            String firstName,
-            String lastName,
-            String bio,
-            String about,
-            String skillTags,
-            File? photo,
-            int countryId)?
-        profile,
+    TResult Function(ProfileEntity profile)? profile,
     TResult Function()? update,
+    TResult Function(ProfileEntity profile)? change,
     TResult Function(String message)? failed,
     required TResult orElse(),
   }) =>
@@ -72,6 +45,7 @@ mixin _$ProfileEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_ProfileEvent value) profile,
     required TResult Function(_ProfileUpdateEvent value) update,
+    required TResult Function(_ProfileChangeEvent value) change,
     required TResult Function(_ProfileFailedEvent value) failed,
   }) =>
       throw _privateConstructorUsedError;
@@ -79,6 +53,7 @@ mixin _$ProfileEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ProfileEvent value)? profile,
     TResult? Function(_ProfileUpdateEvent value)? update,
+    TResult? Function(_ProfileChangeEvent value)? change,
     TResult? Function(_ProfileFailedEvent value)? failed,
   }) =>
       throw _privateConstructorUsedError;
@@ -86,6 +61,7 @@ mixin _$ProfileEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ProfileEvent value)? profile,
     TResult Function(_ProfileUpdateEvent value)? update,
+    TResult Function(_ProfileChangeEvent value)? change,
     TResult Function(_ProfileFailedEvent value)? failed,
     required TResult orElse(),
   }) =>
@@ -116,16 +92,9 @@ abstract class _$$_ProfileEventCopyWith<$Res> {
           _$_ProfileEvent value, $Res Function(_$_ProfileEvent) then) =
       __$$_ProfileEventCopyWithImpl<$Res>;
   @useResult
-  $Res call(
-      {int id,
-      String email,
-      String firstName,
-      String lastName,
-      String bio,
-      String about,
-      String skillTags,
-      File? photo,
-      int countryId});
+  $Res call({ProfileEntity profile});
+
+  $ProfileEntityCopyWith<$Res> get profile;
 }
 
 /// @nodoc
@@ -139,93 +108,36 @@ class __$$_ProfileEventCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? email = null,
-    Object? firstName = null,
-    Object? lastName = null,
-    Object? bio = null,
-    Object? about = null,
-    Object? skillTags = null,
-    Object? photo = freezed,
-    Object? countryId = null,
+    Object? profile = null,
   }) {
     return _then(_$_ProfileEvent(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      email: null == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      firstName: null == firstName
-          ? _value.firstName
-          : firstName // ignore: cast_nullable_to_non_nullable
-              as String,
-      lastName: null == lastName
-          ? _value.lastName
-          : lastName // ignore: cast_nullable_to_non_nullable
-              as String,
-      bio: null == bio
-          ? _value.bio
-          : bio // ignore: cast_nullable_to_non_nullable
-              as String,
-      about: null == about
-          ? _value.about
-          : about // ignore: cast_nullable_to_non_nullable
-              as String,
-      skillTags: null == skillTags
-          ? _value.skillTags
-          : skillTags // ignore: cast_nullable_to_non_nullable
-              as String,
-      photo: freezed == photo
-          ? _value.photo
-          : photo // ignore: cast_nullable_to_non_nullable
-              as File?,
-      countryId: null == countryId
-          ? _value.countryId
-          : countryId // ignore: cast_nullable_to_non_nullable
-              as int,
+      profile: null == profile
+          ? _value.profile
+          : profile // ignore: cast_nullable_to_non_nullable
+              as ProfileEntity,
     ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ProfileEntityCopyWith<$Res> get profile {
+    return $ProfileEntityCopyWith<$Res>(_value.profile, (value) {
+      return _then(_value.copyWith(profile: value));
+    });
   }
 }
 
 /// @nodoc
 
 class _$_ProfileEvent implements _ProfileEvent {
-  const _$_ProfileEvent(
-      {required this.id,
-      required this.email,
-      required this.firstName,
-      required this.lastName,
-      required this.bio,
-      required this.about,
-      required this.skillTags,
-      required this.photo,
-      required this.countryId});
+  const _$_ProfileEvent({required this.profile});
 
   @override
-  final int id;
-  @override
-  final String email;
-  @override
-  final String firstName;
-  @override
-  final String lastName;
-  @override
-  final String bio;
-  @override
-  final String about;
-  @override
-  final String skillTags;
-  @override
-  final File? photo;
-  @override
-  final int countryId;
+  final ProfileEntity profile;
 
   @override
   String toString() {
-    return 'ProfileEvent.profile(id: $id, email: $email, firstName: $firstName, lastName: $lastName, bio: $bio, about: $about, skillTags: $skillTags, photo: $photo, countryId: $countryId)';
+    return 'ProfileEvent.profile(profile: $profile)';
   }
 
   @override
@@ -233,24 +145,11 @@ class _$_ProfileEvent implements _ProfileEvent {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ProfileEvent &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.email, email) || other.email == email) &&
-            (identical(other.firstName, firstName) ||
-                other.firstName == firstName) &&
-            (identical(other.lastName, lastName) ||
-                other.lastName == lastName) &&
-            (identical(other.bio, bio) || other.bio == bio) &&
-            (identical(other.about, about) || other.about == about) &&
-            (identical(other.skillTags, skillTags) ||
-                other.skillTags == skillTags) &&
-            (identical(other.photo, photo) || other.photo == photo) &&
-            (identical(other.countryId, countryId) ||
-                other.countryId == countryId));
+            (identical(other.profile, profile) || other.profile == profile));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, email, firstName, lastName,
-      bio, about, skillTags, photo, countryId);
+  int get hashCode => Object.hash(runtimeType, profile);
 
   @JsonKey(ignore: true)
   @override
@@ -261,66 +160,36 @@ class _$_ProfileEvent implements _ProfileEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            int id,
-            String email,
-            String firstName,
-            String lastName,
-            String bio,
-            String about,
-            String skillTags,
-            File? photo,
-            int countryId)
-        profile,
+    required TResult Function(ProfileEntity profile) profile,
     required TResult Function() update,
+    required TResult Function(ProfileEntity profile) change,
     required TResult Function(String message) failed,
   }) {
-    return profile(id, email, firstName, lastName, bio, about, skillTags, photo,
-        countryId);
+    return profile(this.profile);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-            int id,
-            String email,
-            String firstName,
-            String lastName,
-            String bio,
-            String about,
-            String skillTags,
-            File? photo,
-            int countryId)?
-        profile,
+    TResult? Function(ProfileEntity profile)? profile,
     TResult? Function()? update,
+    TResult? Function(ProfileEntity profile)? change,
     TResult? Function(String message)? failed,
   }) {
-    return profile?.call(id, email, firstName, lastName, bio, about, skillTags,
-        photo, countryId);
+    return profile?.call(this.profile);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            int id,
-            String email,
-            String firstName,
-            String lastName,
-            String bio,
-            String about,
-            String skillTags,
-            File? photo,
-            int countryId)?
-        profile,
+    TResult Function(ProfileEntity profile)? profile,
     TResult Function()? update,
+    TResult Function(ProfileEntity profile)? change,
     TResult Function(String message)? failed,
     required TResult orElse(),
   }) {
     if (profile != null) {
-      return profile(id, email, firstName, lastName, bio, about, skillTags,
-          photo, countryId);
+      return profile(this.profile);
     }
     return orElse();
   }
@@ -330,6 +199,7 @@ class _$_ProfileEvent implements _ProfileEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_ProfileEvent value) profile,
     required TResult Function(_ProfileUpdateEvent value) update,
+    required TResult Function(_ProfileChangeEvent value) change,
     required TResult Function(_ProfileFailedEvent value) failed,
   }) {
     return profile(this);
@@ -340,6 +210,7 @@ class _$_ProfileEvent implements _ProfileEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ProfileEvent value)? profile,
     TResult? Function(_ProfileUpdateEvent value)? update,
+    TResult? Function(_ProfileChangeEvent value)? change,
     TResult? Function(_ProfileFailedEvent value)? failed,
   }) {
     return profile?.call(this);
@@ -350,6 +221,7 @@ class _$_ProfileEvent implements _ProfileEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ProfileEvent value)? profile,
     TResult Function(_ProfileUpdateEvent value)? update,
+    TResult Function(_ProfileChangeEvent value)? change,
     TResult Function(_ProfileFailedEvent value)? failed,
     required TResult orElse(),
   }) {
@@ -361,26 +233,10 @@ class _$_ProfileEvent implements _ProfileEvent {
 }
 
 abstract class _ProfileEvent implements ProfileEvent {
-  const factory _ProfileEvent(
-      {required final int id,
-      required final String email,
-      required final String firstName,
-      required final String lastName,
-      required final String bio,
-      required final String about,
-      required final String skillTags,
-      required final File? photo,
-      required final int countryId}) = _$_ProfileEvent;
+  const factory _ProfileEvent({required final ProfileEntity profile}) =
+      _$_ProfileEvent;
 
-  int get id;
-  String get email;
-  String get firstName;
-  String get lastName;
-  String get bio;
-  String get about;
-  String get skillTags;
-  File? get photo;
-  int get countryId;
+  ProfileEntity get profile;
   @JsonKey(ignore: true)
   _$$_ProfileEventCopyWith<_$_ProfileEvent> get copyWith =>
       throw _privateConstructorUsedError;
@@ -424,18 +280,9 @@ class _$_ProfileUpdateEvent implements _ProfileUpdateEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            int id,
-            String email,
-            String firstName,
-            String lastName,
-            String bio,
-            String about,
-            String skillTags,
-            File? photo,
-            int countryId)
-        profile,
+    required TResult Function(ProfileEntity profile) profile,
     required TResult Function() update,
+    required TResult Function(ProfileEntity profile) change,
     required TResult Function(String message) failed,
   }) {
     return update();
@@ -444,18 +291,9 @@ class _$_ProfileUpdateEvent implements _ProfileUpdateEvent {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-            int id,
-            String email,
-            String firstName,
-            String lastName,
-            String bio,
-            String about,
-            String skillTags,
-            File? photo,
-            int countryId)?
-        profile,
+    TResult? Function(ProfileEntity profile)? profile,
     TResult? Function()? update,
+    TResult? Function(ProfileEntity profile)? change,
     TResult? Function(String message)? failed,
   }) {
     return update?.call();
@@ -464,18 +302,9 @@ class _$_ProfileUpdateEvent implements _ProfileUpdateEvent {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            int id,
-            String email,
-            String firstName,
-            String lastName,
-            String bio,
-            String about,
-            String skillTags,
-            File? photo,
-            int countryId)?
-        profile,
+    TResult Function(ProfileEntity profile)? profile,
     TResult Function()? update,
+    TResult Function(ProfileEntity profile)? change,
     TResult Function(String message)? failed,
     required TResult orElse(),
   }) {
@@ -490,6 +319,7 @@ class _$_ProfileUpdateEvent implements _ProfileUpdateEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_ProfileEvent value) profile,
     required TResult Function(_ProfileUpdateEvent value) update,
+    required TResult Function(_ProfileChangeEvent value) change,
     required TResult Function(_ProfileFailedEvent value) failed,
   }) {
     return update(this);
@@ -500,6 +330,7 @@ class _$_ProfileUpdateEvent implements _ProfileUpdateEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ProfileEvent value)? profile,
     TResult? Function(_ProfileUpdateEvent value)? update,
+    TResult? Function(_ProfileChangeEvent value)? change,
     TResult? Function(_ProfileFailedEvent value)? failed,
   }) {
     return update?.call(this);
@@ -510,6 +341,7 @@ class _$_ProfileUpdateEvent implements _ProfileUpdateEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ProfileEvent value)? profile,
     TResult Function(_ProfileUpdateEvent value)? update,
+    TResult Function(_ProfileChangeEvent value)? change,
     TResult Function(_ProfileFailedEvent value)? failed,
     required TResult orElse(),
   }) {
@@ -522,6 +354,163 @@ class _$_ProfileUpdateEvent implements _ProfileUpdateEvent {
 
 abstract class _ProfileUpdateEvent implements ProfileEvent {
   const factory _ProfileUpdateEvent() = _$_ProfileUpdateEvent;
+}
+
+/// @nodoc
+abstract class _$$_ProfileChangeEventCopyWith<$Res> {
+  factory _$$_ProfileChangeEventCopyWith(_$_ProfileChangeEvent value,
+          $Res Function(_$_ProfileChangeEvent) then) =
+      __$$_ProfileChangeEventCopyWithImpl<$Res>;
+  @useResult
+  $Res call({ProfileEntity profile});
+
+  $ProfileEntityCopyWith<$Res> get profile;
+}
+
+/// @nodoc
+class __$$_ProfileChangeEventCopyWithImpl<$Res>
+    extends _$ProfileEventCopyWithImpl<$Res, _$_ProfileChangeEvent>
+    implements _$$_ProfileChangeEventCopyWith<$Res> {
+  __$$_ProfileChangeEventCopyWithImpl(
+      _$_ProfileChangeEvent _value, $Res Function(_$_ProfileChangeEvent) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? profile = null,
+  }) {
+    return _then(_$_ProfileChangeEvent(
+      profile: null == profile
+          ? _value.profile
+          : profile // ignore: cast_nullable_to_non_nullable
+              as ProfileEntity,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ProfileEntityCopyWith<$Res> get profile {
+    return $ProfileEntityCopyWith<$Res>(_value.profile, (value) {
+      return _then(_value.copyWith(profile: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$_ProfileChangeEvent implements _ProfileChangeEvent {
+  const _$_ProfileChangeEvent({required this.profile});
+
+  @override
+  final ProfileEntity profile;
+
+  @override
+  String toString() {
+    return 'ProfileEvent.change(profile: $profile)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_ProfileChangeEvent &&
+            (identical(other.profile, profile) || other.profile == profile));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, profile);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_ProfileChangeEventCopyWith<_$_ProfileChangeEvent> get copyWith =>
+      __$$_ProfileChangeEventCopyWithImpl<_$_ProfileChangeEvent>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(ProfileEntity profile) profile,
+    required TResult Function() update,
+    required TResult Function(ProfileEntity profile) change,
+    required TResult Function(String message) failed,
+  }) {
+    return change(this.profile);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(ProfileEntity profile)? profile,
+    TResult? Function()? update,
+    TResult? Function(ProfileEntity profile)? change,
+    TResult? Function(String message)? failed,
+  }) {
+    return change?.call(this.profile);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(ProfileEntity profile)? profile,
+    TResult Function()? update,
+    TResult Function(ProfileEntity profile)? change,
+    TResult Function(String message)? failed,
+    required TResult orElse(),
+  }) {
+    if (change != null) {
+      return change(this.profile);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ProfileEvent value) profile,
+    required TResult Function(_ProfileUpdateEvent value) update,
+    required TResult Function(_ProfileChangeEvent value) change,
+    required TResult Function(_ProfileFailedEvent value) failed,
+  }) {
+    return change(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ProfileEvent value)? profile,
+    TResult? Function(_ProfileUpdateEvent value)? update,
+    TResult? Function(_ProfileChangeEvent value)? change,
+    TResult? Function(_ProfileFailedEvent value)? failed,
+  }) {
+    return change?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ProfileEvent value)? profile,
+    TResult Function(_ProfileUpdateEvent value)? update,
+    TResult Function(_ProfileChangeEvent value)? change,
+    TResult Function(_ProfileFailedEvent value)? failed,
+    required TResult orElse(),
+  }) {
+    if (change != null) {
+      return change(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ProfileChangeEvent implements ProfileEvent {
+  const factory _ProfileChangeEvent({required final ProfileEntity profile}) =
+      _$_ProfileChangeEvent;
+
+  ProfileEntity get profile;
+  @JsonKey(ignore: true)
+  _$$_ProfileChangeEventCopyWith<_$_ProfileChangeEvent> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -589,18 +578,9 @@ class _$_ProfileFailedEvent implements _ProfileFailedEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            int id,
-            String email,
-            String firstName,
-            String lastName,
-            String bio,
-            String about,
-            String skillTags,
-            File? photo,
-            int countryId)
-        profile,
+    required TResult Function(ProfileEntity profile) profile,
     required TResult Function() update,
+    required TResult Function(ProfileEntity profile) change,
     required TResult Function(String message) failed,
   }) {
     return failed(message);
@@ -609,18 +589,9 @@ class _$_ProfileFailedEvent implements _ProfileFailedEvent {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-            int id,
-            String email,
-            String firstName,
-            String lastName,
-            String bio,
-            String about,
-            String skillTags,
-            File? photo,
-            int countryId)?
-        profile,
+    TResult? Function(ProfileEntity profile)? profile,
     TResult? Function()? update,
+    TResult? Function(ProfileEntity profile)? change,
     TResult? Function(String message)? failed,
   }) {
     return failed?.call(message);
@@ -629,18 +600,9 @@ class _$_ProfileFailedEvent implements _ProfileFailedEvent {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            int id,
-            String email,
-            String firstName,
-            String lastName,
-            String bio,
-            String about,
-            String skillTags,
-            File? photo,
-            int countryId)?
-        profile,
+    TResult Function(ProfileEntity profile)? profile,
     TResult Function()? update,
+    TResult Function(ProfileEntity profile)? change,
     TResult Function(String message)? failed,
     required TResult orElse(),
   }) {
@@ -655,6 +617,7 @@ class _$_ProfileFailedEvent implements _ProfileFailedEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_ProfileEvent value) profile,
     required TResult Function(_ProfileUpdateEvent value) update,
+    required TResult Function(_ProfileChangeEvent value) change,
     required TResult Function(_ProfileFailedEvent value) failed,
   }) {
     return failed(this);
@@ -665,6 +628,7 @@ class _$_ProfileFailedEvent implements _ProfileFailedEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ProfileEvent value)? profile,
     TResult? Function(_ProfileUpdateEvent value)? update,
+    TResult? Function(_ProfileChangeEvent value)? change,
     TResult? Function(_ProfileFailedEvent value)? failed,
   }) {
     return failed?.call(this);
@@ -675,6 +639,7 @@ class _$_ProfileFailedEvent implements _ProfileFailedEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ProfileEvent value)? profile,
     TResult Function(_ProfileUpdateEvent value)? update,
+    TResult Function(_ProfileChangeEvent value)? change,
     TResult Function(_ProfileFailedEvent value)? failed,
     required TResult orElse(),
   }) {
@@ -700,51 +665,24 @@ mixin _$ProfileState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(
-            int id,
-            String email,
-            String firstName,
-            String lastName,
-            String bio,
-            String about,
-            String skillTags,
-            File? photo,
-            int countryId)
-        profile,
+    required TResult Function() saving,
+    required TResult Function(ProfileEntity profile) profile,
     required TResult Function(String message) failed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(
-            int id,
-            String email,
-            String firstName,
-            String lastName,
-            String bio,
-            String about,
-            String skillTags,
-            File? photo,
-            int countryId)?
-        profile,
+    TResult? Function()? saving,
+    TResult? Function(ProfileEntity profile)? profile,
     TResult? Function(String message)? failed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(
-            int id,
-            String email,
-            String firstName,
-            String lastName,
-            String bio,
-            String about,
-            String skillTags,
-            File? photo,
-            int countryId)?
-        profile,
+    TResult Function()? saving,
+    TResult Function(ProfileEntity profile)? profile,
     TResult Function(String message)? failed,
     required TResult orElse(),
   }) =>
@@ -752,21 +690,24 @@ mixin _$ProfileState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ProfileLoadingState value) loading,
-    required TResult Function(_SignInSuccessState value) profile,
+    required TResult Function(_ProfileSavingState value) saving,
+    required TResult Function(_ProfileSuccessState value) profile,
     required TResult Function(_ProfileFailedState value) failed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ProfileLoadingState value)? loading,
-    TResult? Function(_SignInSuccessState value)? profile,
+    TResult? Function(_ProfileSavingState value)? saving,
+    TResult? Function(_ProfileSuccessState value)? profile,
     TResult? Function(_ProfileFailedState value)? failed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ProfileLoadingState value)? loading,
-    TResult Function(_SignInSuccessState value)? profile,
+    TResult Function(_ProfileSavingState value)? saving,
+    TResult Function(_ProfileSuccessState value)? profile,
     TResult Function(_ProfileFailedState value)? failed,
     required TResult orElse(),
   }) =>
@@ -830,17 +771,8 @@ class _$_ProfileLoadingState implements _ProfileLoadingState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(
-            int id,
-            String email,
-            String firstName,
-            String lastName,
-            String bio,
-            String about,
-            String skillTags,
-            File? photo,
-            int countryId)
-        profile,
+    required TResult Function() saving,
+    required TResult Function(ProfileEntity profile) profile,
     required TResult Function(String message) failed,
   }) {
     return loading();
@@ -850,17 +782,8 @@ class _$_ProfileLoadingState implements _ProfileLoadingState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(
-            int id,
-            String email,
-            String firstName,
-            String lastName,
-            String bio,
-            String about,
-            String skillTags,
-            File? photo,
-            int countryId)?
-        profile,
+    TResult? Function()? saving,
+    TResult? Function(ProfileEntity profile)? profile,
     TResult? Function(String message)? failed,
   }) {
     return loading?.call();
@@ -870,17 +793,8 @@ class _$_ProfileLoadingState implements _ProfileLoadingState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(
-            int id,
-            String email,
-            String firstName,
-            String lastName,
-            String bio,
-            String about,
-            String skillTags,
-            File? photo,
-            int countryId)?
-        profile,
+    TResult Function()? saving,
+    TResult Function(ProfileEntity profile)? profile,
     TResult Function(String message)? failed,
     required TResult orElse(),
   }) {
@@ -894,7 +808,8 @@ class _$_ProfileLoadingState implements _ProfileLoadingState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ProfileLoadingState value) loading,
-    required TResult Function(_SignInSuccessState value) profile,
+    required TResult Function(_ProfileSavingState value) saving,
+    required TResult Function(_ProfileSuccessState value) profile,
     required TResult Function(_ProfileFailedState value) failed,
   }) {
     return loading(this);
@@ -904,7 +819,8 @@ class _$_ProfileLoadingState implements _ProfileLoadingState {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ProfileLoadingState value)? loading,
-    TResult? Function(_SignInSuccessState value)? profile,
+    TResult? Function(_ProfileSavingState value)? saving,
+    TResult? Function(_ProfileSuccessState value)? profile,
     TResult? Function(_ProfileFailedState value)? failed,
   }) {
     return loading?.call(this);
@@ -914,7 +830,8 @@ class _$_ProfileLoadingState implements _ProfileLoadingState {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ProfileLoadingState value)? loading,
-    TResult Function(_SignInSuccessState value)? profile,
+    TResult Function(_ProfileSavingState value)? saving,
+    TResult Function(_ProfileSuccessState value)? profile,
     TResult Function(_ProfileFailedState value)? failed,
     required TResult orElse(),
   }) {
@@ -930,217 +847,73 @@ abstract class _ProfileLoadingState implements ProfileState {
 }
 
 /// @nodoc
-abstract class _$$_SignInSuccessStateCopyWith<$Res> {
-  factory _$$_SignInSuccessStateCopyWith(_$_SignInSuccessState value,
-          $Res Function(_$_SignInSuccessState) then) =
-      __$$_SignInSuccessStateCopyWithImpl<$Res>;
-  @useResult
-  $Res call(
-      {int id,
-      String email,
-      String firstName,
-      String lastName,
-      String bio,
-      String about,
-      String skillTags,
-      File? photo,
-      int countryId});
+abstract class _$$_ProfileSavingStateCopyWith<$Res> {
+  factory _$$_ProfileSavingStateCopyWith(_$_ProfileSavingState value,
+          $Res Function(_$_ProfileSavingState) then) =
+      __$$_ProfileSavingStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_SignInSuccessStateCopyWithImpl<$Res>
-    extends _$ProfileStateCopyWithImpl<$Res, _$_SignInSuccessState>
-    implements _$$_SignInSuccessStateCopyWith<$Res> {
-  __$$_SignInSuccessStateCopyWithImpl(
-      _$_SignInSuccessState _value, $Res Function(_$_SignInSuccessState) _then)
+class __$$_ProfileSavingStateCopyWithImpl<$Res>
+    extends _$ProfileStateCopyWithImpl<$Res, _$_ProfileSavingState>
+    implements _$$_ProfileSavingStateCopyWith<$Res> {
+  __$$_ProfileSavingStateCopyWithImpl(
+      _$_ProfileSavingState _value, $Res Function(_$_ProfileSavingState) _then)
       : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? email = null,
-    Object? firstName = null,
-    Object? lastName = null,
-    Object? bio = null,
-    Object? about = null,
-    Object? skillTags = null,
-    Object? photo = freezed,
-    Object? countryId = null,
-  }) {
-    return _then(_$_SignInSuccessState(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      email: null == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      firstName: null == firstName
-          ? _value.firstName
-          : firstName // ignore: cast_nullable_to_non_nullable
-              as String,
-      lastName: null == lastName
-          ? _value.lastName
-          : lastName // ignore: cast_nullable_to_non_nullable
-              as String,
-      bio: null == bio
-          ? _value.bio
-          : bio // ignore: cast_nullable_to_non_nullable
-              as String,
-      about: null == about
-          ? _value.about
-          : about // ignore: cast_nullable_to_non_nullable
-              as String,
-      skillTags: null == skillTags
-          ? _value.skillTags
-          : skillTags // ignore: cast_nullable_to_non_nullable
-              as String,
-      photo: freezed == photo
-          ? _value.photo
-          : photo // ignore: cast_nullable_to_non_nullable
-              as File?,
-      countryId: null == countryId
-          ? _value.countryId
-          : countryId // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
-  }
 }
 
 /// @nodoc
 
-class _$_SignInSuccessState implements _SignInSuccessState {
-  const _$_SignInSuccessState(
-      {required this.id,
-      required this.email,
-      required this.firstName,
-      required this.lastName,
-      required this.bio,
-      required this.about,
-      required this.skillTags,
-      required this.photo,
-      required this.countryId});
-
-  @override
-  final int id;
-  @override
-  final String email;
-  @override
-  final String firstName;
-  @override
-  final String lastName;
-  @override
-  final String bio;
-  @override
-  final String about;
-  @override
-  final String skillTags;
-  @override
-  final File? photo;
-  @override
-  final int countryId;
+class _$_ProfileSavingState implements _ProfileSavingState {
+  const _$_ProfileSavingState();
 
   @override
   String toString() {
-    return 'ProfileState.profile(id: $id, email: $email, firstName: $firstName, lastName: $lastName, bio: $bio, about: $about, skillTags: $skillTags, photo: $photo, countryId: $countryId)';
+    return 'ProfileState.saving()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_SignInSuccessState &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.email, email) || other.email == email) &&
-            (identical(other.firstName, firstName) ||
-                other.firstName == firstName) &&
-            (identical(other.lastName, lastName) ||
-                other.lastName == lastName) &&
-            (identical(other.bio, bio) || other.bio == bio) &&
-            (identical(other.about, about) || other.about == about) &&
-            (identical(other.skillTags, skillTags) ||
-                other.skillTags == skillTags) &&
-            (identical(other.photo, photo) || other.photo == photo) &&
-            (identical(other.countryId, countryId) ||
-                other.countryId == countryId));
+        (other.runtimeType == runtimeType && other is _$_ProfileSavingState);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, email, firstName, lastName,
-      bio, about, skillTags, photo, countryId);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_SignInSuccessStateCopyWith<_$_SignInSuccessState> get copyWith =>
-      __$$_SignInSuccessStateCopyWithImpl<_$_SignInSuccessState>(
-          this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(
-            int id,
-            String email,
-            String firstName,
-            String lastName,
-            String bio,
-            String about,
-            String skillTags,
-            File? photo,
-            int countryId)
-        profile,
+    required TResult Function() saving,
+    required TResult Function(ProfileEntity profile) profile,
     required TResult Function(String message) failed,
   }) {
-    return profile(id, email, firstName, lastName, bio, about, skillTags, photo,
-        countryId);
+    return saving();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(
-            int id,
-            String email,
-            String firstName,
-            String lastName,
-            String bio,
-            String about,
-            String skillTags,
-            File? photo,
-            int countryId)?
-        profile,
+    TResult? Function()? saving,
+    TResult? Function(ProfileEntity profile)? profile,
     TResult? Function(String message)? failed,
   }) {
-    return profile?.call(id, email, firstName, lastName, bio, about, skillTags,
-        photo, countryId);
+    return saving?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(
-            int id,
-            String email,
-            String firstName,
-            String lastName,
-            String bio,
-            String about,
-            String skillTags,
-            File? photo,
-            int countryId)?
-        profile,
+    TResult Function()? saving,
+    TResult Function(ProfileEntity profile)? profile,
     TResult Function(String message)? failed,
     required TResult orElse(),
   }) {
-    if (profile != null) {
-      return profile(id, email, firstName, lastName, bio, about, skillTags,
-          photo, countryId);
+    if (saving != null) {
+      return saving();
     }
     return orElse();
   }
@@ -1149,7 +922,159 @@ class _$_SignInSuccessState implements _SignInSuccessState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ProfileLoadingState value) loading,
-    required TResult Function(_SignInSuccessState value) profile,
+    required TResult Function(_ProfileSavingState value) saving,
+    required TResult Function(_ProfileSuccessState value) profile,
+    required TResult Function(_ProfileFailedState value) failed,
+  }) {
+    return saving(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ProfileLoadingState value)? loading,
+    TResult? Function(_ProfileSavingState value)? saving,
+    TResult? Function(_ProfileSuccessState value)? profile,
+    TResult? Function(_ProfileFailedState value)? failed,
+  }) {
+    return saving?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ProfileLoadingState value)? loading,
+    TResult Function(_ProfileSavingState value)? saving,
+    TResult Function(_ProfileSuccessState value)? profile,
+    TResult Function(_ProfileFailedState value)? failed,
+    required TResult orElse(),
+  }) {
+    if (saving != null) {
+      return saving(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ProfileSavingState implements ProfileState {
+  const factory _ProfileSavingState() = _$_ProfileSavingState;
+}
+
+/// @nodoc
+abstract class _$$_ProfileSuccessStateCopyWith<$Res> {
+  factory _$$_ProfileSuccessStateCopyWith(_$_ProfileSuccessState value,
+          $Res Function(_$_ProfileSuccessState) then) =
+      __$$_ProfileSuccessStateCopyWithImpl<$Res>;
+  @useResult
+  $Res call({ProfileEntity profile});
+
+  $ProfileEntityCopyWith<$Res> get profile;
+}
+
+/// @nodoc
+class __$$_ProfileSuccessStateCopyWithImpl<$Res>
+    extends _$ProfileStateCopyWithImpl<$Res, _$_ProfileSuccessState>
+    implements _$$_ProfileSuccessStateCopyWith<$Res> {
+  __$$_ProfileSuccessStateCopyWithImpl(_$_ProfileSuccessState _value,
+      $Res Function(_$_ProfileSuccessState) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? profile = null,
+  }) {
+    return _then(_$_ProfileSuccessState(
+      profile: null == profile
+          ? _value.profile
+          : profile // ignore: cast_nullable_to_non_nullable
+              as ProfileEntity,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ProfileEntityCopyWith<$Res> get profile {
+    return $ProfileEntityCopyWith<$Res>(_value.profile, (value) {
+      return _then(_value.copyWith(profile: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$_ProfileSuccessState implements _ProfileSuccessState {
+  const _$_ProfileSuccessState({required this.profile});
+
+  @override
+  final ProfileEntity profile;
+
+  @override
+  String toString() {
+    return 'ProfileState.profile(profile: $profile)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_ProfileSuccessState &&
+            (identical(other.profile, profile) || other.profile == profile));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, profile);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_ProfileSuccessStateCopyWith<_$_ProfileSuccessState> get copyWith =>
+      __$$_ProfileSuccessStateCopyWithImpl<_$_ProfileSuccessState>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loading,
+    required TResult Function() saving,
+    required TResult Function(ProfileEntity profile) profile,
+    required TResult Function(String message) failed,
+  }) {
+    return profile(this.profile);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loading,
+    TResult? Function()? saving,
+    TResult? Function(ProfileEntity profile)? profile,
+    TResult? Function(String message)? failed,
+  }) {
+    return profile?.call(this.profile);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loading,
+    TResult Function()? saving,
+    TResult Function(ProfileEntity profile)? profile,
+    TResult Function(String message)? failed,
+    required TResult orElse(),
+  }) {
+    if (profile != null) {
+      return profile(this.profile);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ProfileLoadingState value) loading,
+    required TResult Function(_ProfileSavingState value) saving,
+    required TResult Function(_ProfileSuccessState value) profile,
     required TResult Function(_ProfileFailedState value) failed,
   }) {
     return profile(this);
@@ -1159,7 +1084,8 @@ class _$_SignInSuccessState implements _SignInSuccessState {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ProfileLoadingState value)? loading,
-    TResult? Function(_SignInSuccessState value)? profile,
+    TResult? Function(_ProfileSavingState value)? saving,
+    TResult? Function(_ProfileSuccessState value)? profile,
     TResult? Function(_ProfileFailedState value)? failed,
   }) {
     return profile?.call(this);
@@ -1169,7 +1095,8 @@ class _$_SignInSuccessState implements _SignInSuccessState {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ProfileLoadingState value)? loading,
-    TResult Function(_SignInSuccessState value)? profile,
+    TResult Function(_ProfileSavingState value)? saving,
+    TResult Function(_ProfileSuccessState value)? profile,
     TResult Function(_ProfileFailedState value)? failed,
     required TResult orElse(),
   }) {
@@ -1180,29 +1107,13 @@ class _$_SignInSuccessState implements _SignInSuccessState {
   }
 }
 
-abstract class _SignInSuccessState implements ProfileState {
-  const factory _SignInSuccessState(
-      {required final int id,
-      required final String email,
-      required final String firstName,
-      required final String lastName,
-      required final String bio,
-      required final String about,
-      required final String skillTags,
-      required final File? photo,
-      required final int countryId}) = _$_SignInSuccessState;
+abstract class _ProfileSuccessState implements ProfileState {
+  const factory _ProfileSuccessState({required final ProfileEntity profile}) =
+      _$_ProfileSuccessState;
 
-  int get id;
-  String get email;
-  String get firstName;
-  String get lastName;
-  String get bio;
-  String get about;
-  String get skillTags;
-  File? get photo;
-  int get countryId;
+  ProfileEntity get profile;
   @JsonKey(ignore: true)
-  _$$_SignInSuccessStateCopyWith<_$_SignInSuccessState> get copyWith =>
+  _$$_ProfileSuccessStateCopyWith<_$_ProfileSuccessState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1272,17 +1183,8 @@ class _$_ProfileFailedState implements _ProfileFailedState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(
-            int id,
-            String email,
-            String firstName,
-            String lastName,
-            String bio,
-            String about,
-            String skillTags,
-            File? photo,
-            int countryId)
-        profile,
+    required TResult Function() saving,
+    required TResult Function(ProfileEntity profile) profile,
     required TResult Function(String message) failed,
   }) {
     return failed(message);
@@ -1292,17 +1194,8 @@ class _$_ProfileFailedState implements _ProfileFailedState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(
-            int id,
-            String email,
-            String firstName,
-            String lastName,
-            String bio,
-            String about,
-            String skillTags,
-            File? photo,
-            int countryId)?
-        profile,
+    TResult? Function()? saving,
+    TResult? Function(ProfileEntity profile)? profile,
     TResult? Function(String message)? failed,
   }) {
     return failed?.call(message);
@@ -1312,17 +1205,8 @@ class _$_ProfileFailedState implements _ProfileFailedState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(
-            int id,
-            String email,
-            String firstName,
-            String lastName,
-            String bio,
-            String about,
-            String skillTags,
-            File? photo,
-            int countryId)?
-        profile,
+    TResult Function()? saving,
+    TResult Function(ProfileEntity profile)? profile,
     TResult Function(String message)? failed,
     required TResult orElse(),
   }) {
@@ -1336,7 +1220,8 @@ class _$_ProfileFailedState implements _ProfileFailedState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ProfileLoadingState value) loading,
-    required TResult Function(_SignInSuccessState value) profile,
+    required TResult Function(_ProfileSavingState value) saving,
+    required TResult Function(_ProfileSuccessState value) profile,
     required TResult Function(_ProfileFailedState value) failed,
   }) {
     return failed(this);
@@ -1346,7 +1231,8 @@ class _$_ProfileFailedState implements _ProfileFailedState {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ProfileLoadingState value)? loading,
-    TResult? Function(_SignInSuccessState value)? profile,
+    TResult? Function(_ProfileSavingState value)? saving,
+    TResult? Function(_ProfileSuccessState value)? profile,
     TResult? Function(_ProfileFailedState value)? failed,
   }) {
     return failed?.call(this);
@@ -1356,7 +1242,8 @@ class _$_ProfileFailedState implements _ProfileFailedState {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ProfileLoadingState value)? loading,
-    TResult Function(_SignInSuccessState value)? profile,
+    TResult Function(_ProfileSavingState value)? saving,
+    TResult Function(_ProfileSuccessState value)? profile,
     TResult Function(_ProfileFailedState value)? failed,
     required TResult orElse(),
   }) {

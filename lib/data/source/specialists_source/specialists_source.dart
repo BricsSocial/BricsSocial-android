@@ -1,5 +1,6 @@
 import '../../common/network_source.dart';
-import 'model/current_specialist_dto/response/current_specialist_response_dto.dart';
+import 'model/change_specialist_dto/request/change_specialist_request_dto.dart';
+import 'model/specialist_dto/specialist_dto.dart';
 
 abstract class SpecialistsSource extends NetworkSource {
   SpecialistsSource(super.dio);
@@ -12,5 +13,8 @@ abstract class SpecialistsSource extends NetworkSource {
     required int countryId,
   });
 
-  Future<CurrentSpecialistResponseDto> currentSpecialist();
+  Future<SpecialistDto> currentSpecialist();
+
+  Future<SpecialistDto> changeSpecialist(
+      {required int id, required ChangeSpecialistRequestDto changeSpecialistRequestDto});
 }

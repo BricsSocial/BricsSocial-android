@@ -4,12 +4,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../../../core/ui/color_schemes.dart';
+import '../../../domain/profile/entity/profile_entity.dart';
+import '../../common/button/button.dart';
 import '../../common/country_dropdown/country_dropdown.dart';
 import '../../common/loading_indicator.dart';
 import '../bloc/bloc.dart';
 
 class ProfileGeneralScreen extends StatefulWidget {
-  const ProfileGeneralScreen({super.key});
+  final ValueNotifier<ProfileEntity> profile;
+
+  const ProfileGeneralScreen({
+    super.key,
+    required this.profile,
+  });
 
   @override
   State<ProfileGeneralScreen> createState() => _ProfileGeneralScreenState();
@@ -31,72 +38,63 @@ class _ProfileGeneralScreenState extends State<ProfileGeneralScreen> {
         backgroundColor: lightColorScheme.primaryContainer,
         distance: 30,
       ),
-      child: BlocConsumer<ProfileBloc, ProfileState>(
+      child: BlocListener<ProfileBloc, ProfileState>(
         listener: (context, state) {
           state.maybeMap(
             profile: (state) {
               _refreshController.refreshCompleted();
-              _emailTextController.text = state.email;
             },
             orElse: () {},
           );
         },
-        builder: (context, state) {
-          return state.maybeMap(
-            profile: (state) {
-              return SingleChildScrollView(
-                padding: const EdgeInsets.only(top: 24, left: 24, right: 24),
-                child: Column(
-                  children: [
-                    _buildProfileInfo(
-                      photo: state.photo,
-                      firstName: state.firstName,
-                      lastName: state.lastName,
-                      bio: state.bio,
-                    ),
-                    const SizedBox(height: 8),
-                    const Divider(color: dividerColor),
-                    const SizedBox(height: 24),
-                    TextField(
-                      controller: _emailTextController,
-                      keyboardType: TextInputType.emailAddress,
-                      decoration: const InputDecoration(
-                        prefixIcon: Icon(Icons.email_outlined),
-                        labelText: 'Email',
-                        hintText: 'example@mail.com',
-                      ),
-                    ),
-                    const SizedBox(height: 16),
-                    // TextField(
-                    //   keyboardType: TextInputType.phone,
-                    //   inputFormatters: [
-                    //     MaskTextInputFormatter(
-                    //       mask: '+# (###) ###-##-##',
-                    //       filter: {'#': RegExp(r'[0-9]')},
-                    //     ),
-                    //   ],
-                    //   decoration: const InputDecoration(
-                    //     prefixIcon: Icon(Icons.phone_outlined),
-                    //     labelText: 'Phone',
-                    //     hintText: '+1 (234) 567-89-00',
-                    //   ),
-                    // ),
-                    // const SizedBox(height: 16),
-                    CountryDropdown(
-                      initialCountryId: state.countryId,
-                      onChoosed: (entry) {},
-                    )
-                  ],
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.only(top: 24, left: 24, right: 24, bottom: kButtonHeight + 16 + 16),
+          child: Column(
+            children: [
+              _buildProfileInfo(
+                photo: widget.profile.value.photo,
+                firstName: widget.profile.value.firstName,
+                lastName: widget.profile.value.lastName,
+                bio: widget.profile.value.bio,
+              ),
+              const SizedBox(height: 8),
+              const Divider(color: dividerColor),
+              const SizedBox(height: 24),
+              TextField(
+                controller: _emailTextController..text = widget.profile.value.email,
+                keyboardType: TextInputType.emailAddress,
+                decoration: const InputDecoration(
+                  prefixIcon: Icon(Icons.email_outlined),
+                  labelText: 'Email',
+                  hintText: 'example@mail.com',
                 ),
-              );
-            },
-            orElse: () {
-              return const Center(
-                child: AppLoadingIndicator(),
-              );
-            },
-          );
-        },
+                onChanged: (value) {
+                  widget.profile.value = widget.profile.value.copyWith(email: value);
+                },
+              ),
+              const SizedBox(height: 16),
+              // TextField(
+              //   keyboardType: TextInputType.phone,
+              //   inputFormatters: [
+              //     MaskTextInputFormatter(
+              //       mask: '+# (###) ###-##-##',
+              //       filter: {'#': RegExp(r'[0-9]')},
+              //     ),
+              //   ],
+              //   decoration: const InputDecoration(
+              //     prefixIcon: Icon(Icons.phone_outlined),
+              //     labelText: 'Phone',
+              //     hintText: '+1 (234) 567-89-00',
+              //   ),
+              // ),
+              // const SizedBox(height: 16),
+              CountryDropdown(
+                initialCountryId: widget.profile.value.countryId,
+                onChoosed: (entry) {},
+              )
+            ],
+          ),
+        ),
       ),
     );
   }

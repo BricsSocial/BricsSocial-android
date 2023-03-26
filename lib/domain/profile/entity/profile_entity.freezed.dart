@@ -22,7 +22,7 @@ mixin _$ProfileEntity {
   String get lastName => throw _privateConstructorUsedError;
   String get bio => throw _privateConstructorUsedError;
   String get about => throw _privateConstructorUsedError;
-  String get skillTags => throw _privateConstructorUsedError;
+  List<String> get skillTags => throw _privateConstructorUsedError;
   File? get photo => throw _privateConstructorUsedError;
   int get countryId => throw _privateConstructorUsedError;
 
@@ -44,7 +44,7 @@ abstract class $ProfileEntityCopyWith<$Res> {
       String lastName,
       String bio,
       String about,
-      String skillTags,
+      List<String> skillTags,
       File? photo,
       int countryId});
 }
@@ -100,7 +100,7 @@ class _$ProfileEntityCopyWithImpl<$Res, $Val extends ProfileEntity>
       skillTags: null == skillTags
           ? _value.skillTags
           : skillTags // ignore: cast_nullable_to_non_nullable
-              as String,
+              as List<String>,
       photo: freezed == photo
           ? _value.photo
           : photo // ignore: cast_nullable_to_non_nullable
@@ -128,7 +128,7 @@ abstract class _$$_ProfileEntityCopyWith<$Res>
       String lastName,
       String bio,
       String about,
-      String skillTags,
+      List<String> skillTags,
       File? photo,
       int countryId});
 }
@@ -180,9 +180,9 @@ class __$$_ProfileEntityCopyWithImpl<$Res>
           : about // ignore: cast_nullable_to_non_nullable
               as String,
       skillTags: null == skillTags
-          ? _value.skillTags
+          ? _value._skillTags
           : skillTags // ignore: cast_nullable_to_non_nullable
-              as String,
+              as List<String>,
       photo: freezed == photo
           ? _value.photo
           : photo // ignore: cast_nullable_to_non_nullable
@@ -205,9 +205,10 @@ class _$_ProfileEntity implements _ProfileEntity {
       required this.lastName,
       required this.bio,
       required this.about,
-      required this.skillTags,
+      required final List<String> skillTags,
       required this.photo,
-      required this.countryId});
+      required this.countryId})
+      : _skillTags = skillTags;
 
   @override
   final int id;
@@ -221,8 +222,14 @@ class _$_ProfileEntity implements _ProfileEntity {
   final String bio;
   @override
   final String about;
+  final List<String> _skillTags;
   @override
-  final String skillTags;
+  List<String> get skillTags {
+    if (_skillTags is EqualUnmodifiableListView) return _skillTags;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_skillTags);
+  }
+
   @override
   final File? photo;
   @override
@@ -246,16 +253,25 @@ class _$_ProfileEntity implements _ProfileEntity {
                 other.lastName == lastName) &&
             (identical(other.bio, bio) || other.bio == bio) &&
             (identical(other.about, about) || other.about == about) &&
-            (identical(other.skillTags, skillTags) ||
-                other.skillTags == skillTags) &&
+            const DeepCollectionEquality()
+                .equals(other._skillTags, _skillTags) &&
             (identical(other.photo, photo) || other.photo == photo) &&
             (identical(other.countryId, countryId) ||
                 other.countryId == countryId));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, email, firstName, lastName,
-      bio, about, skillTags, photo, countryId);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      email,
+      firstName,
+      lastName,
+      bio,
+      about,
+      const DeepCollectionEquality().hash(_skillTags),
+      photo,
+      countryId);
 
   @JsonKey(ignore: true)
   @override
@@ -272,7 +288,7 @@ abstract class _ProfileEntity implements ProfileEntity {
       required final String lastName,
       required final String bio,
       required final String about,
-      required final String skillTags,
+      required final List<String> skillTags,
       required final File? photo,
       required final int countryId}) = _$_ProfileEntity;
 
@@ -289,7 +305,7 @@ abstract class _ProfileEntity implements ProfileEntity {
   @override
   String get about;
   @override
-  String get skillTags;
+  List<String> get skillTags;
   @override
   File? get photo;
   @override

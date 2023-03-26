@@ -44,13 +44,6 @@ class App extends StatelessWidget {
           elevation: 0,
           backgroundColor: lightColorScheme.background,
         ),
-        textButtonTheme: TextButtonThemeData(
-          style: ButtonStyle(
-            textStyle: MaterialStateProperty.all(
-              const TextStyle(fontWeight: FontWeight.w600),
-            ),
-          ),
-        ),
         inputDecorationTheme: InputDecorationTheme(
           hintStyle: const TextStyle(color: hintColor),
           prefixIconColor: hintColor,
