@@ -1,12 +1,14 @@
 import 'package:app_kit/app_kit.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 import '../../../core/di/di.dart';
 import '../../../core/ui/color_schemes.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../common/loading_indicator.dart';
+import '../common/password_field.dart';
 import 'bloc/bloc.dart';
 
 class SignInScreen extends StatefulWidget {
@@ -17,21 +19,32 @@ class SignInScreen extends StatefulWidget {
 }
 
 class SignInScreenState extends State<SignInScreen> {
-  final _emailTextController = TextEditingController();
+  final _emailTextController = TextEditingController(text: 'kerjen01@gmail.com');
   final _emailErrorText = ValueNotifier<String?>(null);
 
-  final _passwordTextController = TextEditingController();
-  final _obscurePassword = ValueNotifier<bool>(true);
+  final _passwordTextController = TextEditingController(text: 'Arian281201!');
+  final _passwordErrorText = ValueNotifier<String?>(null);
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => getIt.get<SignInBloc>(),
       child: BlocListener<SignInBloc, SignInState>(
-        listener: (context, state) {
+        listener: (context, state) async {
           state.maybeMap(
-            failed: (state) {
+            success: (value) async {
+              Future.delayed(const Duration(seconds: 1), () {
+                context.router.pushNamed('/home');
+              });
+            },
+            emailFailed: (state) {
               _emailErrorText.value = state.message;
+            },
+            passwordFailed: (state) {
+              _passwordErrorText.value = state.message;
+            },
+            failed: (state) {
+              showToast(state.message, context: context);
             },
             orElse: () {},
           );
@@ -71,25 +84,11 @@ class SignInScreenState extends State<SignInScreen> {
                 ),
                 const SizedBox(height: 16),
                 ValueListenableBuilder(
-                  valueListenable: _obscurePassword,
-                  builder: (context, bool obscure, __) {
-                    return TextField(
+                  valueListenable: _passwordErrorText,
+                  builder: (context, String? error, _) {
+                    return PasswordField(
                       controller: _passwordTextController,
-                      decoration: InputDecoration(
-                        prefixIcon: const Icon(Icons.password_outlined),
-                        labelText: 'password_label'.tr(),
-                        suffixIconColor: hintColor,
-                        suffixIcon: Padding(
-                          padding: const EdgeInsets.only(right: 4),
-                          child: IconButton(
-                            onPressed: () {
-                              _obscurePassword.value = !obscure;
-                            },
-                            icon: Icon(obscure ? Icons.visibility_outlined : Icons.visibility_off_outlined),
-                          ),
-                        ),
-                      ),
-                      obscureText: obscure,
+                      errorText: error,
                     );
                   },
                 ),
@@ -123,6 +122,7 @@ class SignInScreenState extends State<SignInScreen> {
                     ),
                   ),
                 ),
+                const SizedBox(height: 52 + 16 + 16)
               ],
             ),
           ),
@@ -132,25 +132,25 @@ class SignInScreenState extends State<SignInScreen> {
             padding: const EdgeInsets.symmetric(horizontal: 24),
             child: BlocBuilder<SignInBloc, SignInState>(
               builder: (context, state) {
-                return TextButton(
-                  onPressed: () async {
-                    context.read<SignInBloc>().add(
-                          SignInEvent.signIn(
-                            email: _emailTextController.text,
-                            password: _passwordTextController.text,
-                          ),
+                return SizedBox(
+                  height: 52,
+                  child: TextButton(
+                    onPressed: () async {
+                      context.read<SignInBloc>().add(
+                            SignInEvent.signIn(
+                              email: _emailTextController.text,
+                              password: _passwordTextController.text,
+                            ),
+                          );
+                    },
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.resolveWith((states) {
+                        return state.maybeMap(
+                          success: (_) => greenColor,
+                          orElse: () => lightColorScheme.primaryContainer,
                         );
-                  },
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.resolveWith(
-                      (states) {
-                        return lightColorScheme.primaryContainer;
-                      },
+                      }),
                     ),
-                  ),
-                  child: Container(
-                    height: 36,
-                    alignment: Alignment.center,
                     child: AnimatedSwitcher(
                       duration: const Duration(milliseconds: 400),
                       child: state.maybeMap(
@@ -160,11 +160,14 @@ class SignInScreenState extends State<SignInScreen> {
                             width: 24,
                           );
                         },
-                        orElse: () {
-                          return Padding(
-                            padding: const EdgeInsets.all(8),
-                            child: Text('sign_in_button'.tr()),
+                        success: (_) {
+                          return Text(
+                            'ok'.tr(),
+                            style: const TextStyle(color: whiteColor),
                           );
+                        },
+                        orElse: () {
+                          return Text('sign_in_button'.tr());
                         },
                       ),
                     ),

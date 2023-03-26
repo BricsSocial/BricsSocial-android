@@ -34,5 +34,8 @@ const lightColorScheme = ColorScheme(
   scrim: Color(0xFF000000),
 );
 
+const greenColor = Color(0xFF9CCC65);
+const whiteColor = Colors.white;
 const hintColor = Colors.black26;
+const dividerColor = Color.fromARGB(255, 226, 226, 226);
 const bottomBarColor = Colors.white;

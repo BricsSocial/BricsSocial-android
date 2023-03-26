@@ -7,7 +7,7 @@ import '../entity/country_entity.dart';
 import '../repository/countries_repository.dart';
 
 @injectable
-class GetCountriesListUseCase extends UseCase<List<CountryEntity>, NoParams> {
+class GetCountriesListUseCase extends FutureUseCase<List<CountryEntity>, NoParams> {
   final CountriesRepository repository;
 
   GetCountriesListUseCase(this.repository);

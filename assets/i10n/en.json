@@ -1,6 +1,8 @@
 {
     "unknown_error": "Unknown error",
-    "connection_error" :"Connection error",
+    "connection_error": "Connection error",
+    "ok": "OK",
+    "wrong_format_error": "Wrong format",
     "sign_up_title": "Sign up",
     "sign_up_description": "You're signing up as a specialist, enter your account details",
     "first_name_label": "First name",
@@ -16,6 +18,7 @@
     "create_account": "Create specialist account",
     "sign_in_button": "Sign in",
     "user_not_found": "User not found",
+    "incorrect_password_error": "Incorrect password",
     "brazil": "Brazil",
     "russia": "Russia",
     "china": "China",

@@ -36,17 +36,17 @@ mixin _$SignInEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_SignInSignInEvent value) signIn,
+    required TResult Function(_SignInEvent value) signIn,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_SignInSignInEvent value)? signIn,
+    TResult? Function(_SignInEvent value)? signIn,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_SignInSignInEvent value)? signIn,
+    TResult Function(_SignInEvent value)? signIn,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -95,22 +95,22 @@ class _$SignInEventCopyWithImpl<$Res, $Val extends SignInEvent>
 }
 
 /// @nodoc
-abstract class _$$_SignInSignInEventCopyWith<$Res>
+abstract class _$$_SignInEventCopyWith<$Res>
     implements $SignInEventCopyWith<$Res> {
-  factory _$$_SignInSignInEventCopyWith(_$_SignInSignInEvent value,
-          $Res Function(_$_SignInSignInEvent) then) =
-      __$$_SignInSignInEventCopyWithImpl<$Res>;
+  factory _$$_SignInEventCopyWith(
+          _$_SignInEvent value, $Res Function(_$_SignInEvent) then) =
+      __$$_SignInEventCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String email, String password});
 }
 
 /// @nodoc
-class __$$_SignInSignInEventCopyWithImpl<$Res>
-    extends _$SignInEventCopyWithImpl<$Res, _$_SignInSignInEvent>
-    implements _$$_SignInSignInEventCopyWith<$Res> {
-  __$$_SignInSignInEventCopyWithImpl(
-      _$_SignInSignInEvent _value, $Res Function(_$_SignInSignInEvent) _then)
+class __$$_SignInEventCopyWithImpl<$Res>
+    extends _$SignInEventCopyWithImpl<$Res, _$_SignInEvent>
+    implements _$$_SignInEventCopyWith<$Res> {
+  __$$_SignInEventCopyWithImpl(
+      _$_SignInEvent _value, $Res Function(_$_SignInEvent) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -119,7 +119,7 @@ class __$$_SignInSignInEventCopyWithImpl<$Res>
     Object? email = null,
     Object? password = null,
   }) {
-    return _then(_$_SignInSignInEvent(
+    return _then(_$_SignInEvent(
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
@@ -134,8 +134,8 @@ class __$$_SignInSignInEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_SignInSignInEvent implements _SignInSignInEvent {
-  const _$_SignInSignInEvent({required this.email, required this.password});
+class _$_SignInEvent implements _SignInEvent {
+  const _$_SignInEvent({required this.email, required this.password});
 
   @override
   final String email;
@@ -151,7 +151,7 @@ class _$_SignInSignInEvent implements _SignInSignInEvent {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_SignInSignInEvent &&
+            other is _$_SignInEvent &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.password, password) ||
                 other.password == password));
@@ -163,9 +163,8 @@ class _$_SignInSignInEvent implements _SignInSignInEvent {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_SignInSignInEventCopyWith<_$_SignInSignInEvent> get copyWith =>
-      __$$_SignInSignInEventCopyWithImpl<_$_SignInSignInEvent>(
-          this, _$identity);
+  _$$_SignInEventCopyWith<_$_SignInEvent> get copyWith =>
+      __$$_SignInEventCopyWithImpl<_$_SignInEvent>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -198,7 +197,7 @@ class _$_SignInSignInEvent implements _SignInSignInEvent {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_SignInSignInEvent value) signIn,
+    required TResult Function(_SignInEvent value) signIn,
   }) {
     return signIn(this);
   }
@@ -206,7 +205,7 @@ class _$_SignInSignInEvent implements _SignInSignInEvent {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_SignInSignInEvent value)? signIn,
+    TResult? Function(_SignInEvent value)? signIn,
   }) {
     return signIn?.call(this);
   }
@@ -214,7 +213,7 @@ class _$_SignInSignInEvent implements _SignInSignInEvent {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_SignInSignInEvent value)? signIn,
+    TResult Function(_SignInEvent value)? signIn,
     required TResult orElse(),
   }) {
     if (signIn != null) {
@@ -224,10 +223,10 @@ class _$_SignInSignInEvent implements _SignInSignInEvent {
   }
 }
 
-abstract class _SignInSignInEvent implements SignInEvent {
-  const factory _SignInSignInEvent(
+abstract class _SignInEvent implements SignInEvent {
+  const factory _SignInEvent(
       {required final String email,
-      required final String password}) = _$_SignInSignInEvent;
+      required final String password}) = _$_SignInEvent;
 
   @override
   String get email;
@@ -235,7 +234,7 @@ abstract class _SignInSignInEvent implements SignInEvent {
   String get password;
   @override
   @JsonKey(ignore: true)
-  _$$_SignInSignInEventCopyWith<_$_SignInSignInEvent> get copyWith =>
+  _$$_SignInEventCopyWith<_$_SignInEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -246,6 +245,8 @@ mixin _$SignInState {
     required TResult Function() loading,
     required TResult Function() base,
     required TResult Function() success,
+    required TResult Function(String message) emailFailed,
+    required TResult Function(String message) passwordFailed,
     required TResult Function(String message) failed,
   }) =>
       throw _privateConstructorUsedError;
@@ -254,6 +255,8 @@ mixin _$SignInState {
     TResult? Function()? loading,
     TResult? Function()? base,
     TResult? Function()? success,
+    TResult? Function(String message)? emailFailed,
+    TResult? Function(String message)? passwordFailed,
     TResult? Function(String message)? failed,
   }) =>
       throw _privateConstructorUsedError;
@@ -262,6 +265,8 @@ mixin _$SignInState {
     TResult Function()? loading,
     TResult Function()? base,
     TResult Function()? success,
+    TResult Function(String message)? emailFailed,
+    TResult Function(String message)? passwordFailed,
     TResult Function(String message)? failed,
     required TResult orElse(),
   }) =>
@@ -271,6 +276,8 @@ mixin _$SignInState {
     required TResult Function(_SignInLoadingState value) loading,
     required TResult Function(_SignInBaseState value) base,
     required TResult Function(_SignInSuccessState value) success,
+    required TResult Function(_SignInEmailFailedState value) emailFailed,
+    required TResult Function(_SignInPasswordFailedState value) passwordFailed,
     required TResult Function(_SignInFailedState value) failed,
   }) =>
       throw _privateConstructorUsedError;
@@ -279,6 +286,8 @@ mixin _$SignInState {
     TResult? Function(_SignInLoadingState value)? loading,
     TResult? Function(_SignInBaseState value)? base,
     TResult? Function(_SignInSuccessState value)? success,
+    TResult? Function(_SignInEmailFailedState value)? emailFailed,
+    TResult? Function(_SignInPasswordFailedState value)? passwordFailed,
     TResult? Function(_SignInFailedState value)? failed,
   }) =>
       throw _privateConstructorUsedError;
@@ -287,6 +296,8 @@ mixin _$SignInState {
     TResult Function(_SignInLoadingState value)? loading,
     TResult Function(_SignInBaseState value)? base,
     TResult Function(_SignInSuccessState value)? success,
+    TResult Function(_SignInEmailFailedState value)? emailFailed,
+    TResult Function(_SignInPasswordFailedState value)? passwordFailed,
     TResult Function(_SignInFailedState value)? failed,
     required TResult orElse(),
   }) =>
@@ -352,6 +363,8 @@ class _$_SignInLoadingState implements _SignInLoadingState {
     required TResult Function() loading,
     required TResult Function() base,
     required TResult Function() success,
+    required TResult Function(String message) emailFailed,
+    required TResult Function(String message) passwordFailed,
     required TResult Function(String message) failed,
   }) {
     return loading();
@@ -363,6 +376,8 @@ class _$_SignInLoadingState implements _SignInLoadingState {
     TResult? Function()? loading,
     TResult? Function()? base,
     TResult? Function()? success,
+    TResult? Function(String message)? emailFailed,
+    TResult? Function(String message)? passwordFailed,
     TResult? Function(String message)? failed,
   }) {
     return loading?.call();
@@ -374,6 +389,8 @@ class _$_SignInLoadingState implements _SignInLoadingState {
     TResult Function()? loading,
     TResult Function()? base,
     TResult Function()? success,
+    TResult Function(String message)? emailFailed,
+    TResult Function(String message)? passwordFailed,
     TResult Function(String message)? failed,
     required TResult orElse(),
   }) {
@@ -389,6 +406,8 @@ class _$_SignInLoadingState implements _SignInLoadingState {
     required TResult Function(_SignInLoadingState value) loading,
     required TResult Function(_SignInBaseState value) base,
     required TResult Function(_SignInSuccessState value) success,
+    required TResult Function(_SignInEmailFailedState value) emailFailed,
+    required TResult Function(_SignInPasswordFailedState value) passwordFailed,
     required TResult Function(_SignInFailedState value) failed,
   }) {
     return loading(this);
@@ -400,6 +419,8 @@ class _$_SignInLoadingState implements _SignInLoadingState {
     TResult? Function(_SignInLoadingState value)? loading,
     TResult? Function(_SignInBaseState value)? base,
     TResult? Function(_SignInSuccessState value)? success,
+    TResult? Function(_SignInEmailFailedState value)? emailFailed,
+    TResult? Function(_SignInPasswordFailedState value)? passwordFailed,
     TResult? Function(_SignInFailedState value)? failed,
   }) {
     return loading?.call(this);
@@ -411,6 +432,8 @@ class _$_SignInLoadingState implements _SignInLoadingState {
     TResult Function(_SignInLoadingState value)? loading,
     TResult Function(_SignInBaseState value)? base,
     TResult Function(_SignInSuccessState value)? success,
+    TResult Function(_SignInEmailFailedState value)? emailFailed,
+    TResult Function(_SignInPasswordFailedState value)? passwordFailed,
     TResult Function(_SignInFailedState value)? failed,
     required TResult orElse(),
   }) {
@@ -466,6 +489,8 @@ class _$_SignInBaseState implements _SignInBaseState {
     required TResult Function() loading,
     required TResult Function() base,
     required TResult Function() success,
+    required TResult Function(String message) emailFailed,
+    required TResult Function(String message) passwordFailed,
     required TResult Function(String message) failed,
   }) {
     return base();
@@ -477,6 +502,8 @@ class _$_SignInBaseState implements _SignInBaseState {
     TResult? Function()? loading,
     TResult? Function()? base,
     TResult? Function()? success,
+    TResult? Function(String message)? emailFailed,
+    TResult? Function(String message)? passwordFailed,
     TResult? Function(String message)? failed,
   }) {
     return base?.call();
@@ -488,6 +515,8 @@ class _$_SignInBaseState implements _SignInBaseState {
     TResult Function()? loading,
     TResult Function()? base,
     TResult Function()? success,
+    TResult Function(String message)? emailFailed,
+    TResult Function(String message)? passwordFailed,
     TResult Function(String message)? failed,
     required TResult orElse(),
   }) {
@@ -503,6 +532,8 @@ class _$_SignInBaseState implements _SignInBaseState {
     required TResult Function(_SignInLoadingState value) loading,
     required TResult Function(_SignInBaseState value) base,
     required TResult Function(_SignInSuccessState value) success,
+    required TResult Function(_SignInEmailFailedState value) emailFailed,
+    required TResult Function(_SignInPasswordFailedState value) passwordFailed,
     required TResult Function(_SignInFailedState value) failed,
   }) {
     return base(this);
@@ -514,6 +545,8 @@ class _$_SignInBaseState implements _SignInBaseState {
     TResult? Function(_SignInLoadingState value)? loading,
     TResult? Function(_SignInBaseState value)? base,
     TResult? Function(_SignInSuccessState value)? success,
+    TResult? Function(_SignInEmailFailedState value)? emailFailed,
+    TResult? Function(_SignInPasswordFailedState value)? passwordFailed,
     TResult? Function(_SignInFailedState value)? failed,
   }) {
     return base?.call(this);
@@ -525,6 +558,8 @@ class _$_SignInBaseState implements _SignInBaseState {
     TResult Function(_SignInLoadingState value)? loading,
     TResult Function(_SignInBaseState value)? base,
     TResult Function(_SignInSuccessState value)? success,
+    TResult Function(_SignInEmailFailedState value)? emailFailed,
+    TResult Function(_SignInPasswordFailedState value)? passwordFailed,
     TResult Function(_SignInFailedState value)? failed,
     required TResult orElse(),
   }) {
@@ -580,6 +615,8 @@ class _$_SignInSuccessState implements _SignInSuccessState {
     required TResult Function() loading,
     required TResult Function() base,
     required TResult Function() success,
+    required TResult Function(String message) emailFailed,
+    required TResult Function(String message) passwordFailed,
     required TResult Function(String message) failed,
   }) {
     return success();
@@ -591,6 +628,8 @@ class _$_SignInSuccessState implements _SignInSuccessState {
     TResult? Function()? loading,
     TResult? Function()? base,
     TResult? Function()? success,
+    TResult? Function(String message)? emailFailed,
+    TResult? Function(String message)? passwordFailed,
     TResult? Function(String message)? failed,
   }) {
     return success?.call();
@@ -602,6 +641,8 @@ class _$_SignInSuccessState implements _SignInSuccessState {
     TResult Function()? loading,
     TResult Function()? base,
     TResult Function()? success,
+    TResult Function(String message)? emailFailed,
+    TResult Function(String message)? passwordFailed,
     TResult Function(String message)? failed,
     required TResult orElse(),
   }) {
@@ -617,6 +658,8 @@ class _$_SignInSuccessState implements _SignInSuccessState {
     required TResult Function(_SignInLoadingState value) loading,
     required TResult Function(_SignInBaseState value) base,
     required TResult Function(_SignInSuccessState value) success,
+    required TResult Function(_SignInEmailFailedState value) emailFailed,
+    required TResult Function(_SignInPasswordFailedState value) passwordFailed,
     required TResult Function(_SignInFailedState value) failed,
   }) {
     return success(this);
@@ -628,6 +671,8 @@ class _$_SignInSuccessState implements _SignInSuccessState {
     TResult? Function(_SignInLoadingState value)? loading,
     TResult? Function(_SignInBaseState value)? base,
     TResult? Function(_SignInSuccessState value)? success,
+    TResult? Function(_SignInEmailFailedState value)? emailFailed,
+    TResult? Function(_SignInPasswordFailedState value)? passwordFailed,
     TResult? Function(_SignInFailedState value)? failed,
   }) {
     return success?.call(this);
@@ -639,6 +684,8 @@ class _$_SignInSuccessState implements _SignInSuccessState {
     TResult Function(_SignInLoadingState value)? loading,
     TResult Function(_SignInBaseState value)? base,
     TResult Function(_SignInSuccessState value)? success,
+    TResult Function(_SignInEmailFailedState value)? emailFailed,
+    TResult Function(_SignInPasswordFailedState value)? passwordFailed,
     TResult Function(_SignInFailedState value)? failed,
     required TResult orElse(),
   }) {
@@ -651,6 +698,326 @@ class _$_SignInSuccessState implements _SignInSuccessState {
 
 abstract class _SignInSuccessState implements SignInState {
   const factory _SignInSuccessState() = _$_SignInSuccessState;
+}
+
+/// @nodoc
+abstract class _$$_SignInEmailFailedStateCopyWith<$Res> {
+  factory _$$_SignInEmailFailedStateCopyWith(_$_SignInEmailFailedState value,
+          $Res Function(_$_SignInEmailFailedState) then) =
+      __$$_SignInEmailFailedStateCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String message});
+}
+
+/// @nodoc
+class __$$_SignInEmailFailedStateCopyWithImpl<$Res>
+    extends _$SignInStateCopyWithImpl<$Res, _$_SignInEmailFailedState>
+    implements _$$_SignInEmailFailedStateCopyWith<$Res> {
+  __$$_SignInEmailFailedStateCopyWithImpl(_$_SignInEmailFailedState _value,
+      $Res Function(_$_SignInEmailFailedState) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? message = null,
+  }) {
+    return _then(_$_SignInEmailFailedState(
+      message: null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_SignInEmailFailedState implements _SignInEmailFailedState {
+  const _$_SignInEmailFailedState({required this.message});
+
+  @override
+  final String message;
+
+  @override
+  String toString() {
+    return 'SignInState.emailFailed(message: $message)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_SignInEmailFailedState &&
+            (identical(other.message, message) || other.message == message));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, message);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_SignInEmailFailedStateCopyWith<_$_SignInEmailFailedState> get copyWith =>
+      __$$_SignInEmailFailedStateCopyWithImpl<_$_SignInEmailFailedState>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loading,
+    required TResult Function() base,
+    required TResult Function() success,
+    required TResult Function(String message) emailFailed,
+    required TResult Function(String message) passwordFailed,
+    required TResult Function(String message) failed,
+  }) {
+    return emailFailed(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loading,
+    TResult? Function()? base,
+    TResult? Function()? success,
+    TResult? Function(String message)? emailFailed,
+    TResult? Function(String message)? passwordFailed,
+    TResult? Function(String message)? failed,
+  }) {
+    return emailFailed?.call(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loading,
+    TResult Function()? base,
+    TResult Function()? success,
+    TResult Function(String message)? emailFailed,
+    TResult Function(String message)? passwordFailed,
+    TResult Function(String message)? failed,
+    required TResult orElse(),
+  }) {
+    if (emailFailed != null) {
+      return emailFailed(message);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_SignInLoadingState value) loading,
+    required TResult Function(_SignInBaseState value) base,
+    required TResult Function(_SignInSuccessState value) success,
+    required TResult Function(_SignInEmailFailedState value) emailFailed,
+    required TResult Function(_SignInPasswordFailedState value) passwordFailed,
+    required TResult Function(_SignInFailedState value) failed,
+  }) {
+    return emailFailed(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_SignInLoadingState value)? loading,
+    TResult? Function(_SignInBaseState value)? base,
+    TResult? Function(_SignInSuccessState value)? success,
+    TResult? Function(_SignInEmailFailedState value)? emailFailed,
+    TResult? Function(_SignInPasswordFailedState value)? passwordFailed,
+    TResult? Function(_SignInFailedState value)? failed,
+  }) {
+    return emailFailed?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_SignInLoadingState value)? loading,
+    TResult Function(_SignInBaseState value)? base,
+    TResult Function(_SignInSuccessState value)? success,
+    TResult Function(_SignInEmailFailedState value)? emailFailed,
+    TResult Function(_SignInPasswordFailedState value)? passwordFailed,
+    TResult Function(_SignInFailedState value)? failed,
+    required TResult orElse(),
+  }) {
+    if (emailFailed != null) {
+      return emailFailed(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SignInEmailFailedState implements SignInState {
+  const factory _SignInEmailFailedState({required final String message}) =
+      _$_SignInEmailFailedState;
+
+  String get message;
+  @JsonKey(ignore: true)
+  _$$_SignInEmailFailedStateCopyWith<_$_SignInEmailFailedState> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_SignInPasswordFailedStateCopyWith<$Res> {
+  factory _$$_SignInPasswordFailedStateCopyWith(
+          _$_SignInPasswordFailedState value,
+          $Res Function(_$_SignInPasswordFailedState) then) =
+      __$$_SignInPasswordFailedStateCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String message});
+}
+
+/// @nodoc
+class __$$_SignInPasswordFailedStateCopyWithImpl<$Res>
+    extends _$SignInStateCopyWithImpl<$Res, _$_SignInPasswordFailedState>
+    implements _$$_SignInPasswordFailedStateCopyWith<$Res> {
+  __$$_SignInPasswordFailedStateCopyWithImpl(
+      _$_SignInPasswordFailedState _value,
+      $Res Function(_$_SignInPasswordFailedState) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? message = null,
+  }) {
+    return _then(_$_SignInPasswordFailedState(
+      message: null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_SignInPasswordFailedState implements _SignInPasswordFailedState {
+  const _$_SignInPasswordFailedState({required this.message});
+
+  @override
+  final String message;
+
+  @override
+  String toString() {
+    return 'SignInState.passwordFailed(message: $message)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_SignInPasswordFailedState &&
+            (identical(other.message, message) || other.message == message));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, message);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_SignInPasswordFailedStateCopyWith<_$_SignInPasswordFailedState>
+      get copyWith => __$$_SignInPasswordFailedStateCopyWithImpl<
+          _$_SignInPasswordFailedState>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loading,
+    required TResult Function() base,
+    required TResult Function() success,
+    required TResult Function(String message) emailFailed,
+    required TResult Function(String message) passwordFailed,
+    required TResult Function(String message) failed,
+  }) {
+    return passwordFailed(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loading,
+    TResult? Function()? base,
+    TResult? Function()? success,
+    TResult? Function(String message)? emailFailed,
+    TResult? Function(String message)? passwordFailed,
+    TResult? Function(String message)? failed,
+  }) {
+    return passwordFailed?.call(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loading,
+    TResult Function()? base,
+    TResult Function()? success,
+    TResult Function(String message)? emailFailed,
+    TResult Function(String message)? passwordFailed,
+    TResult Function(String message)? failed,
+    required TResult orElse(),
+  }) {
+    if (passwordFailed != null) {
+      return passwordFailed(message);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_SignInLoadingState value) loading,
+    required TResult Function(_SignInBaseState value) base,
+    required TResult Function(_SignInSuccessState value) success,
+    required TResult Function(_SignInEmailFailedState value) emailFailed,
+    required TResult Function(_SignInPasswordFailedState value) passwordFailed,
+    required TResult Function(_SignInFailedState value) failed,
+  }) {
+    return passwordFailed(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_SignInLoadingState value)? loading,
+    TResult? Function(_SignInBaseState value)? base,
+    TResult? Function(_SignInSuccessState value)? success,
+    TResult? Function(_SignInEmailFailedState value)? emailFailed,
+    TResult? Function(_SignInPasswordFailedState value)? passwordFailed,
+    TResult? Function(_SignInFailedState value)? failed,
+  }) {
+    return passwordFailed?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_SignInLoadingState value)? loading,
+    TResult Function(_SignInBaseState value)? base,
+    TResult Function(_SignInSuccessState value)? success,
+    TResult Function(_SignInEmailFailedState value)? emailFailed,
+    TResult Function(_SignInPasswordFailedState value)? passwordFailed,
+    TResult Function(_SignInFailedState value)? failed,
+    required TResult orElse(),
+  }) {
+    if (passwordFailed != null) {
+      return passwordFailed(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SignInPasswordFailedState implements SignInState {
+  const factory _SignInPasswordFailedState({required final String message}) =
+      _$_SignInPasswordFailedState;
+
+  String get message;
+  @JsonKey(ignore: true)
+  _$$_SignInPasswordFailedStateCopyWith<_$_SignInPasswordFailedState>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -721,6 +1088,8 @@ class _$_SignInFailedState implements _SignInFailedState {
     required TResult Function() loading,
     required TResult Function() base,
     required TResult Function() success,
+    required TResult Function(String message) emailFailed,
+    required TResult Function(String message) passwordFailed,
     required TResult Function(String message) failed,
   }) {
     return failed(message);
@@ -732,6 +1101,8 @@ class _$_SignInFailedState implements _SignInFailedState {
     TResult? Function()? loading,
     TResult? Function()? base,
     TResult? Function()? success,
+    TResult? Function(String message)? emailFailed,
+    TResult? Function(String message)? passwordFailed,
     TResult? Function(String message)? failed,
   }) {
     return failed?.call(message);
@@ -743,6 +1114,8 @@ class _$_SignInFailedState implements _SignInFailedState {
     TResult Function()? loading,
     TResult Function()? base,
     TResult Function()? success,
+    TResult Function(String message)? emailFailed,
+    TResult Function(String message)? passwordFailed,
     TResult Function(String message)? failed,
     required TResult orElse(),
   }) {
@@ -758,6 +1131,8 @@ class _$_SignInFailedState implements _SignInFailedState {
     required TResult Function(_SignInLoadingState value) loading,
     required TResult Function(_SignInBaseState value) base,
     required TResult Function(_SignInSuccessState value) success,
+    required TResult Function(_SignInEmailFailedState value) emailFailed,
+    required TResult Function(_SignInPasswordFailedState value) passwordFailed,
     required TResult Function(_SignInFailedState value) failed,
   }) {
     return failed(this);
@@ -769,6 +1144,8 @@ class _$_SignInFailedState implements _SignInFailedState {
     TResult? Function(_SignInLoadingState value)? loading,
     TResult? Function(_SignInBaseState value)? base,
     TResult? Function(_SignInSuccessState value)? success,
+    TResult? Function(_SignInEmailFailedState value)? emailFailed,
+    TResult? Function(_SignInPasswordFailedState value)? passwordFailed,
     TResult? Function(_SignInFailedState value)? failed,
   }) {
     return failed?.call(this);
@@ -780,6 +1157,8 @@ class _$_SignInFailedState implements _SignInFailedState {
     TResult Function(_SignInLoadingState value)? loading,
     TResult Function(_SignInBaseState value)? base,
     TResult Function(_SignInSuccessState value)? success,
+    TResult Function(_SignInEmailFailedState value)? emailFailed,
+    TResult Function(_SignInPasswordFailedState value)? passwordFailed,
     TResult Function(_SignInFailedState value)? failed,
     required TResult orElse(),
   }) {

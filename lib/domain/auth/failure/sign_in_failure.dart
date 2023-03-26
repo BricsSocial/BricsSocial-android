@@ -13,3 +13,4 @@ class AccountWrongPasswordFailure extends Failure {
   @override
   List<Object?> get props => [];
 }
+

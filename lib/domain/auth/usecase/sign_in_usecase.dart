@@ -5,7 +5,7 @@ import 'package:injectable/injectable.dart';
 import '../repository/auth_repository.dart';
 
 @injectable
-class SignInUseCase extends UseCase<void, SignInParams> {
+class SignInUseCase extends FutureUseCase<void, SignInParams> {
   final AuthRepository repository;
 
   SignInUseCase(this.repository);

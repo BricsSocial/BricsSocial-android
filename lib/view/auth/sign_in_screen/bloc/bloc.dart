@@ -23,7 +23,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
     });
   }
 
-  Future<void> _mapSignInEvent(_SignInSignInEvent event, Emitter<SignInState> emit) async {
+  Future<void> _mapSignInEvent(_SignInEvent event, Emitter<SignInState> emit) async {
     emit(const SignInState.loading());
 
     final result = await signInUseCase(SignInParams(email: event.email, password: event.password));
@@ -33,8 +33,12 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
         (failure) {
           if (failure is ConnectionFailure) {
             return SignInState.failed(message: 'connection_error'.tr());
+          } else if (failure is AccountWrongPasswordFailure) {
+            return SignInState.passwordFailed(message: 'incorrect_password_error'.tr());
+          } else if (failure is WrongFormatFailure) {
+            return SignInState.passwordFailed(message: 'wrong_format_error'.tr());
           } else if (failure is AccountNotFoundFailure) {
-            return SignInState.failed(message: 'account_not_found'.tr());
+            return SignInState.emailFailed(message: 'account_not_found_error'.tr());
           }
 
           return SignInState.failed(message: 'unknown_error'.tr());

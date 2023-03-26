@@ -16,37 +16,46 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$SignUpEvent {
+  String get firstName => throw _privateConstructorUsedError;
+  String get lastName => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
+  int get countryId => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String email, String password) signUp,
+    required TResult Function(String firstName, String lastName, String email,
+            String password, int countryId)
+        signUp,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String email, String password)? signUp,
+    TResult? Function(String firstName, String lastName, String email,
+            String password, int countryId)?
+        signUp,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String email, String password)? signUp,
+    TResult Function(String firstName, String lastName, String email,
+            String password, int countryId)?
+        signUp,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_SignUpSignUpEvent value) signUp,
+    required TResult Function(_SignUpEvent value) signUp,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_SignUpSignUpEvent value)? signUp,
+    TResult? Function(_SignUpEvent value)? signUp,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_SignUpSignUpEvent value)? signUp,
+    TResult Function(_SignUpEvent value)? signUp,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -62,7 +71,12 @@ abstract class $SignUpEventCopyWith<$Res> {
           SignUpEvent value, $Res Function(SignUpEvent) then) =
       _$SignUpEventCopyWithImpl<$Res, SignUpEvent>;
   @useResult
-  $Res call({String email, String password});
+  $Res call(
+      {String firstName,
+      String lastName,
+      String email,
+      String password,
+      int countryId});
 }
 
 /// @nodoc
@@ -78,10 +92,21 @@ class _$SignUpEventCopyWithImpl<$Res, $Val extends SignUpEvent>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? firstName = null,
+    Object? lastName = null,
     Object? email = null,
     Object? password = null,
+    Object? countryId = null,
   }) {
     return _then(_value.copyWith(
+      firstName: null == firstName
+          ? _value.firstName
+          : firstName // ignore: cast_nullable_to_non_nullable
+              as String,
+      lastName: null == lastName
+          ? _value.lastName
+          : lastName // ignore: cast_nullable_to_non_nullable
+              as String,
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
@@ -90,36 +115,56 @@ class _$SignUpEventCopyWithImpl<$Res, $Val extends SignUpEvent>
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as String,
+      countryId: null == countryId
+          ? _value.countryId
+          : countryId // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$_SignUpSignUpEventCopyWith<$Res>
+abstract class _$$_SignUpEventCopyWith<$Res>
     implements $SignUpEventCopyWith<$Res> {
-  factory _$$_SignUpSignUpEventCopyWith(_$_SignUpSignUpEvent value,
-          $Res Function(_$_SignUpSignUpEvent) then) =
-      __$$_SignUpSignUpEventCopyWithImpl<$Res>;
+  factory _$$_SignUpEventCopyWith(
+          _$_SignUpEvent value, $Res Function(_$_SignUpEvent) then) =
+      __$$_SignUpEventCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String email, String password});
+  $Res call(
+      {String firstName,
+      String lastName,
+      String email,
+      String password,
+      int countryId});
 }
 
 /// @nodoc
-class __$$_SignUpSignUpEventCopyWithImpl<$Res>
-    extends _$SignUpEventCopyWithImpl<$Res, _$_SignUpSignUpEvent>
-    implements _$$_SignUpSignUpEventCopyWith<$Res> {
-  __$$_SignUpSignUpEventCopyWithImpl(
-      _$_SignUpSignUpEvent _value, $Res Function(_$_SignUpSignUpEvent) _then)
+class __$$_SignUpEventCopyWithImpl<$Res>
+    extends _$SignUpEventCopyWithImpl<$Res, _$_SignUpEvent>
+    implements _$$_SignUpEventCopyWith<$Res> {
+  __$$_SignUpEventCopyWithImpl(
+      _$_SignUpEvent _value, $Res Function(_$_SignUpEvent) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? firstName = null,
+    Object? lastName = null,
     Object? email = null,
     Object? password = null,
+    Object? countryId = null,
   }) {
-    return _then(_$_SignUpSignUpEvent(
+    return _then(_$_SignUpEvent(
+      firstName: null == firstName
+          ? _value.firstName
+          : firstName // ignore: cast_nullable_to_non_nullable
+              as String,
+      lastName: null == lastName
+          ? _value.lastName
+          : lastName // ignore: cast_nullable_to_non_nullable
+              as String,
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
@@ -128,69 +173,96 @@ class __$$_SignUpSignUpEventCopyWithImpl<$Res>
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as String,
+      countryId: null == countryId
+          ? _value.countryId
+          : countryId // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_SignUpSignUpEvent implements _SignUpSignUpEvent {
-  const _$_SignUpSignUpEvent({required this.email, required this.password});
+class _$_SignUpEvent implements _SignUpEvent {
+  const _$_SignUpEvent(
+      {required this.firstName,
+      required this.lastName,
+      required this.email,
+      required this.password,
+      required this.countryId});
 
+  @override
+  final String firstName;
+  @override
+  final String lastName;
   @override
   final String email;
   @override
   final String password;
+  @override
+  final int countryId;
 
   @override
   String toString() {
-    return 'SignUpEvent.signUp(email: $email, password: $password)';
+    return 'SignUpEvent.signUp(firstName: $firstName, lastName: $lastName, email: $email, password: $password, countryId: $countryId)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_SignUpSignUpEvent &&
+            other is _$_SignUpEvent &&
+            (identical(other.firstName, firstName) ||
+                other.firstName == firstName) &&
+            (identical(other.lastName, lastName) ||
+                other.lastName == lastName) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.password, password) ||
-                other.password == password));
+                other.password == password) &&
+            (identical(other.countryId, countryId) ||
+                other.countryId == countryId));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, email, password);
+  int get hashCode =>
+      Object.hash(runtimeType, firstName, lastName, email, password, countryId);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_SignUpSignUpEventCopyWith<_$_SignUpSignUpEvent> get copyWith =>
-      __$$_SignUpSignUpEventCopyWithImpl<_$_SignUpSignUpEvent>(
-          this, _$identity);
+  _$$_SignUpEventCopyWith<_$_SignUpEvent> get copyWith =>
+      __$$_SignUpEventCopyWithImpl<_$_SignUpEvent>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String email, String password) signUp,
+    required TResult Function(String firstName, String lastName, String email,
+            String password, int countryId)
+        signUp,
   }) {
-    return signUp(email, password);
+    return signUp(firstName, lastName, email, password, countryId);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String email, String password)? signUp,
+    TResult? Function(String firstName, String lastName, String email,
+            String password, int countryId)?
+        signUp,
   }) {
-    return signUp?.call(email, password);
+    return signUp?.call(firstName, lastName, email, password, countryId);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String email, String password)? signUp,
+    TResult Function(String firstName, String lastName, String email,
+            String password, int countryId)?
+        signUp,
     required TResult orElse(),
   }) {
     if (signUp != null) {
-      return signUp(email, password);
+      return signUp(firstName, lastName, email, password, countryId);
     }
     return orElse();
   }
@@ -198,7 +270,7 @@ class _$_SignUpSignUpEvent implements _SignUpSignUpEvent {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_SignUpSignUpEvent value) signUp,
+    required TResult Function(_SignUpEvent value) signUp,
   }) {
     return signUp(this);
   }
@@ -206,7 +278,7 @@ class _$_SignUpSignUpEvent implements _SignUpSignUpEvent {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_SignUpSignUpEvent value)? signUp,
+    TResult? Function(_SignUpEvent value)? signUp,
   }) {
     return signUp?.call(this);
   }
@@ -214,7 +286,7 @@ class _$_SignUpSignUpEvent implements _SignUpSignUpEvent {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_SignUpSignUpEvent value)? signUp,
+    TResult Function(_SignUpEvent value)? signUp,
     required TResult orElse(),
   }) {
     if (signUp != null) {
@@ -224,18 +296,27 @@ class _$_SignUpSignUpEvent implements _SignUpSignUpEvent {
   }
 }
 
-abstract class _SignUpSignUpEvent implements SignUpEvent {
-  const factory _SignUpSignUpEvent(
-      {required final String email,
-      required final String password}) = _$_SignUpSignUpEvent;
+abstract class _SignUpEvent implements SignUpEvent {
+  const factory _SignUpEvent(
+      {required final String firstName,
+      required final String lastName,
+      required final String email,
+      required final String password,
+      required final int countryId}) = _$_SignUpEvent;
 
+  @override
+  String get firstName;
+  @override
+  String get lastName;
   @override
   String get email;
   @override
   String get password;
   @override
+  int get countryId;
+  @override
   @JsonKey(ignore: true)
-  _$$_SignUpSignUpEventCopyWith<_$_SignUpSignUpEvent> get copyWith =>
+  _$$_SignUpEventCopyWith<_$_SignUpEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
