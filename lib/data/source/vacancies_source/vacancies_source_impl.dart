@@ -3,7 +3,9 @@ import 'package:dio/dio.dart';
 import 'package:http_status_code/http_status_code.dart';
 import 'package:injectable/injectable.dart';
 
+import '../specialists_source/model/reply_dto/reply_dto.dart';
 import 'model/get_vacancies/response/get_vacancies_response_dto.dart';
+import 'model/like_vacancy/request/like_vacancy_request_dto.dart';
 import 'vacancies_source.dart';
 
 @Singleton(as: VacanciesSource)
@@ -38,6 +40,28 @@ class VacanciesSourceImpl extends VacanciesSource {
         throw ConnectionException();
       } else if (e.response?.statusCode == StatusCode.UNAUTHORIZED) {
         throw UnauthorizedException();
+      }
+
+      throw UnknownException();
+    }
+  }
+
+  @override
+  Future<void> likeVacancy({required int vacancyId}) async {
+    try {
+      await dio.post(
+        '/api/vacancies/replies',
+        data: LikeVacancyRequestDto(vacancyId: vacancyId),
+      );
+    } on DioError catch (e) {
+      if (e.type == DioErrorType.connectionTimeout) {
+        throw ConnectionException();
+      } else if (e.response?.statusCode == StatusCode.UNAUTHORIZED) {
+        throw UnauthorizedException();
+      } else if (e.response?.statusCode == StatusCode.BAD_REQUEST) {
+        throw WrongFormatException();
+      } else if (e.response?.statusCode == StatusCode.NOT_FOUND) {
+        throw NotFoundException();
       }
 
       throw UnknownException();

@@ -4,14 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../../../core/ui/color_schemes.dart';
-import '../../../domain/profile/entity/profile_entity.dart';
+import '../../../domain/common/entity/specialist_entity/specialist_entity.dart';
 import '../../common/button/button.dart';
 import '../../common/country_dropdown/country_dropdown.dart';
-import '../../common/loading_indicator.dart';
 import '../bloc/bloc.dart';
 
 class ProfileGeneralScreen extends StatefulWidget {
-  final ValueNotifier<ProfileEntity> profile;
+  final ValueNotifier<SpecialistEntity> profile;
 
   const ProfileGeneralScreen({
     super.key,
@@ -33,18 +32,12 @@ class _ProfileGeneralScreenState extends State<ProfileGeneralScreen> {
       onRefresh: () {
         context.read<ProfileBloc>().add(const ProfileEvent.update());
       },
-      header: WaterDropMaterialHeader(
-        color: lightColorScheme.primary,
-        backgroundColor: lightColorScheme.primaryContainer,
-        distance: 30,
-      ),
       child: BlocListener<ProfileBloc, ProfileState>(
         listener: (context, state) {
-          state.maybeMap(
+          state.mapOrNull(
             profile: (state) {
               _refreshController.refreshCompleted();
             },
-            orElse: () {},
           );
         },
         child: SingleChildScrollView(
@@ -100,7 +93,7 @@ class _ProfileGeneralScreenState extends State<ProfileGeneralScreen> {
   }
 
   Widget _buildProfileInfo({
-    required File? photo,
+    required String? photo,
     required String firstName,
     required String lastName,
     required String bio,
@@ -110,7 +103,7 @@ class _ProfileGeneralScreenState extends State<ProfileGeneralScreen> {
         if (photo != null)
           ClipRRect(
             borderRadius: BorderRadius.circular(32),
-            child: Image.file(
+            child: Image.network(
               photo,
               height: 64,
               width: 64,

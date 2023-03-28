@@ -6,7 +6,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../../domain/profile/entity/profile_entity.dart';
+import '../../../domain/common/entity/specialist_entity/specialist_entity.dart';
 import '../../../domain/profile/usecase/change_profile_usecase.dart';
 import '../../../domain/profile/usecase/get_profile_usecase.dart';
 import '../../../domain/profile/usecase/update_profile_usecase.dart';

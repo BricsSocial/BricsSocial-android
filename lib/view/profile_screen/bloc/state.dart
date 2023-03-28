@@ -7,7 +7,7 @@ class ProfileState with _$ProfileState {
   const factory ProfileState.saving() = _ProfileSavingState;
 
   const factory ProfileState.profile({
-    required ProfileEntity profile,
+    required SpecialistEntity profile,
   }) = _ProfileSuccessState;
 
   const factory ProfileState.failed({

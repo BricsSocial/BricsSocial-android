@@ -19,7 +19,9 @@ class AppButtonState with _$AppButtonState {
 
 class AppButton extends StatelessWidget {
   final double? width;
+  final double? height;
   final Color? color;
+
   final VoidCallback onPressed;
   final EdgeInsets? margin;
   final AppButtonState state;
@@ -27,6 +29,7 @@ class AppButton extends StatelessWidget {
   const AppButton({
     super.key,
     this.width,
+    this.height,
     this.color,
     required this.onPressed,
     this.margin,
@@ -41,7 +44,7 @@ class AppButton extends StatelessWidget {
         duration: const Duration(milliseconds: 200),
         curve: Curves.fastOutSlowIn,
         margin: margin,
-        height: kButtonHeight,
+        height: height ?? kButtonHeight,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(52 / 2),
           color: state.maybeMap(

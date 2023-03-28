@@ -12,7 +12,7 @@ class LoadMoreVacanciesUseCase extends FutureUseCase<void, LoadVacanciesParams> 
 
   @override
   Future<Either<Failure, void>> call(LoadVacanciesParams params) => repository.loadMoreVacancies(
-        pageNumber: params.pageNumber!,
+        pageNumber: params.pageNumber,
         pageSize: params.pageSize,
       );
 }

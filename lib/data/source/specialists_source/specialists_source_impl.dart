@@ -5,6 +5,7 @@ import 'package:injectable/injectable.dart';
 
 import 'model/change_specialist_dto/request/change_specialist_request_dto.dart';
 import 'model/create_specialist_dto/request/create_specialist_request_dto.dart';
+import 'model/get_replies/response/get_replies_response_dto.dart';
 import 'model/specialist_dto/specialist_dto.dart';
 import 'specialists_source.dart';
 
@@ -80,6 +81,39 @@ class SpecialistsSourceImpl extends SpecialistsSource {
         throw UnauthorizedException();
       } else if (e.response?.statusCode == StatusCode.NOT_FOUND) {
         throw NotFoundException();
+      }
+
+      throw UnknownException();
+    }
+  }
+
+  @override
+  Future<GetRepliesResponseDto> getReplies({
+    int? companyId,
+    int? vacancyId,
+    int? status,
+    int? type,
+    required int pageNumber,
+    required int pageSize,
+  }) async {
+    try {
+      final response = await dio.get(
+        '/api/specialists/replies',
+        queryParameters: {
+          if (companyId != null) 'сompanyId': companyId,
+          if (vacancyId != null) 'vacancyId': vacancyId,
+          if (status != null) 'status': status,
+          'pageNumber': pageNumber,
+          'pageSize': pageSize,
+        },
+      );
+
+      return GetRepliesResponseDto.fromJson(response.data);
+    } on DioError catch (e) {
+      if (e.type == DioErrorType.connectionTimeout) {
+        throw ConnectionException();
+      } else if (e.response?.statusCode == StatusCode.UNAUTHORIZED) {
+        throw UnauthorizedException();
       }
 
       throw UnknownException();

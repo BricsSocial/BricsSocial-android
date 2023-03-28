@@ -28,10 +28,15 @@ class _VacanciesScreenState extends State<VacanciesScreen> {
 
   final _matchEngine = ValueNotifier<MatchEngine?>(null);
 
-  MatchEngine createMatchEngine(List<VacancyEntity> vacancies) {
+  MatchEngine createMatchEngine(BuildContext context, List<VacancyEntity> vacancies) {
     return MatchEngine(
       swipeItems: vacancies.map((vacancy) {
-        return SwipeItem(content: vacancy);
+        return SwipeItem(
+          content: vacancy,
+          likeAction: () {
+            context.read<VacanciesBloc>().add(VacanciesEvent.like(vacancyId: vacancy.id));
+          },
+        );
       }).toList(),
     );
   }
@@ -44,77 +49,70 @@ class _VacanciesScreenState extends State<VacanciesScreen> {
         appBar: const AppAppBar(
           title: Text('Vacancies'),
         ),
-        body: SmartRefresher(
-          controller: _refreshController,
-          onRefresh: () {},
-          child: Column(
-            children: [
-              Expanded(
-                child: Stack(
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 32),
-                      alignment: Alignment.center,
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: const [
-                          Icon(
-                            Icons.face_6,
-                            size: 96,
-                            color: hintColor,
-                          ),
-                          SizedBox(height: 16),
-                          Text(
-                            'That\'s all!',
-                            style: TextStyle(fontSize: 24, color: hintColor, fontWeight: FontWeight.w600),
-                          ),
-                          SizedBox(height: 8),
-                          Text(
-                            'Come back later to see more!',
-                            style: TextStyle(fontSize: 18, color: hintColor, fontWeight: FontWeight.w600),
-                            textAlign: TextAlign.center,
-                          )
-                        ],
-                      ),
+        body: Column(
+          children: [
+            Expanded(
+              child: Stack(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 32),
+                    alignment: Alignment.center,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: const [
+                        Icon(
+                          Icons.face_6,
+                          size: 96,
+                          color: hintColor,
+                        ),
+                        SizedBox(height: 16),
+                        Text(
+                          'That\'s all!',
+                          style: TextStyle(fontSize: 24, color: hintColor, fontWeight: FontWeight.w600),
+                        ),
+                        SizedBox(height: 8),
+                        Text(
+                          'Come back later to see more!',
+                          style: TextStyle(fontSize: 18, color: hintColor, fontWeight: FontWeight.w600),
+                          textAlign: TextAlign.center,
+                        )
+                      ],
                     ),
-                    BlocConsumer<VacanciesBloc, VacanciesState>(
-                      listener: (context, state) {
-                        state.mapOrNull(
-                          vacancies: (state) {
-                            if (state.vacancies.isNotEmpty) {
-                              _matchEngine.value = createMatchEngine(state.vacancies);
-                            }
-                          },
-                        );
-                      },
-                      builder: (context, state) {
-                        return state.maybeMap(
-                          vacancies: (state) {
-                            return SwipeCards(
-                              matchEngine: _matchEngine.value ?? MatchEngine(swipeItems: []),
-                              itemBuilder: (BuildContext context, int index) {
-                                return _buildVacancyCard(state.vacancies[index]);
-                              },
-                              onStackFinished: () {
-                                _matchEngine.value = null;
-                                context.read<VacanciesBloc>().add(const VacanciesEvent.load());
-                              },
-                              itemChanged: (SwipeItem item, int index) {},
-                            );
-                          },
-                          orElse: () {
-                            return Container();
-                          },
-                        );
-                      },
-                    ),
-                  ],
-                ),
+                  ),
+                  BlocConsumer<VacanciesBloc, VacanciesState>(
+                    listener: (context, state) {
+                      state.mapOrNull(
+                        vacancies: (state) {
+                          if (state.vacancies.isNotEmpty) {
+                            _matchEngine.value = createMatchEngine(context, state.vacancies);
+                          }
+                        },
+                      );
+                    },
+                    builder: (context, state) {
+                      return state.maybeMap(
+                        vacancies: (state) {
+                          return SwipeCards(
+                            matchEngine: _matchEngine.value ?? MatchEngine(swipeItems: []),
+                            itemBuilder: (BuildContext context, int index) {
+                              return _buildVacancyCard(state.vacancies[index]);
+                            },
+                            onStackFinished: () {
+                              _matchEngine.value = null;
+                              context.read<VacanciesBloc>().add(const VacanciesEvent.load());
+                            },
+                          );
+                        },
+                        orElse: () => const SizedBox.shrink(),
+                      );
+                    },
+                  ),
+                ],
               ),
-              _buildSwipeButtons(),
-              const SizedBox(height: 32),
-            ],
-          ),
+            ),
+            _buildSwipeButtons(),
+            const SizedBox(height: 32),
+          ],
         ),
       ),
     );
@@ -133,6 +131,24 @@ class _VacanciesScreenState extends State<VacanciesScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Row(
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(24),
+                child: Image.network(
+                  vacancy.company.logo,
+                  height: 48,
+                  width: 48,
+                ),
+              ),
+              const SizedBox(width: 16),
+              Text(
+                vacancy.company.name,
+                style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+              ),
+            ],
+          ),
+          const SizedBox(height: 16),
           Text(
             vacancy.name,
             style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w600),

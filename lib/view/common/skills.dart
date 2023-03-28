@@ -39,7 +39,7 @@ class Skills extends StatelessWidget {
             ),
             const SizedBox(width: 24),
             TextButton(
-              onPressed: onAdd(),
+              onPressed: onAdd,
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.resolveWith((states) {
                   return lightColorScheme.primaryContainer;

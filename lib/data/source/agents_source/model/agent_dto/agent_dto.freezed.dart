@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'profile_entity.dart';
+part of 'agent_dto.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,45 +14,45 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+AgentDto _$AgentDtoFromJson(Map<String, dynamic> json) {
+  return _AgentDto.fromJson(json);
+}
+
 /// @nodoc
-mixin _$ProfileEntity {
+mixin _$AgentDto {
   int get id => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   String get firstName => throw _privateConstructorUsedError;
   String get lastName => throw _privateConstructorUsedError;
-  String get bio => throw _privateConstructorUsedError;
-  String get about => throw _privateConstructorUsedError;
-  List<String> get skillTags => throw _privateConstructorUsedError;
-  File? get photo => throw _privateConstructorUsedError;
-  int get countryId => throw _privateConstructorUsedError;
+  String get position => throw _privateConstructorUsedError;
+  String get photo => throw _privateConstructorUsedError;
+  int get companyId => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ProfileEntityCopyWith<ProfileEntity> get copyWith =>
+  $AgentDtoCopyWith<AgentDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ProfileEntityCopyWith<$Res> {
-  factory $ProfileEntityCopyWith(
-          ProfileEntity value, $Res Function(ProfileEntity) then) =
-      _$ProfileEntityCopyWithImpl<$Res, ProfileEntity>;
+abstract class $AgentDtoCopyWith<$Res> {
+  factory $AgentDtoCopyWith(AgentDto value, $Res Function(AgentDto) then) =
+      _$AgentDtoCopyWithImpl<$Res, AgentDto>;
   @useResult
   $Res call(
       {int id,
       String email,
       String firstName,
       String lastName,
-      String bio,
-      String about,
-      List<String> skillTags,
-      File? photo,
-      int countryId});
+      String position,
+      String photo,
+      int companyId});
 }
 
 /// @nodoc
-class _$ProfileEntityCopyWithImpl<$Res, $Val extends ProfileEntity>
-    implements $ProfileEntityCopyWith<$Res> {
-  _$ProfileEntityCopyWithImpl(this._value, this._then);
+class _$AgentDtoCopyWithImpl<$Res, $Val extends AgentDto>
+    implements $AgentDtoCopyWith<$Res> {
+  _$AgentDtoCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -66,11 +66,9 @@ class _$ProfileEntityCopyWithImpl<$Res, $Val extends ProfileEntity>
     Object? email = null,
     Object? firstName = null,
     Object? lastName = null,
-    Object? bio = null,
-    Object? about = null,
-    Object? skillTags = null,
-    Object? photo = freezed,
-    Object? countryId = null,
+    Object? position = null,
+    Object? photo = null,
+    Object? companyId = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -89,36 +87,27 @@ class _$ProfileEntityCopyWithImpl<$Res, $Val extends ProfileEntity>
           ? _value.lastName
           : lastName // ignore: cast_nullable_to_non_nullable
               as String,
-      bio: null == bio
-          ? _value.bio
-          : bio // ignore: cast_nullable_to_non_nullable
+      position: null == position
+          ? _value.position
+          : position // ignore: cast_nullable_to_non_nullable
               as String,
-      about: null == about
-          ? _value.about
-          : about // ignore: cast_nullable_to_non_nullable
-              as String,
-      skillTags: null == skillTags
-          ? _value.skillTags
-          : skillTags // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      photo: freezed == photo
+      photo: null == photo
           ? _value.photo
           : photo // ignore: cast_nullable_to_non_nullable
-              as File?,
-      countryId: null == countryId
-          ? _value.countryId
-          : countryId // ignore: cast_nullable_to_non_nullable
+              as String,
+      companyId: null == companyId
+          ? _value.companyId
+          : companyId // ignore: cast_nullable_to_non_nullable
               as int,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$_ProfileEntityCopyWith<$Res>
-    implements $ProfileEntityCopyWith<$Res> {
-  factory _$$_ProfileEntityCopyWith(
-          _$_ProfileEntity value, $Res Function(_$_ProfileEntity) then) =
-      __$$_ProfileEntityCopyWithImpl<$Res>;
+abstract class _$$_AgentDtoCopyWith<$Res> implements $AgentDtoCopyWith<$Res> {
+  factory _$$_AgentDtoCopyWith(
+          _$_AgentDto value, $Res Function(_$_AgentDto) then) =
+      __$$_AgentDtoCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -126,19 +115,17 @@ abstract class _$$_ProfileEntityCopyWith<$Res>
       String email,
       String firstName,
       String lastName,
-      String bio,
-      String about,
-      List<String> skillTags,
-      File? photo,
-      int countryId});
+      String position,
+      String photo,
+      int companyId});
 }
 
 /// @nodoc
-class __$$_ProfileEntityCopyWithImpl<$Res>
-    extends _$ProfileEntityCopyWithImpl<$Res, _$_ProfileEntity>
-    implements _$$_ProfileEntityCopyWith<$Res> {
-  __$$_ProfileEntityCopyWithImpl(
-      _$_ProfileEntity _value, $Res Function(_$_ProfileEntity) _then)
+class __$$_AgentDtoCopyWithImpl<$Res>
+    extends _$AgentDtoCopyWithImpl<$Res, _$_AgentDto>
+    implements _$$_AgentDtoCopyWith<$Res> {
+  __$$_AgentDtoCopyWithImpl(
+      _$_AgentDto _value, $Res Function(_$_AgentDto) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -148,13 +135,11 @@ class __$$_ProfileEntityCopyWithImpl<$Res>
     Object? email = null,
     Object? firstName = null,
     Object? lastName = null,
-    Object? bio = null,
-    Object? about = null,
-    Object? skillTags = null,
-    Object? photo = freezed,
-    Object? countryId = null,
+    Object? position = null,
+    Object? photo = null,
+    Object? companyId = null,
   }) {
-    return _then(_$_ProfileEntity(
+    return _then(_$_AgentDto(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -171,44 +156,36 @@ class __$$_ProfileEntityCopyWithImpl<$Res>
           ? _value.lastName
           : lastName // ignore: cast_nullable_to_non_nullable
               as String,
-      bio: null == bio
-          ? _value.bio
-          : bio // ignore: cast_nullable_to_non_nullable
+      position: null == position
+          ? _value.position
+          : position // ignore: cast_nullable_to_non_nullable
               as String,
-      about: null == about
-          ? _value.about
-          : about // ignore: cast_nullable_to_non_nullable
-              as String,
-      skillTags: null == skillTags
-          ? _value._skillTags
-          : skillTags // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      photo: freezed == photo
+      photo: null == photo
           ? _value.photo
           : photo // ignore: cast_nullable_to_non_nullable
-              as File?,
-      countryId: null == countryId
-          ? _value.countryId
-          : countryId // ignore: cast_nullable_to_non_nullable
+              as String,
+      companyId: null == companyId
+          ? _value.companyId
+          : companyId // ignore: cast_nullable_to_non_nullable
               as int,
     ));
   }
 }
 
 /// @nodoc
-
-class _$_ProfileEntity implements _ProfileEntity {
-  _$_ProfileEntity(
+@JsonSerializable()
+class _$_AgentDto implements _AgentDto {
+  const _$_AgentDto(
       {required this.id,
       required this.email,
       required this.firstName,
       required this.lastName,
-      required this.bio,
-      required this.about,
-      required final List<String> skillTags,
+      required this.position,
       required this.photo,
-      required this.countryId})
-      : _skillTags = skillTags;
+      required this.companyId});
+
+  factory _$_AgentDto.fromJson(Map<String, dynamic> json) =>
+      _$$_AgentDtoFromJson(json);
 
   @override
   final int id;
@@ -219,78 +196,65 @@ class _$_ProfileEntity implements _ProfileEntity {
   @override
   final String lastName;
   @override
-  final String bio;
+  final String position;
   @override
-  final String about;
-  final List<String> _skillTags;
+  final String photo;
   @override
-  List<String> get skillTags {
-    if (_skillTags is EqualUnmodifiableListView) return _skillTags;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_skillTags);
-  }
-
-  @override
-  final File? photo;
-  @override
-  final int countryId;
+  final int companyId;
 
   @override
   String toString() {
-    return 'ProfileEntity(id: $id, email: $email, firstName: $firstName, lastName: $lastName, bio: $bio, about: $about, skillTags: $skillTags, photo: $photo, countryId: $countryId)';
+    return 'AgentDto(id: $id, email: $email, firstName: $firstName, lastName: $lastName, position: $position, photo: $photo, companyId: $companyId)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ProfileEntity &&
+            other is _$_AgentDto &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.firstName, firstName) ||
                 other.firstName == firstName) &&
             (identical(other.lastName, lastName) ||
                 other.lastName == lastName) &&
-            (identical(other.bio, bio) || other.bio == bio) &&
-            (identical(other.about, about) || other.about == about) &&
-            const DeepCollectionEquality()
-                .equals(other._skillTags, _skillTags) &&
+            (identical(other.position, position) ||
+                other.position == position) &&
             (identical(other.photo, photo) || other.photo == photo) &&
-            (identical(other.countryId, countryId) ||
-                other.countryId == countryId));
+            (identical(other.companyId, companyId) ||
+                other.companyId == companyId));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      email,
-      firstName,
-      lastName,
-      bio,
-      about,
-      const DeepCollectionEquality().hash(_skillTags),
-      photo,
-      countryId);
+      runtimeType, id, email, firstName, lastName, position, photo, companyId);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ProfileEntityCopyWith<_$_ProfileEntity> get copyWith =>
-      __$$_ProfileEntityCopyWithImpl<_$_ProfileEntity>(this, _$identity);
+  _$$_AgentDtoCopyWith<_$_AgentDto> get copyWith =>
+      __$$_AgentDtoCopyWithImpl<_$_AgentDto>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_AgentDtoToJson(
+      this,
+    );
+  }
 }
 
-abstract class _ProfileEntity implements ProfileEntity {
-  factory _ProfileEntity(
+abstract class _AgentDto implements AgentDto {
+  const factory _AgentDto(
       {required final int id,
       required final String email,
       required final String firstName,
       required final String lastName,
-      required final String bio,
-      required final String about,
-      required final List<String> skillTags,
-      required final File? photo,
-      required final int countryId}) = _$_ProfileEntity;
+      required final String position,
+      required final String photo,
+      required final int companyId}) = _$_AgentDto;
+
+  factory _AgentDto.fromJson(Map<String, dynamic> json) = _$_AgentDto.fromJson;
 
   @override
   int get id;
@@ -301,17 +265,13 @@ abstract class _ProfileEntity implements ProfileEntity {
   @override
   String get lastName;
   @override
-  String get bio;
+  String get position;
   @override
-  String get about;
+  String get photo;
   @override
-  List<String> get skillTags;
-  @override
-  File? get photo;
-  @override
-  int get countryId;
+  int get companyId;
   @override
   @JsonKey(ignore: true)
-  _$$_ProfileEntityCopyWith<_$_ProfileEntity> get copyWith =>
+  _$$_AgentDtoCopyWith<_$_AgentDto> get copyWith =>
       throw _privateConstructorUsedError;
 }

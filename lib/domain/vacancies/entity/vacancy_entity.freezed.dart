@@ -22,7 +22,7 @@ mixin _$VacancyEntity {
   String get offerings => throw _privateConstructorUsedError;
   VacancyStatus get status => throw _privateConstructorUsedError;
   List<String> get skillTags => throw _privateConstructorUsedError;
-  int get companyId => throw _privateConstructorUsedError;
+  CompanyEntity get company => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $VacancyEntityCopyWith<VacancyEntity> get copyWith =>
@@ -42,7 +42,9 @@ abstract class $VacancyEntityCopyWith<$Res> {
       String offerings,
       VacancyStatus status,
       List<String> skillTags,
-      int companyId});
+      CompanyEntity company});
+
+  $CompanyEntityCopyWith<$Res> get company;
 }
 
 /// @nodoc
@@ -64,7 +66,7 @@ class _$VacancyEntityCopyWithImpl<$Res, $Val extends VacancyEntity>
     Object? offerings = null,
     Object? status = null,
     Object? skillTags = null,
-    Object? companyId = null,
+    Object? company = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -91,11 +93,19 @@ class _$VacancyEntityCopyWithImpl<$Res, $Val extends VacancyEntity>
           ? _value.skillTags
           : skillTags // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      companyId: null == companyId
-          ? _value.companyId
-          : companyId // ignore: cast_nullable_to_non_nullable
-              as int,
+      company: null == company
+          ? _value.company
+          : company // ignore: cast_nullable_to_non_nullable
+              as CompanyEntity,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $CompanyEntityCopyWith<$Res> get company {
+    return $CompanyEntityCopyWith<$Res>(_value.company, (value) {
+      return _then(_value.copyWith(company: value) as $Val);
+    });
   }
 }
 
@@ -114,7 +124,10 @@ abstract class _$$_VacancyEntityCopyWith<$Res>
       String offerings,
       VacancyStatus status,
       List<String> skillTags,
-      int companyId});
+      CompanyEntity company});
+
+  @override
+  $CompanyEntityCopyWith<$Res> get company;
 }
 
 /// @nodoc
@@ -134,7 +147,7 @@ class __$$_VacancyEntityCopyWithImpl<$Res>
     Object? offerings = null,
     Object? status = null,
     Object? skillTags = null,
-    Object? companyId = null,
+    Object? company = null,
   }) {
     return _then(_$_VacancyEntity(
       id: null == id
@@ -161,10 +174,10 @@ class __$$_VacancyEntityCopyWithImpl<$Res>
           ? _value._skillTags
           : skillTags // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      companyId: null == companyId
-          ? _value.companyId
-          : companyId // ignore: cast_nullable_to_non_nullable
-              as int,
+      company: null == company
+          ? _value.company
+          : company // ignore: cast_nullable_to_non_nullable
+              as CompanyEntity,
     ));
   }
 }
@@ -179,7 +192,7 @@ class _$_VacancyEntity implements _VacancyEntity {
       required this.offerings,
       required this.status,
       required final List<String> skillTags,
-      required this.companyId})
+      required this.company})
       : _skillTags = skillTags;
 
   @override
@@ -201,11 +214,11 @@ class _$_VacancyEntity implements _VacancyEntity {
   }
 
   @override
-  final int companyId;
+  final CompanyEntity company;
 
   @override
   String toString() {
-    return 'VacancyEntity(id: $id, name: $name, requirements: $requirements, offerings: $offerings, status: $status, skillTags: $skillTags, companyId: $companyId)';
+    return 'VacancyEntity(id: $id, name: $name, requirements: $requirements, offerings: $offerings, status: $status, skillTags: $skillTags, company: $company)';
   }
 
   @override
@@ -222,8 +235,7 @@ class _$_VacancyEntity implements _VacancyEntity {
             (identical(other.status, status) || other.status == status) &&
             const DeepCollectionEquality()
                 .equals(other._skillTags, _skillTags) &&
-            (identical(other.companyId, companyId) ||
-                other.companyId == companyId));
+            (identical(other.company, company) || other.company == company));
   }
 
   @override
@@ -235,7 +247,7 @@ class _$_VacancyEntity implements _VacancyEntity {
       offerings,
       status,
       const DeepCollectionEquality().hash(_skillTags),
-      companyId);
+      company);
 
   @JsonKey(ignore: true)
   @override
@@ -252,7 +264,7 @@ abstract class _VacancyEntity implements VacancyEntity {
       required final String offerings,
       required final VacancyStatus status,
       required final List<String> skillTags,
-      required final int companyId}) = _$_VacancyEntity;
+      required final CompanyEntity company}) = _$_VacancyEntity;
 
   @override
   int get id;
@@ -267,7 +279,7 @@ abstract class _VacancyEntity implements VacancyEntity {
   @override
   List<String> get skillTags;
   @override
-  int get companyId;
+  CompanyEntity get company;
   @override
   @JsonKey(ignore: true)
   _$$_VacancyEntityCopyWith<_$_VacancyEntity> get copyWith =>

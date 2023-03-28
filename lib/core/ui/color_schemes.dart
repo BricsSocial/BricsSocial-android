@@ -35,6 +35,7 @@ const lightColorScheme = ColorScheme(
 );
 
 const greenColor = Color(0xFF9CCC65);
+const orangeColor = Color.fromARGB(255, 254, 173, 32);
 const redColor = Color(0xFFF44336);
 const whiteColor = Colors.white;
 const hintColor = Colors.black26;

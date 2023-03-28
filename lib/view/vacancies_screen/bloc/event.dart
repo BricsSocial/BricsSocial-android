@@ -8,6 +8,10 @@ class VacanciesEvent with _$VacanciesEvent {
     required List<VacancyEntity> vacancies,
   }) = _VacanciesEvent;
 
+  const factory VacanciesEvent.like({
+    required int vacancyId,
+  }) = _VacanciesLikeEvent;
+
   const factory VacanciesEvent.failed({
     required String message,
   }) = _VacanciesFailedEvent;

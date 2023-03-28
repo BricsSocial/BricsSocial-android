@@ -1,14 +1,12 @@
 import 'package:app_kit/app_kit.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 import '../../../core/di/di.dart';
 import '../../../core/ui/color_schemes.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../common/button/button.dart';
-import '../../common/loading_indicator.dart';
 import '../common/password_field.dart';
 import 'bloc/bloc.dart';
 
@@ -35,7 +33,7 @@ class SignInScreenState extends State<SignInScreen> {
           state.maybeMap(
             success: (value) async {
               Future.delayed(const Duration(seconds: 1), () {
-                context.router.pushNamed('/home');
+                context.router.replaceNamed('/home');
               });
             },
             emailFailed: (state) {

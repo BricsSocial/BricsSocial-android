@@ -4,7 +4,7 @@ import 'package:app_kit/arch/error/failure.dart';
 import 'package:injectable/injectable.dart';
 import 'package:rxdart/rxdart.dart';
 
-import '../../domain/profile/entity/profile_entity.dart';
+import '../../domain/common/entity/specialist_entity/specialist_entity.dart';
 import '../../domain/profile/repository/profile_repository.dart';
 import '../source/specialists_source/model/change_specialist_dto/request/change_specialist_request_dto.dart';
 import '../source/specialists_source/specialists_source.dart';
@@ -18,12 +18,12 @@ class ProfileRepositoryImpl extends ProfileRepository {
   final _profileController = ReplaySubject();
 
   @override
-  Stream<Either<Failure, ProfileEntity>> getProfile() {
+  Stream<Either<Failure, SpecialistEntity>> getProfile() {
     return _profileController.stream.startWith(null).asyncMap((_) async {
       try {
         final response = await source.currentSpecialist();
 
-        final profileEntity = ProfileEntity(
+        final profileEntity = SpecialistEntity(
           id: response.id,
           email: response.email,
           firstName: response.firstName,
@@ -53,7 +53,7 @@ class ProfileRepositoryImpl extends ProfileRepository {
   }
 
   @override
-  Future<Either<Failure, ProfileEntity>> changeProfile({required ProfileEntity profile}) async {
+  Future<Either<Failure, SpecialistEntity>> changeProfile({required SpecialistEntity profile}) async {
     try {
       final skillTags = profile.skillTags.join(',');
 
@@ -70,7 +70,7 @@ class ProfileRepositoryImpl extends ProfileRepository {
         ),
       );
 
-      final changedProfile = ProfileEntity(
+      final changedProfile = SpecialistEntity(
         id: response.id,
         email: response.email,
         firstName: response.firstName,

@@ -2,11 +2,11 @@ import 'dart:io';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'profile_entity.freezed.dart';
+part 'specialist_entity.freezed.dart';
 
 @freezed
-class ProfileEntity with _$ProfileEntity {
-  factory ProfileEntity({
+class SpecialistEntity with _$SpecialistEntity {
+  factory SpecialistEntity({
     required int id,
     required String email,
     required String firstName,
@@ -14,12 +14,12 @@ class ProfileEntity with _$ProfileEntity {
     required String bio,
     required String about,
     required List<String> skillTags,
-    required File? photo,
+    required String? photo,
     required int countryId,
-  }) = _ProfileEntity;
+  }) = _SpecialistEntity;
 
-  factory ProfileEntity.empty() {
-    return ProfileEntity(
+  factory SpecialistEntity.empty() {
+    return SpecialistEntity(
       id: 0,
       email: '',
       firstName: '',

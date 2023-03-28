@@ -39,7 +39,9 @@ class App extends StatelessWidget {
         useMaterial3: true,
       ).copyWith(
         colorScheme: lightColorScheme,
-        appBarTheme: const AppBarTheme(),
+        appBarTheme: const AppBarTheme(
+          surfaceTintColor: whiteColor,
+        ),
         navigationBarTheme: NavigationBarThemeData(
           elevation: 0,
           backgroundColor: lightColorScheme.background,

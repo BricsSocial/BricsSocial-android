@@ -1,15 +1,12 @@
-import 'package:app_kit/app_kit.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_tags/flutter_tags.dart';
 
-import '../../../core/ui/color_schemes.dart';
-import '../../../domain/profile/entity/profile_entity.dart';
+import '../../../domain/common/entity/specialist_entity/specialist_entity.dart';
 import '../../common/button/button.dart';
 import '../../common/skills.dart';
 
 class ResumeScreen extends StatefulWidget {
-  final ValueNotifier<ProfileEntity> profile;
+  final ValueNotifier<SpecialistEntity> profile;
 
   const ResumeScreen({
     super.key,

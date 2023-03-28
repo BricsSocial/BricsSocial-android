@@ -1,5 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../common/entity/company_entity/company_entity.dart';
+
 part 'vacancy_entity.freezed.dart';
 
 enum VacancyStatus { closed, open }
@@ -13,6 +15,6 @@ class VacancyEntity with _$VacancyEntity {
     required String offerings,
     required VacancyStatus status,
     required List<String> skillTags,
-    required int companyId,
+    required CompanyEntity company,
   }) = _VacancyEntity;
 }

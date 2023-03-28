@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import '../profile_screen/profile_screen.dart';
+import '../replies_screen/replies_screen.dart';
 import '../vacancies_screen/vacancies_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -18,10 +19,10 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       body: IndexedStack(
         index: _currentIndex,
-        children: [
-          const VacanciesScreen(),
-          Container(),
-          const ProfileScreen(),
+        children: const [
+          VacanciesScreen(),
+          RepliesScreen(),
+          ProfileScreen(),
         ],
       ),
       bottomNavigationBar: NavigationBar(

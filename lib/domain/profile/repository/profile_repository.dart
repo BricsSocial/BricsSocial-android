@@ -1,12 +1,12 @@
 import 'package:app_kit/arch/error/failure.dart';
 import 'package:dartz/dartz.dart';
 
-import '../entity/profile_entity.dart';
+import '../../common/entity/specialist_entity/specialist_entity.dart';
 
 abstract class ProfileRepository {
-  Stream<Either<Failure, ProfileEntity>> getProfile();
+  Stream<Either<Failure, SpecialistEntity>> getProfile();
 
-  Future<Either<Failure, ProfileEntity>> changeProfile({required ProfileEntity profile});
+  Future<Either<Failure, SpecialistEntity>> changeProfile({required SpecialistEntity profile});
 
   Future<Either<Failure, void>> updateProfile();
 }

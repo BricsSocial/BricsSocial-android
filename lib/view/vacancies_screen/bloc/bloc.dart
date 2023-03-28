@@ -6,6 +6,7 @@ import 'package:injectable/injectable.dart';
 
 import '../../../domain/vacancies/entity/vacancy_entity.dart';
 import '../../../domain/vacancies/usecase/get_vacancies_usecase/get_vacancies_usecase.dart';
+import '../../../domain/vacancies/usecase/like_vacancy_usecase.dart';
 import '../../../domain/vacancies/usecase/load_more_vacancies_usecase.dart';
 import '../../../domain/vacancies/usecase/params/load_vacancies_params.dart';
 
@@ -19,6 +20,7 @@ const _pageSize = 3;
 class VacanciesBloc extends Bloc<VacanciesEvent, VacanciesState> {
   final GetVacanciesUseCase getVacanciesUseCase;
   final LoadMoreVacanciesUseCase loadMoreVacanciesUseCase;
+  final LikeVacancyUseCase likeVacancyUseCase;
 
   int _currentPage = 1;
 
@@ -27,10 +29,12 @@ class VacanciesBloc extends Bloc<VacanciesEvent, VacanciesState> {
   VacanciesBloc({
     required this.getVacanciesUseCase,
     required this.loadMoreVacanciesUseCase,
+    required this.likeVacancyUseCase,
   }) : super(const VacanciesState.initialLoading()) {
     on<VacanciesEvent>((event, emit) async {
       await event.map(
         vacancies: (event) async => _mapVacanciesEvent(event, emit),
+        like: (event) async => likeVacancyUseCase(event.vacancyId),
         load: (event) async => loadMoreVacanciesUseCase(
           LoadVacanciesParams(pageNumber: ++_currentPage, pageSize: _pageSize),
         ),
