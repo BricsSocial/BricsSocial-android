@@ -13,14 +13,16 @@ const double kButtonHeight = 52;
 class AppButtonState with _$AppButtonState {
   const factory AppButtonState.base({required Widget child}) = _BaseAppButtonState;
   const factory AppButtonState.loading() = _LoadingAppButtonState;
-  const factory AppButtonState.success() = _SuccessAppButtonState;
+  const factory AppButtonState.success({@Default(Icon(Icons.done, color: whiteColor)) Widget child}) =
+      _SuccessAppButtonState;
   const factory AppButtonState.failed({required String message}) = _FailedAppButtonState;
 }
 
 class AppButton extends StatelessWidget {
   final double? width;
-  final double? height;
+  final double height;
   final Color? color;
+  final Border? border;
 
   final VoidCallback onPressed;
   final EdgeInsets? margin;
@@ -29,8 +31,9 @@ class AppButton extends StatelessWidget {
   const AppButton({
     super.key,
     this.width,
-    this.height,
+    this.height = kButtonHeight,
     this.color,
+    this.border,
     required this.onPressed,
     this.margin,
     required this.state,
@@ -44,9 +47,10 @@ class AppButton extends StatelessWidget {
         duration: const Duration(milliseconds: 200),
         curve: Curves.fastOutSlowIn,
         margin: margin,
-        height: height ?? kButtonHeight,
+        height: height,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(52 / 2),
+          border: border,
           color: state.maybeMap(
             success: (_) => greenColor,
             failed: (_) => redColor,
@@ -62,13 +66,10 @@ class AppButton extends StatelessWidget {
           child: state.map(
             base: (state) => state.child,
             loading: (_) {
-              return const AppLoadingIndicator(height: 24, width: 24);
+              return AppLoadingIndicator(height: height / 2, width: height / 2);
             },
-            success: (_) {
-              return const Icon(
-                Icons.done,
-                color: whiteColor,
-              );
+            success: (state) {
+              return state.child;
             },
             failed: (state) {
               return Text(

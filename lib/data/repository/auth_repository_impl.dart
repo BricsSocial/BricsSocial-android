@@ -59,4 +59,15 @@ class AuthRepositoryImpl extends AuthRepository {
 
     return const Right(null);
   }
+
+  @override
+  Future<Either<Failure, bool>> isAuthorized() async {
+    return Right(storage.getToken() != null);
+  }
+
+  @override
+  Future<Either<Failure, void>> signOut() async {
+    await storage.removeToken();
+    return const Right(null);
+  }
 }

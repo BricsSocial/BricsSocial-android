@@ -52,5 +52,8 @@
 		<string>en</string>
 		<string>ru</string>
 	</array>
+
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Used to take images for avatar</string>
 </dict>
 </plist>

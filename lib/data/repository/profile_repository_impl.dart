@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:app_kit/arch/error/exception.dart';
 import 'package:dartz/dartz.dart';
 import 'package:app_kit/arch/error/failure.dart';
@@ -6,14 +8,20 @@ import 'package:rxdart/rxdart.dart';
 
 import '../../domain/common/entity/specialist_entity/specialist_entity.dart';
 import '../../domain/profile/repository/profile_repository.dart';
+import '../convertors/specialist_entity_convertor/specialist_entity_convertor.dart';
 import '../source/specialists_source/model/change_specialist_dto/request/change_specialist_request_dto.dart';
 import '../source/specialists_source/specialists_source.dart';
 
 @Singleton(as: ProfileRepository)
 class ProfileRepositoryImpl extends ProfileRepository {
-  final SpecialistsSource source;
+  final SpecialistsSource specialistsSource;
 
-  ProfileRepositoryImpl(this.source);
+  final SpecialistEntityConvertor specialistEntityConvertor;
+
+  ProfileRepositoryImpl(
+    this.specialistsSource,
+    this.specialistEntityConvertor,
+  );
 
   final _profileController = ReplaySubject();
 
@@ -21,19 +29,8 @@ class ProfileRepositoryImpl extends ProfileRepository {
   Stream<Either<Failure, SpecialistEntity>> getProfile() {
     return _profileController.stream.startWith(null).asyncMap((_) async {
       try {
-        final response = await source.currentSpecialist();
-
-        final profileEntity = SpecialistEntity(
-          id: response.id,
-          email: response.email,
-          firstName: response.firstName,
-          lastName: response.lastName,
-          bio: response.bio,
-          about: response.about,
-          skillTags: response.skillTags.isNotEmpty ? response.skillTags.split(',') : [],
-          photo: null,
-          countryId: response.countryId,
-        );
+        final response = await specialistsSource.currentSpecialist();
+        final profileEntity = specialistEntityConvertor.convert(response);
 
         return Right(profileEntity);
       } on ConnectionException {
@@ -53,11 +50,28 @@ class ProfileRepositoryImpl extends ProfileRepository {
   }
 
   @override
+  Future<Either<Failure, void>> changeAvatar({required int id, required File avatar}) async {
+    try {
+      await specialistsSource.changeSpecialistAvatar(id: id, avatar: avatar);
+
+      return const Right(null);
+    } on ConnectionException {
+      return Left(ConnectionFailure());
+    } on UnauthorizedException {
+      return Left(UnauthorizedFailure());
+    } on WrongFormatException {
+      return Left(WrongFormatFailure());
+    } on UnknownException {
+      return Left(UnknownFailure());
+    }
+  }
+
+  @override
   Future<Either<Failure, SpecialistEntity>> changeProfile({required SpecialistEntity profile}) async {
     try {
       final skillTags = profile.skillTags.join(',');
 
-      final response = await source.changeSpecialist(
+      final response = await specialistsSource.changeSpecialist(
         id: profile.id,
         changeSpecialistRequestDto: ChangeSpecialistRequestDto(
           id: profile.id,
@@ -70,17 +84,7 @@ class ProfileRepositoryImpl extends ProfileRepository {
         ),
       );
 
-      final changedProfile = SpecialistEntity(
-        id: response.id,
-        email: response.email,
-        firstName: response.firstName,
-        lastName: response.lastName,
-        bio: response.bio,
-        about: response.about,
-        skillTags: response.skillTags.isNotEmpty ? response.skillTags.split(',') : [],
-        photo: null,
-        countryId: response.countryId,
-      );
+      final changedProfile = specialistEntityConvertor.convert(response);
 
       return Right(changedProfile);
     } on ConnectionException {

@@ -28,4 +28,8 @@ abstract class AuthRepository {
     required String password,
     required int countryId,
   });
+
+  Future<Either<Failure, bool>> isAuthorized();
+
+  Future<Either<Failure, void>> signOut();
 }

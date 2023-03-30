@@ -6,9 +6,7 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../../core/di/di.dart';
 import '../../core/ui/color_schemes.dart';
-import '../../domain/common/entity/specialist_entity/specialist_entity.dart';
 import '../../domain/replies/entity/reply_entity.dart';
-import '../common/loading_indicator.dart';
 import 'bloc/bloc.dart';
 import 'common/agent_reply.dart';
 import 'common/specialist_reply.dart';
@@ -52,28 +50,40 @@ class _RepliesScreenState extends State<RepliesScreen> {
                   }
 
                   return ListView.separated(
-                    padding: const EdgeInsets.only(left: 16, right: 16, top: 24),
+                    padding: const EdgeInsets.only(left: 16, right: 16, top: 24, bottom: 24),
                     itemCount: state.replies.length,
                     itemBuilder: (context, index) {
                       final replyEntity = state.replies[index];
 
-                      if (replyEntity is SpecialistReplyEntity) {
+                      if (replyEntity.type == ReplyType.specialist) {
                         return SpecialistReply(
-                          key: UniqueKey(),
                           reply: replyEntity,
                         );
-                      } else if (replyEntity is AgentReplyEntity) {
+                      } else if (replyEntity.type == ReplyType.agent) {
                         return AgentReply(
-                          key: UniqueKey(),
                           reply: replyEntity,
-                          onApproved: () {},
-                          onRejected: () {},
+                          onApproved: () {
+                            context.read<RepliesBloc>().add(
+                                  RepliesEvent.changeStatus(
+                                    id: replyEntity.id,
+                                    status: ReplyStatus.approved,
+                                  ),
+                                );
+                          },
+                          onRejected: () {
+                            context.read<RepliesBloc>().add(
+                                  RepliesEvent.changeStatus(
+                                    id: replyEntity.id,
+                                    status: ReplyStatus.rejected,
+                                  ),
+                                );
+                          },
                         );
                       } else {
                         throw UnsupportedError('Unsupported reply type: $replyEntity');
                       }
                     },
-                    separatorBuilder: (context, index) => const SizedBox(height: 16),
+                    separatorBuilder: (context, index) => const SizedBox(height: 24),
                   );
                 },
                 orElse: () => const SizedBox.shrink(),

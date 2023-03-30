@@ -19,26 +19,22 @@ class VacanciesScreen extends StatefulWidget {
 }
 
 class _VacanciesScreenState extends State<VacanciesScreen> {
-  final _refreshController = RefreshController(initialRefresh: false);
+  // final _refreshController = RefreshController(initialRefresh: false);
 
-  final items = [
-    SwipeItem(content: Colors.yellow),
-    SwipeItem(content: Colors.red),
-  ];
-
-  final _matchEngine = ValueNotifier<MatchEngine?>(null);
+  MatchEngine _matchEngine = MatchEngine(swipeItems: []);
+  final _showButtons = ValueNotifier<bool>(false);
 
   MatchEngine createMatchEngine(BuildContext context, List<VacancyEntity> vacancies) {
-    return MatchEngine(
-      swipeItems: vacancies.map((vacancy) {
-        return SwipeItem(
-          content: vacancy,
-          likeAction: () {
-            context.read<VacanciesBloc>().add(VacanciesEvent.like(vacancyId: vacancy.id));
-          },
-        );
-      }).toList(),
-    );
+    final items = vacancies.map((vacancy) {
+      return SwipeItem(
+        content: vacancy,
+        likeAction: () {
+          context.read<VacanciesBloc>().add(VacanciesEvent.like(vacancyId: vacancy.id));
+        },
+      );
+    }).toList();
+
+    return MatchEngine(swipeItems: items);
   }
 
   @override
@@ -83,9 +79,7 @@ class _VacanciesScreenState extends State<VacanciesScreen> {
                     listener: (context, state) {
                       state.mapOrNull(
                         vacancies: (state) {
-                          if (state.vacancies.isNotEmpty) {
-                            _matchEngine.value = createMatchEngine(context, state.vacancies);
-                          }
+                          _showButtons.value = state.vacancies.isNotEmpty;
                         },
                       );
                     },
@@ -93,12 +87,12 @@ class _VacanciesScreenState extends State<VacanciesScreen> {
                       return state.maybeMap(
                         vacancies: (state) {
                           return SwipeCards(
-                            matchEngine: _matchEngine.value ?? MatchEngine(swipeItems: []),
+                            matchEngine: _matchEngine = createMatchEngine(context, state.vacancies),
                             itemBuilder: (BuildContext context, int index) {
                               return _buildVacancyCard(state.vacancies[index]);
                             },
                             onStackFinished: () {
-                              _matchEngine.value = null;
+                              _showButtons.value = false;
                               context.read<VacanciesBloc>().add(const VacanciesEvent.load());
                             },
                           );
@@ -176,11 +170,11 @@ class _VacanciesScreenState extends State<VacanciesScreen> {
 
   Widget _buildSwipeButtons() {
     return ValueListenableBuilder(
-      valueListenable: _matchEngine,
-      builder: (context, MatchEngine? engine, __) {
+      valueListenable: _showButtons,
+      builder: (context, bool show, __) {
         Widget child = const SizedBox.shrink();
 
-        if (engine != null) {
+        if (show) {
           child = Column(
             children: [
               const SizedBox(height: 16),
@@ -191,7 +185,7 @@ class _VacanciesScreenState extends State<VacanciesScreen> {
                   AppButton(
                     width: 128,
                     onPressed: () {
-                      _matchEngine.value?.currentItem?.nope();
+                      _matchEngine.currentItem?.nope();
                     },
                     state: AppButtonState.base(
                       child: Icon(
@@ -205,7 +199,7 @@ class _VacanciesScreenState extends State<VacanciesScreen> {
                     width: 128,
                     color: greenColor,
                     onPressed: () {
-                      _matchEngine.value?.currentItem?.like();
+                      _matchEngine.currentItem?.like();
                     },
                     state: const AppButtonState.base(
                       child: Icon(

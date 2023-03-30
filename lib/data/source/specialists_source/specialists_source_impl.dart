@@ -1,11 +1,16 @@
+import 'dart:io';
+
 import 'package:app_kit/arch/error/exception.dart';
 import 'package:dio/dio.dart';
+import 'package:http_parser/http_parser.dart';
 import 'package:http_status_code/http_status_code.dart';
 import 'package:injectable/injectable.dart';
 
+import 'model/change_reply_status/request/change_reply_status_request_dto.dart';
 import 'model/change_specialist_dto/request/change_specialist_request_dto.dart';
 import 'model/create_specialist_dto/request/create_specialist_request_dto.dart';
 import 'model/get_replies/response/get_replies_response_dto.dart';
+import 'model/reply_dto/reply_dto.dart';
 import 'model/specialist_dto/specialist_dto.dart';
 import 'specialists_source.dart';
 
@@ -88,6 +93,30 @@ class SpecialistsSourceImpl extends SpecialistsSource {
   }
 
   @override
+  Future<void> changeSpecialistAvatar({required int id, required File avatar}) async {
+    try {
+      final formData = FormData.fromMap({
+        'file': await MultipartFile.fromFile(
+          avatar.path,
+          contentType: MediaType('image', 'jpeg'),
+        ),
+      });
+
+      await dio.put('/api/specialists/$id/photo', data: formData);
+    } on DioError catch (e) {
+      if (e.type == DioErrorType.connectionTimeout) {
+        throw ConnectionException();
+      } else if (e.response?.statusCode == StatusCode.UNAUTHORIZED) {
+        throw UnauthorizedException();
+      } else if (e.response?.statusCode == StatusCode.NOT_FOUND) {
+        throw NotFoundException();
+      }
+
+      throw UnknownException();
+    }
+  }
+
+  @override
   Future<GetRepliesResponseDto> getReplies({
     int? companyId,
     int? vacancyId,
@@ -114,6 +143,31 @@ class SpecialistsSourceImpl extends SpecialistsSource {
         throw ConnectionException();
       } else if (e.response?.statusCode == StatusCode.UNAUTHORIZED) {
         throw UnauthorizedException();
+      }
+
+      throw UnknownException();
+    }
+  }
+
+  @override
+  Future<ReplyDto> changeReplyStatus({
+    required int id,
+    required ChangeReplyStatusRequestDto changeReplyStatusRequestDto,
+  }) async {
+    try {
+      final response = await dio.put(
+        '/api/specialists/replies/$id',
+        data: changeReplyStatusRequestDto,
+      );
+
+      return ReplyDto.fromJson(response.data);
+    } on DioError catch (e) {
+      if (e.type == DioErrorType.connectionTimeout) {
+        throw ConnectionException();
+      } else if (e.response?.statusCode == StatusCode.UNAUTHORIZED) {
+        throw UnauthorizedException();
+      } else if (e.response?.statusCode == StatusCode.NOT_FOUND) {
+        throw NotFoundException();
       }
 
       throw UnknownException();

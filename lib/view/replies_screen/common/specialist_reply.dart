@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../../../domain/replies/entity/reply_entity.dart';
 
-class SpecialistReply extends Reply<SpecialistReplyEntity> {
+class SpecialistReply extends Reply {
   const SpecialistReply({
     super.key,
     required super.reply,

@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:app_kit/app_kit.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,17 +23,31 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  late ProfileBloc _bloc;
+
   final _currentProfile = ValueNotifier<SpecialistEntity>(SpecialistEntity.empty());
+
+  @override
+  void initState() {
+    super.initState();
+    _bloc = getIt.get<ProfileBloc>();
+  }
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt.get<ProfileBloc>(),
+      create: (context) => _bloc,
       child: AppGestureDetector(
         onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
         child: Scaffold(
           appBar: AppAppBar(
+            padding: const EdgeInsets.only(left: 24, right: 8, top: 12, bottom: 12),
             title: Text('profile_title'.tr()),
+            trailing: const Icon(Icons.logout),
+            onTrailingTap: () {
+              _bloc.add(const ProfileEvent.signOut());
+              unawaited(context.router.replaceNamed('/sign_in'));
+            },
           ),
           body: DefaultTabController(
             length: 2,

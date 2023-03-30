@@ -20,7 +20,7 @@ mixin _$AppButtonState {
   TResult when<TResult extends Object?>({
     required TResult Function(Widget child) base,
     required TResult Function() loading,
-    required TResult Function() success,
+    required TResult Function(Widget child) success,
     required TResult Function(String message) failed,
   }) =>
       throw _privateConstructorUsedError;
@@ -28,7 +28,7 @@ mixin _$AppButtonState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Widget child)? base,
     TResult? Function()? loading,
-    TResult? Function()? success,
+    TResult? Function(Widget child)? success,
     TResult? Function(String message)? failed,
   }) =>
       throw _privateConstructorUsedError;
@@ -36,7 +36,7 @@ mixin _$AppButtonState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Widget child)? base,
     TResult Function()? loading,
-    TResult Function()? success,
+    TResult Function(Widget child)? success,
     TResult Function(String message)? failed,
     required TResult orElse(),
   }) =>
@@ -153,7 +153,7 @@ class _$_BaseAppButtonState implements _BaseAppButtonState {
   TResult when<TResult extends Object?>({
     required TResult Function(Widget child) base,
     required TResult Function() loading,
-    required TResult Function() success,
+    required TResult Function(Widget child) success,
     required TResult Function(String message) failed,
   }) {
     return base(child);
@@ -164,7 +164,7 @@ class _$_BaseAppButtonState implements _BaseAppButtonState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Widget child)? base,
     TResult? Function()? loading,
-    TResult? Function()? success,
+    TResult? Function(Widget child)? success,
     TResult? Function(String message)? failed,
   }) {
     return base?.call(child);
@@ -175,7 +175,7 @@ class _$_BaseAppButtonState implements _BaseAppButtonState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Widget child)? base,
     TResult Function()? loading,
-    TResult Function()? success,
+    TResult Function(Widget child)? success,
     TResult Function(String message)? failed,
     required TResult orElse(),
   }) {
@@ -273,7 +273,7 @@ class _$_LoadingAppButtonState implements _LoadingAppButtonState {
   TResult when<TResult extends Object?>({
     required TResult Function(Widget child) base,
     required TResult Function() loading,
-    required TResult Function() success,
+    required TResult Function(Widget child) success,
     required TResult Function(String message) failed,
   }) {
     return loading();
@@ -284,7 +284,7 @@ class _$_LoadingAppButtonState implements _LoadingAppButtonState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Widget child)? base,
     TResult? Function()? loading,
-    TResult? Function()? success,
+    TResult? Function(Widget child)? success,
     TResult? Function(String message)? failed,
   }) {
     return loading?.call();
@@ -295,7 +295,7 @@ class _$_LoadingAppButtonState implements _LoadingAppButtonState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Widget child)? base,
     TResult Function()? loading,
-    TResult Function()? success,
+    TResult Function(Widget child)? success,
     TResult Function(String message)? failed,
     required TResult orElse(),
   }) {
@@ -352,6 +352,8 @@ abstract class _$$_SuccessAppButtonStateCopyWith<$Res> {
   factory _$$_SuccessAppButtonStateCopyWith(_$_SuccessAppButtonState value,
           $Res Function(_$_SuccessAppButtonState) then) =
       __$$_SuccessAppButtonStateCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Widget child});
 }
 
 /// @nodoc
@@ -361,36 +363,63 @@ class __$$_SuccessAppButtonStateCopyWithImpl<$Res>
   __$$_SuccessAppButtonStateCopyWithImpl(_$_SuccessAppButtonState _value,
       $Res Function(_$_SuccessAppButtonState) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? child = null,
+  }) {
+    return _then(_$_SuccessAppButtonState(
+      child: null == child
+          ? _value.child
+          : child // ignore: cast_nullable_to_non_nullable
+              as Widget,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$_SuccessAppButtonState implements _SuccessAppButtonState {
-  const _$_SuccessAppButtonState();
+  const _$_SuccessAppButtonState(
+      {this.child = const Icon(Icons.done, color: whiteColor)});
+
+  @override
+  @JsonKey()
+  final Widget child;
 
   @override
   String toString() {
-    return 'AppButtonState.success()';
+    return 'AppButtonState.success(child: $child)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_SuccessAppButtonState);
+        (other.runtimeType == runtimeType &&
+            other is _$_SuccessAppButtonState &&
+            (identical(other.child, child) || other.child == child));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, child);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_SuccessAppButtonStateCopyWith<_$_SuccessAppButtonState> get copyWith =>
+      __$$_SuccessAppButtonStateCopyWithImpl<_$_SuccessAppButtonState>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Widget child) base,
     required TResult Function() loading,
-    required TResult Function() success,
+    required TResult Function(Widget child) success,
     required TResult Function(String message) failed,
   }) {
-    return success();
+    return success(child);
   }
 
   @override
@@ -398,10 +427,10 @@ class _$_SuccessAppButtonState implements _SuccessAppButtonState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Widget child)? base,
     TResult? Function()? loading,
-    TResult? Function()? success,
+    TResult? Function(Widget child)? success,
     TResult? Function(String message)? failed,
   }) {
-    return success?.call();
+    return success?.call(child);
   }
 
   @override
@@ -409,12 +438,12 @@ class _$_SuccessAppButtonState implements _SuccessAppButtonState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Widget child)? base,
     TResult Function()? loading,
-    TResult Function()? success,
+    TResult Function(Widget child)? success,
     TResult Function(String message)? failed,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success();
+      return success(child);
     }
     return orElse();
   }
@@ -458,7 +487,13 @@ class _$_SuccessAppButtonState implements _SuccessAppButtonState {
 }
 
 abstract class _SuccessAppButtonState implements AppButtonState {
-  const factory _SuccessAppButtonState() = _$_SuccessAppButtonState;
+  const factory _SuccessAppButtonState({final Widget child}) =
+      _$_SuccessAppButtonState;
+
+  Widget get child;
+  @JsonKey(ignore: true)
+  _$$_SuccessAppButtonStateCopyWith<_$_SuccessAppButtonState> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -528,7 +563,7 @@ class _$_FailedAppButtonState implements _FailedAppButtonState {
   TResult when<TResult extends Object?>({
     required TResult Function(Widget child) base,
     required TResult Function() loading,
-    required TResult Function() success,
+    required TResult Function(Widget child) success,
     required TResult Function(String message) failed,
   }) {
     return failed(message);
@@ -539,7 +574,7 @@ class _$_FailedAppButtonState implements _FailedAppButtonState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Widget child)? base,
     TResult? Function()? loading,
-    TResult? Function()? success,
+    TResult? Function(Widget child)? success,
     TResult? Function(String message)? failed,
   }) {
     return failed?.call(message);
@@ -550,7 +585,7 @@ class _$_FailedAppButtonState implements _FailedAppButtonState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Widget child)? base,
     TResult Function()? loading,
-    TResult Function()? success,
+    TResult Function(Widget child)? success,
     TResult Function(String message)? failed,
     required TResult orElse(),
   }) {

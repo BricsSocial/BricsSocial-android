@@ -1,7 +1,6 @@
 import 'package:app_kit/arch/error/failure.dart';
 import 'package:dartz/dartz.dart';
 
-import '../../replies/entity/reply_entity.dart';
 import '../entity/vacancy_entity.dart';
 
 abstract class VacanciesRepository {

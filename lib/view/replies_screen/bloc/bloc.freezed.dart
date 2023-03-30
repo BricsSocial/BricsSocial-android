@@ -21,6 +21,7 @@ mixin _$RepliesEvent {
     required TResult Function() reset,
     required TResult Function() load,
     required TResult Function() replies,
+    required TResult Function(int id, ReplyStatus status) changeStatus,
     required TResult Function(String message) failed,
   }) =>
       throw _privateConstructorUsedError;
@@ -29,6 +30,7 @@ mixin _$RepliesEvent {
     TResult? Function()? reset,
     TResult? Function()? load,
     TResult? Function()? replies,
+    TResult? Function(int id, ReplyStatus status)? changeStatus,
     TResult? Function(String message)? failed,
   }) =>
       throw _privateConstructorUsedError;
@@ -37,6 +39,7 @@ mixin _$RepliesEvent {
     TResult Function()? reset,
     TResult Function()? load,
     TResult Function()? replies,
+    TResult Function(int id, ReplyStatus status)? changeStatus,
     TResult Function(String message)? failed,
     required TResult orElse(),
   }) =>
@@ -46,6 +49,7 @@ mixin _$RepliesEvent {
     required TResult Function(_RepliesResetEvent value) reset,
     required TResult Function(_RepliesLoadEvent value) load,
     required TResult Function(_RepliesEvent value) replies,
+    required TResult Function(_RepliesChangeStatusEvent value) changeStatus,
     required TResult Function(_RepliesFailedEvent value) failed,
   }) =>
       throw _privateConstructorUsedError;
@@ -54,6 +58,7 @@ mixin _$RepliesEvent {
     TResult? Function(_RepliesResetEvent value)? reset,
     TResult? Function(_RepliesLoadEvent value)? load,
     TResult? Function(_RepliesEvent value)? replies,
+    TResult? Function(_RepliesChangeStatusEvent value)? changeStatus,
     TResult? Function(_RepliesFailedEvent value)? failed,
   }) =>
       throw _privateConstructorUsedError;
@@ -62,6 +67,7 @@ mixin _$RepliesEvent {
     TResult Function(_RepliesResetEvent value)? reset,
     TResult Function(_RepliesLoadEvent value)? load,
     TResult Function(_RepliesEvent value)? replies,
+    TResult Function(_RepliesChangeStatusEvent value)? changeStatus,
     TResult Function(_RepliesFailedEvent value)? failed,
     required TResult orElse(),
   }) =>
@@ -127,6 +133,7 @@ class _$_RepliesResetEvent implements _RepliesResetEvent {
     required TResult Function() reset,
     required TResult Function() load,
     required TResult Function() replies,
+    required TResult Function(int id, ReplyStatus status) changeStatus,
     required TResult Function(String message) failed,
   }) {
     return reset();
@@ -138,6 +145,7 @@ class _$_RepliesResetEvent implements _RepliesResetEvent {
     TResult? Function()? reset,
     TResult? Function()? load,
     TResult? Function()? replies,
+    TResult? Function(int id, ReplyStatus status)? changeStatus,
     TResult? Function(String message)? failed,
   }) {
     return reset?.call();
@@ -149,6 +157,7 @@ class _$_RepliesResetEvent implements _RepliesResetEvent {
     TResult Function()? reset,
     TResult Function()? load,
     TResult Function()? replies,
+    TResult Function(int id, ReplyStatus status)? changeStatus,
     TResult Function(String message)? failed,
     required TResult orElse(),
   }) {
@@ -164,6 +173,7 @@ class _$_RepliesResetEvent implements _RepliesResetEvent {
     required TResult Function(_RepliesResetEvent value) reset,
     required TResult Function(_RepliesLoadEvent value) load,
     required TResult Function(_RepliesEvent value) replies,
+    required TResult Function(_RepliesChangeStatusEvent value) changeStatus,
     required TResult Function(_RepliesFailedEvent value) failed,
   }) {
     return reset(this);
@@ -175,6 +185,7 @@ class _$_RepliesResetEvent implements _RepliesResetEvent {
     TResult? Function(_RepliesResetEvent value)? reset,
     TResult? Function(_RepliesLoadEvent value)? load,
     TResult? Function(_RepliesEvent value)? replies,
+    TResult? Function(_RepliesChangeStatusEvent value)? changeStatus,
     TResult? Function(_RepliesFailedEvent value)? failed,
   }) {
     return reset?.call(this);
@@ -186,6 +197,7 @@ class _$_RepliesResetEvent implements _RepliesResetEvent {
     TResult Function(_RepliesResetEvent value)? reset,
     TResult Function(_RepliesLoadEvent value)? load,
     TResult Function(_RepliesEvent value)? replies,
+    TResult Function(_RepliesChangeStatusEvent value)? changeStatus,
     TResult Function(_RepliesFailedEvent value)? failed,
     required TResult orElse(),
   }) {
@@ -241,6 +253,7 @@ class _$_RepliesLoadEvent implements _RepliesLoadEvent {
     required TResult Function() reset,
     required TResult Function() load,
     required TResult Function() replies,
+    required TResult Function(int id, ReplyStatus status) changeStatus,
     required TResult Function(String message) failed,
   }) {
     return load();
@@ -252,6 +265,7 @@ class _$_RepliesLoadEvent implements _RepliesLoadEvent {
     TResult? Function()? reset,
     TResult? Function()? load,
     TResult? Function()? replies,
+    TResult? Function(int id, ReplyStatus status)? changeStatus,
     TResult? Function(String message)? failed,
   }) {
     return load?.call();
@@ -263,6 +277,7 @@ class _$_RepliesLoadEvent implements _RepliesLoadEvent {
     TResult Function()? reset,
     TResult Function()? load,
     TResult Function()? replies,
+    TResult Function(int id, ReplyStatus status)? changeStatus,
     TResult Function(String message)? failed,
     required TResult orElse(),
   }) {
@@ -278,6 +293,7 @@ class _$_RepliesLoadEvent implements _RepliesLoadEvent {
     required TResult Function(_RepliesResetEvent value) reset,
     required TResult Function(_RepliesLoadEvent value) load,
     required TResult Function(_RepliesEvent value) replies,
+    required TResult Function(_RepliesChangeStatusEvent value) changeStatus,
     required TResult Function(_RepliesFailedEvent value) failed,
   }) {
     return load(this);
@@ -289,6 +305,7 @@ class _$_RepliesLoadEvent implements _RepliesLoadEvent {
     TResult? Function(_RepliesResetEvent value)? reset,
     TResult? Function(_RepliesLoadEvent value)? load,
     TResult? Function(_RepliesEvent value)? replies,
+    TResult? Function(_RepliesChangeStatusEvent value)? changeStatus,
     TResult? Function(_RepliesFailedEvent value)? failed,
   }) {
     return load?.call(this);
@@ -300,6 +317,7 @@ class _$_RepliesLoadEvent implements _RepliesLoadEvent {
     TResult Function(_RepliesResetEvent value)? reset,
     TResult Function(_RepliesLoadEvent value)? load,
     TResult Function(_RepliesEvent value)? replies,
+    TResult Function(_RepliesChangeStatusEvent value)? changeStatus,
     TResult Function(_RepliesFailedEvent value)? failed,
     required TResult orElse(),
   }) {
@@ -355,6 +373,7 @@ class _$_RepliesEvent implements _RepliesEvent {
     required TResult Function() reset,
     required TResult Function() load,
     required TResult Function() replies,
+    required TResult Function(int id, ReplyStatus status) changeStatus,
     required TResult Function(String message) failed,
   }) {
     return replies();
@@ -366,6 +385,7 @@ class _$_RepliesEvent implements _RepliesEvent {
     TResult? Function()? reset,
     TResult? Function()? load,
     TResult? Function()? replies,
+    TResult? Function(int id, ReplyStatus status)? changeStatus,
     TResult? Function(String message)? failed,
   }) {
     return replies?.call();
@@ -377,6 +397,7 @@ class _$_RepliesEvent implements _RepliesEvent {
     TResult Function()? reset,
     TResult Function()? load,
     TResult Function()? replies,
+    TResult Function(int id, ReplyStatus status)? changeStatus,
     TResult Function(String message)? failed,
     required TResult orElse(),
   }) {
@@ -392,6 +413,7 @@ class _$_RepliesEvent implements _RepliesEvent {
     required TResult Function(_RepliesResetEvent value) reset,
     required TResult Function(_RepliesLoadEvent value) load,
     required TResult Function(_RepliesEvent value) replies,
+    required TResult Function(_RepliesChangeStatusEvent value) changeStatus,
     required TResult Function(_RepliesFailedEvent value) failed,
   }) {
     return replies(this);
@@ -403,6 +425,7 @@ class _$_RepliesEvent implements _RepliesEvent {
     TResult? Function(_RepliesResetEvent value)? reset,
     TResult? Function(_RepliesLoadEvent value)? load,
     TResult? Function(_RepliesEvent value)? replies,
+    TResult? Function(_RepliesChangeStatusEvent value)? changeStatus,
     TResult? Function(_RepliesFailedEvent value)? failed,
   }) {
     return replies?.call(this);
@@ -414,6 +437,7 @@ class _$_RepliesEvent implements _RepliesEvent {
     TResult Function(_RepliesResetEvent value)? reset,
     TResult Function(_RepliesLoadEvent value)? load,
     TResult Function(_RepliesEvent value)? replies,
+    TResult Function(_RepliesChangeStatusEvent value)? changeStatus,
     TResult Function(_RepliesFailedEvent value)? failed,
     required TResult orElse(),
   }) {
@@ -426,6 +450,170 @@ class _$_RepliesEvent implements _RepliesEvent {
 
 abstract class _RepliesEvent implements RepliesEvent {
   const factory _RepliesEvent() = _$_RepliesEvent;
+}
+
+/// @nodoc
+abstract class _$$_RepliesChangeStatusEventCopyWith<$Res> {
+  factory _$$_RepliesChangeStatusEventCopyWith(
+          _$_RepliesChangeStatusEvent value,
+          $Res Function(_$_RepliesChangeStatusEvent) then) =
+      __$$_RepliesChangeStatusEventCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int id, ReplyStatus status});
+}
+
+/// @nodoc
+class __$$_RepliesChangeStatusEventCopyWithImpl<$Res>
+    extends _$RepliesEventCopyWithImpl<$Res, _$_RepliesChangeStatusEvent>
+    implements _$$_RepliesChangeStatusEventCopyWith<$Res> {
+  __$$_RepliesChangeStatusEventCopyWithImpl(_$_RepliesChangeStatusEvent _value,
+      $Res Function(_$_RepliesChangeStatusEvent) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? status = null,
+  }) {
+    return _then(_$_RepliesChangeStatusEvent(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as ReplyStatus,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_RepliesChangeStatusEvent implements _RepliesChangeStatusEvent {
+  const _$_RepliesChangeStatusEvent({required this.id, required this.status});
+
+  @override
+  final int id;
+  @override
+  final ReplyStatus status;
+
+  @override
+  String toString() {
+    return 'RepliesEvent.changeStatus(id: $id, status: $status)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_RepliesChangeStatusEvent &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.status, status) || other.status == status));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id, status);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_RepliesChangeStatusEventCopyWith<_$_RepliesChangeStatusEvent>
+      get copyWith => __$$_RepliesChangeStatusEventCopyWithImpl<
+          _$_RepliesChangeStatusEvent>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() reset,
+    required TResult Function() load,
+    required TResult Function() replies,
+    required TResult Function(int id, ReplyStatus status) changeStatus,
+    required TResult Function(String message) failed,
+  }) {
+    return changeStatus(id, status);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? reset,
+    TResult? Function()? load,
+    TResult? Function()? replies,
+    TResult? Function(int id, ReplyStatus status)? changeStatus,
+    TResult? Function(String message)? failed,
+  }) {
+    return changeStatus?.call(id, status);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? reset,
+    TResult Function()? load,
+    TResult Function()? replies,
+    TResult Function(int id, ReplyStatus status)? changeStatus,
+    TResult Function(String message)? failed,
+    required TResult orElse(),
+  }) {
+    if (changeStatus != null) {
+      return changeStatus(id, status);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_RepliesResetEvent value) reset,
+    required TResult Function(_RepliesLoadEvent value) load,
+    required TResult Function(_RepliesEvent value) replies,
+    required TResult Function(_RepliesChangeStatusEvent value) changeStatus,
+    required TResult Function(_RepliesFailedEvent value) failed,
+  }) {
+    return changeStatus(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_RepliesResetEvent value)? reset,
+    TResult? Function(_RepliesLoadEvent value)? load,
+    TResult? Function(_RepliesEvent value)? replies,
+    TResult? Function(_RepliesChangeStatusEvent value)? changeStatus,
+    TResult? Function(_RepliesFailedEvent value)? failed,
+  }) {
+    return changeStatus?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_RepliesResetEvent value)? reset,
+    TResult Function(_RepliesLoadEvent value)? load,
+    TResult Function(_RepliesEvent value)? replies,
+    TResult Function(_RepliesChangeStatusEvent value)? changeStatus,
+    TResult Function(_RepliesFailedEvent value)? failed,
+    required TResult orElse(),
+  }) {
+    if (changeStatus != null) {
+      return changeStatus(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _RepliesChangeStatusEvent implements RepliesEvent {
+  const factory _RepliesChangeStatusEvent(
+      {required final int id,
+      required final ReplyStatus status}) = _$_RepliesChangeStatusEvent;
+
+  int get id;
+  ReplyStatus get status;
+  @JsonKey(ignore: true)
+  _$$_RepliesChangeStatusEventCopyWith<_$_RepliesChangeStatusEvent>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -496,6 +684,7 @@ class _$_RepliesFailedEvent implements _RepliesFailedEvent {
     required TResult Function() reset,
     required TResult Function() load,
     required TResult Function() replies,
+    required TResult Function(int id, ReplyStatus status) changeStatus,
     required TResult Function(String message) failed,
   }) {
     return failed(message);
@@ -507,6 +696,7 @@ class _$_RepliesFailedEvent implements _RepliesFailedEvent {
     TResult? Function()? reset,
     TResult? Function()? load,
     TResult? Function()? replies,
+    TResult? Function(int id, ReplyStatus status)? changeStatus,
     TResult? Function(String message)? failed,
   }) {
     return failed?.call(message);
@@ -518,6 +708,7 @@ class _$_RepliesFailedEvent implements _RepliesFailedEvent {
     TResult Function()? reset,
     TResult Function()? load,
     TResult Function()? replies,
+    TResult Function(int id, ReplyStatus status)? changeStatus,
     TResult Function(String message)? failed,
     required TResult orElse(),
   }) {
@@ -533,6 +724,7 @@ class _$_RepliesFailedEvent implements _RepliesFailedEvent {
     required TResult Function(_RepliesResetEvent value) reset,
     required TResult Function(_RepliesLoadEvent value) load,
     required TResult Function(_RepliesEvent value) replies,
+    required TResult Function(_RepliesChangeStatusEvent value) changeStatus,
     required TResult Function(_RepliesFailedEvent value) failed,
   }) {
     return failed(this);
@@ -544,6 +736,7 @@ class _$_RepliesFailedEvent implements _RepliesFailedEvent {
     TResult? Function(_RepliesResetEvent value)? reset,
     TResult? Function(_RepliesLoadEvent value)? load,
     TResult? Function(_RepliesEvent value)? replies,
+    TResult? Function(_RepliesChangeStatusEvent value)? changeStatus,
     TResult? Function(_RepliesFailedEvent value)? failed,
   }) {
     return failed?.call(this);
@@ -555,6 +748,7 @@ class _$_RepliesFailedEvent implements _RepliesFailedEvent {
     TResult Function(_RepliesResetEvent value)? reset,
     TResult Function(_RepliesLoadEvent value)? load,
     TResult Function(_RepliesEvent value)? replies,
+    TResult Function(_RepliesChangeStatusEvent value)? changeStatus,
     TResult Function(_RepliesFailedEvent value)? failed,
     required TResult orElse(),
   }) {
@@ -668,16 +862,6 @@ class _$_RepliesInitialLoadingState implements _RepliesInitialLoadingState {
   String toString() {
     return 'RepliesState.initialLoading()';
   }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_RepliesInitialLoadingState);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
@@ -801,18 +985,6 @@ class _$_RepliesState implements _RepliesState {
   String toString() {
     return 'RepliesState.replies(replies: $replies)';
   }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_RepliesState &&
-            const DeepCollectionEquality().equals(other._replies, _replies));
-  }
-
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_replies));
 
   @JsonKey(ignore: true)
   @override
@@ -942,17 +1114,6 @@ class _$_RepliesFailedState implements _RepliesFailedState {
   String toString() {
     return 'RepliesState.failed(message: $message)';
   }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_RepliesFailedState &&
-            (identical(other.message, message) || other.message == message));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, message);
 
   @JsonKey(ignore: true)
   @override

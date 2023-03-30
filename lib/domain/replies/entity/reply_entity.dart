@@ -6,39 +6,22 @@ import '../../vacancies/entity/vacancy_entity.dart';
 
 part 'reply_entity.freezed.dart';
 
+enum ReplyType { agent, specialist }
+
 enum ReplyStatus {
   pending,
   approved,
   rejected,
 }
 
-class ReplyEntity {
-  final ReplyStatus status;
-  final VacancyEntity vacancy;
-  final SpecialistEntity specialist;
-
-  const ReplyEntity({
-    required this.status,
-    required this.vacancy,
-    required this.specialist,
-  });
-}
-
 @freezed
-class SpecialistReplyEntity extends ReplyEntity with _$SpecialistReplyEntity {
-  const factory SpecialistReplyEntity({
+class ReplyEntity with _$ReplyEntity {
+  const factory ReplyEntity({
+    required int id,
+    required ReplyType type,
     required ReplyStatus status,
     required VacancyEntity vacancy,
     required SpecialistEntity specialist,
-  }) = _SpecialistReplyEntity;
-}
-
-@freezed
-class AgentReplyEntity extends ReplyEntity with _$AgentReplyEntity {
-  const factory AgentReplyEntity({
-    required ReplyStatus status,
-    required VacancyEntity vacancy,
-    required SpecialistEntity specialist,
-    required AgentEntity agent,
-  }) = _AgentReplyEntity;
+    required AgentEntity? agent,
+  }) = _ReplyEntity;
 }

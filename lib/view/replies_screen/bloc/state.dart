@@ -1,6 +1,6 @@
 part of 'bloc.dart';
 
-@freezed
+@Freezed(equal: false) // To update screen when states are same
 class RepliesState with _$RepliesState {
   const factory RepliesState.initialLoading() = _RepliesInitialLoadingState;
 

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:app_kit/arch/error/failure.dart';
 import 'package:dartz/dartz.dart';
 
@@ -7,6 +9,8 @@ abstract class ProfileRepository {
   Stream<Either<Failure, SpecialistEntity>> getProfile();
 
   Future<Either<Failure, SpecialistEntity>> changeProfile({required SpecialistEntity profile});
+
+  Future<Either<Failure, void>> changeAvatar({required int id, required File avatar});
 
   Future<Either<Failure, void>> updateProfile();
 }

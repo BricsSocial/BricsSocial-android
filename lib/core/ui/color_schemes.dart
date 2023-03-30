@@ -42,3 +42,4 @@ const hintColor = Colors.black26;
 const dividerColor = Color.fromARGB(255, 226, 226, 226);
 const bottomBarColor = Colors.white;
 const lightContainer = Color.fromARGB(255, 234, 234, 234);
+const lightPrimaryContainer = Color.fromARGB(255, 255, 237, 241);

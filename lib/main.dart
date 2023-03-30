@@ -13,7 +13,7 @@ Future<void> main() async {
 
   runApp(
     EasyLocalization(
-      supportedLocales: const [Locale('en'), Locale('ru')],
+      supportedLocales: const [Locale('en')],
       path: 'assets/i10n',
       fallbackLocale: const Locale('en'),
       child: App(),

@@ -18,10 +18,10 @@ class SignInScreen extends StatefulWidget {
 }
 
 class SignInScreenState extends State<SignInScreen> {
-  final _emailTextController = TextEditingController(text: 'kerjen01@gmail.com');
+  final _emailTextController = TextEditingController(text: '');
   final _emailErrorText = ValueNotifier<String?>(null);
 
-  final _passwordTextController = TextEditingController(text: 'Arian281201!');
+  final _passwordTextController = TextEditingController(text: '');
   final _passwordErrorText = ValueNotifier<String?>(null);
 
   @override

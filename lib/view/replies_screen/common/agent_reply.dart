@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 import '../../../domain/replies/entity/reply_entity.dart';
 
-class AgentReply extends Reply<AgentReplyEntity> {
+class AgentReply extends Reply {
   final VoidCallback onRejected;
   final VoidCallback onApproved;
 
@@ -20,7 +20,7 @@ class AgentReply extends Reply<AgentReplyEntity> {
   State<Reply> createState() => _AgentReplyState();
 }
 
-class _AgentReplyState extends ReplyState {
+class _AgentReplyState extends ReplyState<AgentReply> {
   @override
   Color getStatusColor(ReplyStatus status) {
     return lightColorScheme.primaryContainer;
@@ -38,37 +38,44 @@ class _AgentReplyState extends ReplyState {
 
   @override
   Widget? replyButtons(ReplyStatus status) {
-    if (status == ReplyStatus.pending) {
-      return Row(
-        children: [
-          AppButton(
-            onPressed: () {},
-            color: redColor,
-            height: 38,
-            width: 38,
-            state: const AppButtonState.base(
-              child: Icon(
-                Icons.close,
-                color: whiteColor,
+    return Row(
+      children: [
+        Expanded(
+          child: AppButton(
+            onPressed: widget.onApproved,
+            color: (status == ReplyStatus.approved ? dividerColor : greenColor).withOpacity(0.1),
+            height: 36,
+            border: Border.all(color: (status == ReplyStatus.approved ? dividerColor : greenColor)),
+            state: AppButtonState.base(
+              child: Text(
+                status == ReplyStatus.approved ? 'Accepted' : 'Accept',
+                style: TextStyle(
+                  color: status == ReplyStatus.approved ? dividerColor : greenColor,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ),
           ),
-          const SizedBox(width: 8),
-          AppButton(
-            onPressed: () {},
-            color: greenColor,
-            height: 38,
-            width: 38,
-            state: const AppButtonState.base(
-              child: Icon(
-                Icons.done,
-                color: whiteColor,
+        ),
+        const SizedBox(width: 8),
+        Expanded(
+          child: AppButton(
+            onPressed: widget.onRejected,
+            color: (status == ReplyStatus.rejected ? dividerColor : redColor).withOpacity(0.1),
+            height: 36,
+            border: Border.all(color: (status == ReplyStatus.rejected ? dividerColor : redColor)),
+            state: AppButtonState.base(
+              child: Text(
+                status == ReplyStatus.rejected ? 'Rejected' : 'Reject',
+                style: TextStyle(
+                  color: status == ReplyStatus.rejected ? dividerColor : redColor,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ),
           ),
-        ],
-      );
-    }
-    return null;
+        ),
+      ],
+    );
   }
 }

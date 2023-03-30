@@ -12,4 +12,9 @@ abstract class RepliesRepository {
     required int pageNumber,
     required int pageSize,
   });
+
+  Future<Either<Failure, ReplyEntity>> changeReplyStatus({
+    required int id,
+    required ReplyStatus status,
+  });
 }
