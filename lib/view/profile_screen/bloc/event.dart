@@ -10,11 +10,6 @@ class ProfileEvent with _$ProfileEvent {
 
   const factory ProfileEvent.change({required SpecialistEntity profile}) = _ProfileChangeEvent;
 
-  const factory ProfileEvent.changeAvatar({
-    required int id,
-    required File avatar,
-  }) = _ProfileChangeAvatarEvent;
-
   const factory ProfileEvent.signOut() = _ProfileSignOutEvent;
 
   const factory ProfileEvent.failed({

@@ -81,7 +81,7 @@ class RepliesRepositoryImpl extends RepliesRepository {
         return Right(replies);
       } on ConnectionException {
         return Left(ConnectionFailure());
-      } on UnauthorizedFailure {
+      } on UnauthorizedException {
         return Left(UnauthorizedFailure());
       } on UnknownException {
         return Left(UnknownFailure());

@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:io';
 
 import 'package:app_kit/app_kit.dart';
 import 'package:bloc/bloc.dart';
@@ -9,7 +8,6 @@ import 'package:injectable/injectable.dart';
 
 import '../../../domain/auth/usecase/sign_out_usecase.dart';
 import '../../../domain/common/entity/specialist_entity/specialist_entity.dart';
-import '../../../domain/profile/usecase/change_avatar_usecase.dart';
 import '../../../domain/profile/usecase/change_profile_usecase.dart';
 import '../../../domain/profile/usecase/get_profile_usecase.dart';
 import '../../../domain/profile/usecase/update_profile_usecase.dart';
@@ -22,7 +20,6 @@ part 'bloc.freezed.dart';
 class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   final GetProfileUseCase profileUseCase;
   final ChangeProfileUseCase changeProfileUseCase;
-  final ChangeAvatarUseCase changeAvatarUseCase;
   final UpdateProfileUseCase updateProfileUseCase;
   final SignOutUseCase signOutUseCase;
 
@@ -31,7 +28,6 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   ProfileBloc({
     required this.profileUseCase,
     required this.changeProfileUseCase,
-    required this.changeAvatarUseCase,
     required this.updateProfileUseCase,
     required this.signOutUseCase,
   }) : super(const ProfileState.loading()) {
@@ -40,7 +36,6 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
         profile: (event) async => _mapProfileEvent(event, emit),
         update: (event) => updateProfileUseCase(NoParams()),
         change: (event) async => _mapChangeEvent(event, emit),
-        changeAvatar: (event) async => _mapChangeAvatarEvent(event, emit),
         signOut: (value) async => signOutUseCase(NoParams()),
         failed: (event) async => emit(
           ProfileState.failed(message: event.message),
@@ -83,12 +78,6 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
         (profile) => ProfileState.profile(profile: profile),
       ),
     );
-  }
-
-  Future<void> _mapChangeAvatarEvent(_ProfileChangeAvatarEvent event, Emitter<ProfileState> emit) async {
-    emit(const ProfileState.loading());
-    await changeAvatarUseCase(ChangeAvatarParams(id: event.id, avatar: event.avatar));
-    add(const ProfileEvent.update());
   }
 
   @override

@@ -19,7 +19,7 @@ mixin _$LoadVacanciesParams {
   int? get countryId => throw _privateConstructorUsedError;
   int? get companyId => throw _privateConstructorUsedError;
   VacancyStatus? get status => throw _privateConstructorUsedError;
-  List<String>? get skillTags => throw _privateConstructorUsedError;
+  String? get skillTags => throw _privateConstructorUsedError;
   int get pageNumber => throw _privateConstructorUsedError;
   int get pageSize => throw _privateConstructorUsedError;
 
@@ -38,7 +38,7 @@ abstract class $LoadVacanciesParamsCopyWith<$Res> {
       {int? countryId,
       int? companyId,
       VacancyStatus? status,
-      List<String>? skillTags,
+      String? skillTags,
       int pageNumber,
       int pageSize});
 }
@@ -79,7 +79,7 @@ class _$LoadVacanciesParamsCopyWithImpl<$Res, $Val extends LoadVacanciesParams>
       skillTags: freezed == skillTags
           ? _value.skillTags
           : skillTags // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
+              as String?,
       pageNumber: null == pageNumber
           ? _value.pageNumber
           : pageNumber // ignore: cast_nullable_to_non_nullable
@@ -104,7 +104,7 @@ abstract class _$$_LoadVacanciesParamsCopyWith<$Res>
       {int? countryId,
       int? companyId,
       VacancyStatus? status,
-      List<String>? skillTags,
+      String? skillTags,
       int pageNumber,
       int pageSize});
 }
@@ -141,9 +141,9 @@ class __$$_LoadVacanciesParamsCopyWithImpl<$Res>
           : status // ignore: cast_nullable_to_non_nullable
               as VacancyStatus?,
       skillTags: freezed == skillTags
-          ? _value._skillTags
+          ? _value.skillTags
           : skillTags // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
+              as String?,
       pageNumber: null == pageNumber
           ? _value.pageNumber
           : pageNumber // ignore: cast_nullable_to_non_nullable
@@ -163,10 +163,9 @@ class _$_LoadVacanciesParams implements _LoadVacanciesParams {
       {this.countryId,
       this.companyId,
       this.status,
-      final List<String>? skillTags,
+      this.skillTags,
       this.pageNumber = 1,
-      required this.pageSize})
-      : _skillTags = skillTags;
+      required this.pageSize});
 
   @override
   final int? countryId;
@@ -174,16 +173,8 @@ class _$_LoadVacanciesParams implements _LoadVacanciesParams {
   final int? companyId;
   @override
   final VacancyStatus? status;
-  final List<String>? _skillTags;
   @override
-  List<String>? get skillTags {
-    final value = _skillTags;
-    if (value == null) return null;
-    if (_skillTags is EqualUnmodifiableListView) return _skillTags;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
+  final String? skillTags;
   @override
   @JsonKey()
   final int pageNumber;
@@ -205,8 +196,8 @@ class _$_LoadVacanciesParams implements _LoadVacanciesParams {
             (identical(other.companyId, companyId) ||
                 other.companyId == companyId) &&
             (identical(other.status, status) || other.status == status) &&
-            const DeepCollectionEquality()
-                .equals(other._skillTags, _skillTags) &&
+            (identical(other.skillTags, skillTags) ||
+                other.skillTags == skillTags) &&
             (identical(other.pageNumber, pageNumber) ||
                 other.pageNumber == pageNumber) &&
             (identical(other.pageSize, pageSize) ||
@@ -215,7 +206,7 @@ class _$_LoadVacanciesParams implements _LoadVacanciesParams {
 
   @override
   int get hashCode => Object.hash(runtimeType, countryId, companyId, status,
-      const DeepCollectionEquality().hash(_skillTags), pageNumber, pageSize);
+      skillTags, pageNumber, pageSize);
 
   @JsonKey(ignore: true)
   @override
@@ -230,7 +221,7 @@ abstract class _LoadVacanciesParams implements LoadVacanciesParams {
       {final int? countryId,
       final int? companyId,
       final VacancyStatus? status,
-      final List<String>? skillTags,
+      final String? skillTags,
       final int pageNumber,
       required final int pageSize}) = _$_LoadVacanciesParams;
 
@@ -241,7 +232,7 @@ abstract class _LoadVacanciesParams implements LoadVacanciesParams {
   @override
   VacancyStatus? get status;
   @override
-  List<String>? get skillTags;
+  String? get skillTags;
   @override
   int get pageNumber;
   @override

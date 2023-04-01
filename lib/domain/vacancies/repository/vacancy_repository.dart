@@ -6,6 +6,7 @@ import '../entity/vacancy_entity.dart';
 abstract class VacanciesRepository {
   Stream<Either<Failure, List<VacancyEntity>>> getVacancies({
     required int initialPageSize,
+    String? skillTags,
   });
 
   Future<Either<Failure, void>> loadMoreVacancies({

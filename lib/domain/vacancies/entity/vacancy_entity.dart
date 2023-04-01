@@ -6,7 +6,7 @@ part 'vacancy_entity.freezed.dart';
 
 enum VacancyStatus { closed, open }
 
-@freezed
+@Freezed(copyWith: false)
 class VacancyEntity with _$VacancyEntity {
   factory VacancyEntity({
     required int id,

@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:easy_localization/easy_localization.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import 'core/di/di.dart';
 import 'core/ui/router/router.gr.dart';

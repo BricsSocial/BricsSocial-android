@@ -9,7 +9,7 @@ class LoadVacanciesParams with _$LoadVacanciesParams {
     int? countryId,
     int? companyId,
     VacancyStatus? status,
-    List<String>? skillTags,
+    String? skillTags,
     @Default(1) int pageNumber,
     required int pageSize,
   }) = _LoadVacanciesParams;

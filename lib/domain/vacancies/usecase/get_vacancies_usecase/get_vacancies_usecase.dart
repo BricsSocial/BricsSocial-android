@@ -15,5 +15,6 @@ class GetVacanciesUseCase extends StreamUseCase<List<VacancyEntity>, LoadVacanci
   @override
   Stream<Either<Failure, List<VacancyEntity>>> call(LoadVacanciesParams params) => repository.getVacancies(
         initialPageSize: params.pageSize,
+        skillTags: params.skillTags,
       );
 }

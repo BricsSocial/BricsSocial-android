@@ -35,7 +35,7 @@ class ProfileRepositoryImpl extends ProfileRepository {
         return Right(profileEntity);
       } on ConnectionException {
         return Left(ConnectionFailure());
-      } on UnauthorizedFailure {
+      } on UnauthorizedException {
         return Left(UnauthorizedFailure());
       } on UnknownException {
         return Left(UnknownFailure());

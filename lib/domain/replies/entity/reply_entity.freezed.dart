@@ -42,7 +42,6 @@ abstract class $ReplyEntityCopyWith<$Res> {
       SpecialistEntity specialist,
       AgentEntity? agent});
 
-  $VacancyEntityCopyWith<$Res> get vacancy;
   $SpecialistEntityCopyWith<$Res> get specialist;
   $AgentEntityCopyWith<$Res>? get agent;
 }
@@ -97,14 +96,6 @@ class _$ReplyEntityCopyWithImpl<$Res, $Val extends ReplyEntity>
 
   @override
   @pragma('vm:prefer-inline')
-  $VacancyEntityCopyWith<$Res> get vacancy {
-    return $VacancyEntityCopyWith<$Res>(_value.vacancy, (value) {
-      return _then(_value.copyWith(vacancy: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $SpecialistEntityCopyWith<$Res> get specialist {
     return $SpecialistEntityCopyWith<$Res>(_value.specialist, (value) {
       return _then(_value.copyWith(specialist: value) as $Val);
@@ -140,8 +131,6 @@ abstract class _$$_ReplyEntityCopyWith<$Res>
       SpecialistEntity specialist,
       AgentEntity? agent});
 
-  @override
-  $VacancyEntityCopyWith<$Res> get vacancy;
   @override
   $SpecialistEntityCopyWith<$Res> get specialist;
   @override

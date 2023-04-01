@@ -20,6 +20,7 @@ mixin _$VacanciesEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() load,
     required TResult Function(List<VacancyEntity> vacancies) vacancies,
+    required TResult Function(String? skillTags) refresh,
     required TResult Function(int vacancyId) like,
     required TResult Function(String message) failed,
   }) =>
@@ -28,6 +29,7 @@ mixin _$VacanciesEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
     TResult? Function(List<VacancyEntity> vacancies)? vacancies,
+    TResult? Function(String? skillTags)? refresh,
     TResult? Function(int vacancyId)? like,
     TResult? Function(String message)? failed,
   }) =>
@@ -36,6 +38,7 @@ mixin _$VacanciesEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
     TResult Function(List<VacancyEntity> vacancies)? vacancies,
+    TResult Function(String? skillTags)? refresh,
     TResult Function(int vacancyId)? like,
     TResult Function(String message)? failed,
     required TResult orElse(),
@@ -45,6 +48,7 @@ mixin _$VacanciesEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_VacanciesLoadEvent value) load,
     required TResult Function(_VacanciesEvent value) vacancies,
+    required TResult Function(_VacanciesRefreshEvent value) refresh,
     required TResult Function(_VacanciesLikeEvent value) like,
     required TResult Function(_VacanciesFailedEvent value) failed,
   }) =>
@@ -53,6 +57,7 @@ mixin _$VacanciesEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_VacanciesLoadEvent value)? load,
     TResult? Function(_VacanciesEvent value)? vacancies,
+    TResult? Function(_VacanciesRefreshEvent value)? refresh,
     TResult? Function(_VacanciesLikeEvent value)? like,
     TResult? Function(_VacanciesFailedEvent value)? failed,
   }) =>
@@ -61,6 +66,7 @@ mixin _$VacanciesEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_VacanciesLoadEvent value)? load,
     TResult Function(_VacanciesEvent value)? vacancies,
+    TResult Function(_VacanciesRefreshEvent value)? refresh,
     TResult Function(_VacanciesLikeEvent value)? like,
     TResult Function(_VacanciesFailedEvent value)? failed,
     required TResult orElse(),
@@ -126,6 +132,7 @@ class _$_VacanciesLoadEvent implements _VacanciesLoadEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() load,
     required TResult Function(List<VacancyEntity> vacancies) vacancies,
+    required TResult Function(String? skillTags) refresh,
     required TResult Function(int vacancyId) like,
     required TResult Function(String message) failed,
   }) {
@@ -137,6 +144,7 @@ class _$_VacanciesLoadEvent implements _VacanciesLoadEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
     TResult? Function(List<VacancyEntity> vacancies)? vacancies,
+    TResult? Function(String? skillTags)? refresh,
     TResult? Function(int vacancyId)? like,
     TResult? Function(String message)? failed,
   }) {
@@ -148,6 +156,7 @@ class _$_VacanciesLoadEvent implements _VacanciesLoadEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
     TResult Function(List<VacancyEntity> vacancies)? vacancies,
+    TResult Function(String? skillTags)? refresh,
     TResult Function(int vacancyId)? like,
     TResult Function(String message)? failed,
     required TResult orElse(),
@@ -163,6 +172,7 @@ class _$_VacanciesLoadEvent implements _VacanciesLoadEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_VacanciesLoadEvent value) load,
     required TResult Function(_VacanciesEvent value) vacancies,
+    required TResult Function(_VacanciesRefreshEvent value) refresh,
     required TResult Function(_VacanciesLikeEvent value) like,
     required TResult Function(_VacanciesFailedEvent value) failed,
   }) {
@@ -174,6 +184,7 @@ class _$_VacanciesLoadEvent implements _VacanciesLoadEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_VacanciesLoadEvent value)? load,
     TResult? Function(_VacanciesEvent value)? vacancies,
+    TResult? Function(_VacanciesRefreshEvent value)? refresh,
     TResult? Function(_VacanciesLikeEvent value)? like,
     TResult? Function(_VacanciesFailedEvent value)? failed,
   }) {
@@ -185,6 +196,7 @@ class _$_VacanciesLoadEvent implements _VacanciesLoadEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_VacanciesLoadEvent value)? load,
     TResult Function(_VacanciesEvent value)? vacancies,
+    TResult Function(_VacanciesRefreshEvent value)? refresh,
     TResult Function(_VacanciesLikeEvent value)? like,
     TResult Function(_VacanciesFailedEvent value)? failed,
     required TResult orElse(),
@@ -274,6 +286,7 @@ class _$_VacanciesEvent implements _VacanciesEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() load,
     required TResult Function(List<VacancyEntity> vacancies) vacancies,
+    required TResult Function(String? skillTags) refresh,
     required TResult Function(int vacancyId) like,
     required TResult Function(String message) failed,
   }) {
@@ -285,6 +298,7 @@ class _$_VacanciesEvent implements _VacanciesEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
     TResult? Function(List<VacancyEntity> vacancies)? vacancies,
+    TResult? Function(String? skillTags)? refresh,
     TResult? Function(int vacancyId)? like,
     TResult? Function(String message)? failed,
   }) {
@@ -296,6 +310,7 @@ class _$_VacanciesEvent implements _VacanciesEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
     TResult Function(List<VacancyEntity> vacancies)? vacancies,
+    TResult Function(String? skillTags)? refresh,
     TResult Function(int vacancyId)? like,
     TResult Function(String message)? failed,
     required TResult orElse(),
@@ -311,6 +326,7 @@ class _$_VacanciesEvent implements _VacanciesEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_VacanciesLoadEvent value) load,
     required TResult Function(_VacanciesEvent value) vacancies,
+    required TResult Function(_VacanciesRefreshEvent value) refresh,
     required TResult Function(_VacanciesLikeEvent value) like,
     required TResult Function(_VacanciesFailedEvent value) failed,
   }) {
@@ -322,6 +338,7 @@ class _$_VacanciesEvent implements _VacanciesEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_VacanciesLoadEvent value)? load,
     TResult? Function(_VacanciesEvent value)? vacancies,
+    TResult? Function(_VacanciesRefreshEvent value)? refresh,
     TResult? Function(_VacanciesLikeEvent value)? like,
     TResult? Function(_VacanciesFailedEvent value)? failed,
   }) {
@@ -333,6 +350,7 @@ class _$_VacanciesEvent implements _VacanciesEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_VacanciesLoadEvent value)? load,
     TResult Function(_VacanciesEvent value)? vacancies,
+    TResult Function(_VacanciesRefreshEvent value)? refresh,
     TResult Function(_VacanciesLikeEvent value)? like,
     TResult Function(_VacanciesFailedEvent value)? failed,
     required TResult orElse(),
@@ -351,6 +369,160 @@ abstract class _VacanciesEvent implements VacanciesEvent {
   List<VacancyEntity> get vacancies;
   @JsonKey(ignore: true)
   _$$_VacanciesEventCopyWith<_$_VacanciesEvent> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_VacanciesRefreshEventCopyWith<$Res> {
+  factory _$$_VacanciesRefreshEventCopyWith(_$_VacanciesRefreshEvent value,
+          $Res Function(_$_VacanciesRefreshEvent) then) =
+      __$$_VacanciesRefreshEventCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String? skillTags});
+}
+
+/// @nodoc
+class __$$_VacanciesRefreshEventCopyWithImpl<$Res>
+    extends _$VacanciesEventCopyWithImpl<$Res, _$_VacanciesRefreshEvent>
+    implements _$$_VacanciesRefreshEventCopyWith<$Res> {
+  __$$_VacanciesRefreshEventCopyWithImpl(_$_VacanciesRefreshEvent _value,
+      $Res Function(_$_VacanciesRefreshEvent) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? skillTags = freezed,
+  }) {
+    return _then(_$_VacanciesRefreshEvent(
+      skillTags: freezed == skillTags
+          ? _value.skillTags
+          : skillTags // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_VacanciesRefreshEvent implements _VacanciesRefreshEvent {
+  const _$_VacanciesRefreshEvent({required this.skillTags});
+
+  @override
+  final String? skillTags;
+
+  @override
+  String toString() {
+    return 'VacanciesEvent.refresh(skillTags: $skillTags)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_VacanciesRefreshEvent &&
+            (identical(other.skillTags, skillTags) ||
+                other.skillTags == skillTags));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, skillTags);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_VacanciesRefreshEventCopyWith<_$_VacanciesRefreshEvent> get copyWith =>
+      __$$_VacanciesRefreshEventCopyWithImpl<_$_VacanciesRefreshEvent>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() load,
+    required TResult Function(List<VacancyEntity> vacancies) vacancies,
+    required TResult Function(String? skillTags) refresh,
+    required TResult Function(int vacancyId) like,
+    required TResult Function(String message) failed,
+  }) {
+    return refresh(skillTags);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? load,
+    TResult? Function(List<VacancyEntity> vacancies)? vacancies,
+    TResult? Function(String? skillTags)? refresh,
+    TResult? Function(int vacancyId)? like,
+    TResult? Function(String message)? failed,
+  }) {
+    return refresh?.call(skillTags);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? load,
+    TResult Function(List<VacancyEntity> vacancies)? vacancies,
+    TResult Function(String? skillTags)? refresh,
+    TResult Function(int vacancyId)? like,
+    TResult Function(String message)? failed,
+    required TResult orElse(),
+  }) {
+    if (refresh != null) {
+      return refresh(skillTags);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_VacanciesLoadEvent value) load,
+    required TResult Function(_VacanciesEvent value) vacancies,
+    required TResult Function(_VacanciesRefreshEvent value) refresh,
+    required TResult Function(_VacanciesLikeEvent value) like,
+    required TResult Function(_VacanciesFailedEvent value) failed,
+  }) {
+    return refresh(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_VacanciesLoadEvent value)? load,
+    TResult? Function(_VacanciesEvent value)? vacancies,
+    TResult? Function(_VacanciesRefreshEvent value)? refresh,
+    TResult? Function(_VacanciesLikeEvent value)? like,
+    TResult? Function(_VacanciesFailedEvent value)? failed,
+  }) {
+    return refresh?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_VacanciesLoadEvent value)? load,
+    TResult Function(_VacanciesEvent value)? vacancies,
+    TResult Function(_VacanciesRefreshEvent value)? refresh,
+    TResult Function(_VacanciesLikeEvent value)? like,
+    TResult Function(_VacanciesFailedEvent value)? failed,
+    required TResult orElse(),
+  }) {
+    if (refresh != null) {
+      return refresh(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _VacanciesRefreshEvent implements VacanciesEvent {
+  const factory _VacanciesRefreshEvent({required final String? skillTags}) =
+      _$_VacanciesRefreshEvent;
+
+  String? get skillTags;
+  @JsonKey(ignore: true)
+  _$$_VacanciesRefreshEventCopyWith<_$_VacanciesRefreshEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -422,6 +594,7 @@ class _$_VacanciesLikeEvent implements _VacanciesLikeEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() load,
     required TResult Function(List<VacancyEntity> vacancies) vacancies,
+    required TResult Function(String? skillTags) refresh,
     required TResult Function(int vacancyId) like,
     required TResult Function(String message) failed,
   }) {
@@ -433,6 +606,7 @@ class _$_VacanciesLikeEvent implements _VacanciesLikeEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
     TResult? Function(List<VacancyEntity> vacancies)? vacancies,
+    TResult? Function(String? skillTags)? refresh,
     TResult? Function(int vacancyId)? like,
     TResult? Function(String message)? failed,
   }) {
@@ -444,6 +618,7 @@ class _$_VacanciesLikeEvent implements _VacanciesLikeEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
     TResult Function(List<VacancyEntity> vacancies)? vacancies,
+    TResult Function(String? skillTags)? refresh,
     TResult Function(int vacancyId)? like,
     TResult Function(String message)? failed,
     required TResult orElse(),
@@ -459,6 +634,7 @@ class _$_VacanciesLikeEvent implements _VacanciesLikeEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_VacanciesLoadEvent value) load,
     required TResult Function(_VacanciesEvent value) vacancies,
+    required TResult Function(_VacanciesRefreshEvent value) refresh,
     required TResult Function(_VacanciesLikeEvent value) like,
     required TResult Function(_VacanciesFailedEvent value) failed,
   }) {
@@ -470,6 +646,7 @@ class _$_VacanciesLikeEvent implements _VacanciesLikeEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_VacanciesLoadEvent value)? load,
     TResult? Function(_VacanciesEvent value)? vacancies,
+    TResult? Function(_VacanciesRefreshEvent value)? refresh,
     TResult? Function(_VacanciesLikeEvent value)? like,
     TResult? Function(_VacanciesFailedEvent value)? failed,
   }) {
@@ -481,6 +658,7 @@ class _$_VacanciesLikeEvent implements _VacanciesLikeEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_VacanciesLoadEvent value)? load,
     TResult Function(_VacanciesEvent value)? vacancies,
+    TResult Function(_VacanciesRefreshEvent value)? refresh,
     TResult Function(_VacanciesLikeEvent value)? like,
     TResult Function(_VacanciesFailedEvent value)? failed,
     required TResult orElse(),
@@ -569,6 +747,7 @@ class _$_VacanciesFailedEvent implements _VacanciesFailedEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() load,
     required TResult Function(List<VacancyEntity> vacancies) vacancies,
+    required TResult Function(String? skillTags) refresh,
     required TResult Function(int vacancyId) like,
     required TResult Function(String message) failed,
   }) {
@@ -580,6 +759,7 @@ class _$_VacanciesFailedEvent implements _VacanciesFailedEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
     TResult? Function(List<VacancyEntity> vacancies)? vacancies,
+    TResult? Function(String? skillTags)? refresh,
     TResult? Function(int vacancyId)? like,
     TResult? Function(String message)? failed,
   }) {
@@ -591,6 +771,7 @@ class _$_VacanciesFailedEvent implements _VacanciesFailedEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
     TResult Function(List<VacancyEntity> vacancies)? vacancies,
+    TResult Function(String? skillTags)? refresh,
     TResult Function(int vacancyId)? like,
     TResult Function(String message)? failed,
     required TResult orElse(),
@@ -606,6 +787,7 @@ class _$_VacanciesFailedEvent implements _VacanciesFailedEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_VacanciesLoadEvent value) load,
     required TResult Function(_VacanciesEvent value) vacancies,
+    required TResult Function(_VacanciesRefreshEvent value) refresh,
     required TResult Function(_VacanciesLikeEvent value) like,
     required TResult Function(_VacanciesFailedEvent value) failed,
   }) {
@@ -617,6 +799,7 @@ class _$_VacanciesFailedEvent implements _VacanciesFailedEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_VacanciesLoadEvent value)? load,
     TResult? Function(_VacanciesEvent value)? vacancies,
+    TResult? Function(_VacanciesRefreshEvent value)? refresh,
     TResult? Function(_VacanciesLikeEvent value)? like,
     TResult? Function(_VacanciesFailedEvent value)? failed,
   }) {
@@ -628,6 +811,7 @@ class _$_VacanciesFailedEvent implements _VacanciesFailedEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_VacanciesLoadEvent value)? load,
     TResult Function(_VacanciesEvent value)? vacancies,
+    TResult Function(_VacanciesRefreshEvent value)? refresh,
     TResult Function(_VacanciesLikeEvent value)? like,
     TResult Function(_VacanciesFailedEvent value)? failed,
     required TResult orElse(),

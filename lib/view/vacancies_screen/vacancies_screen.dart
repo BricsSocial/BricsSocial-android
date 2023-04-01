@@ -1,7 +1,7 @@
 import 'package:app_kit/app_kit.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:swipe_cards/swipe_cards.dart';
 
 import '../../core/di/di.dart';
@@ -19,7 +19,7 @@ class VacanciesScreen extends StatefulWidget {
 }
 
 class _VacanciesScreenState extends State<VacanciesScreen> {
-  // final _refreshController = RefreshController(initialRefresh: false);
+  final _bloc = getIt.get<VacanciesBloc>();
 
   MatchEngine _matchEngine = MatchEngine(swipeItems: []);
   final _showButtons = ValueNotifier<bool>(false);
@@ -40,73 +40,102 @@ class _VacanciesScreenState extends State<VacanciesScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt.get<VacanciesBloc>(),
+      create: (context) => _bloc,
       child: Scaffold(
-        appBar: const AppAppBar(
-          title: Text('Vacancies'),
-        ),
-        body: Column(
-          children: [
-            Expanded(
-              child: Stack(
-                children: [
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 32),
-                    alignment: Alignment.center,
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: const [
-                        Icon(
-                          Icons.face_6,
-                          size: 96,
-                          color: hintColor,
-                        ),
-                        SizedBox(height: 16),
-                        Text(
-                          'That\'s all!',
-                          style: TextStyle(fontSize: 24, color: hintColor, fontWeight: FontWeight.w600),
-                        ),
-                        SizedBox(height: 8),
-                        Text(
-                          'Come back later to see more!',
-                          style: TextStyle(fontSize: 18, color: hintColor, fontWeight: FontWeight.w600),
-                          textAlign: TextAlign.center,
-                        )
-                      ],
-                    ),
-                  ),
-                  BlocConsumer<VacanciesBloc, VacanciesState>(
-                    listener: (context, state) {
-                      state.mapOrNull(
-                        vacancies: (state) {
-                          _showButtons.value = state.vacancies.isNotEmpty;
-                        },
-                      );
-                    },
-                    builder: (context, state) {
-                      return state.maybeMap(
-                        vacancies: (state) {
-                          return SwipeCards(
-                            matchEngine: _matchEngine = createMatchEngine(context, state.vacancies),
-                            itemBuilder: (BuildContext context, int index) {
-                              return _buildVacancyCard(state.vacancies[index]);
-                            },
-                            onStackFinished: () {
-                              _showButtons.value = false;
-                              context.read<VacanciesBloc>().add(const VacanciesEvent.load());
-                            },
-                          );
-                        },
-                        orElse: () => const SizedBox.shrink(),
-                      );
-                    },
-                  ),
-                ],
+        resizeToAvoidBottomInset: false,
+        appBar: AppAppBar(
+          title: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const SizedBox(width: 16),
+              const Text(
+                'BRICS',
+                style: TextStyle(fontWeight: FontWeight.bold),
               ),
-            ),
-            _buildSwipeButtons(),
-            const SizedBox(height: 32),
-          ],
+              const SizedBox(width: 16),
+              Expanded(
+                child: TextField(
+                  controller: TextEditingController(),
+                  textInputAction: TextInputAction.search,
+                  decoration: const InputDecoration(
+                    isCollapsed: true,
+                    hintText: 'Search',
+                    hintStyle: TextStyle(color: hintColor),
+                    contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  ),
+                  onSubmitted: (value) {
+                    _bloc.add(VacanciesEvent.refresh(skillTags: value.trim()));
+                  },
+                ),
+              ),
+            ],
+          ),
+        ),
+        body: Padding(
+          padding: const EdgeInsets.only(top: 8),
+          child: Column(
+            children: [
+              Expanded(
+                child: Stack(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.only(left: 32, right: 32),
+                      alignment: Alignment.center,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: const [
+                          Icon(
+                            Icons.face_6,
+                            size: 96,
+                            color: hintColor,
+                          ),
+                          SizedBox(height: 16),
+                          Text(
+                            'That\'s all!',
+                            style: TextStyle(fontSize: 24, color: hintColor, fontWeight: FontWeight.w600),
+                          ),
+                          SizedBox(height: 8),
+                          Text(
+                            'Come back later to see more!',
+                            style: TextStyle(fontSize: 18, color: hintColor, fontWeight: FontWeight.w600),
+                            textAlign: TextAlign.center,
+                          )
+                        ],
+                      ),
+                    ),
+                    BlocConsumer<VacanciesBloc, VacanciesState>(
+                      listener: (context, state) {
+                        state.mapOrNull(
+                          vacancies: (state) {
+                            _showButtons.value = state.vacancies.isNotEmpty;
+                          },
+                        );
+                      },
+                      builder: (context, state) {
+                        return state.maybeMap(
+                          vacancies: (state) {
+                            return SwipeCards(
+                              matchEngine: _matchEngine = createMatchEngine(context, state.vacancies),
+                              itemBuilder: (BuildContext context, int index) {
+                                return _buildVacancyCard(state.vacancies[index]);
+                              },
+                              onStackFinished: () {
+                                _showButtons.value = false;
+                                _bloc.add(const VacanciesEvent.load());
+                              },
+                            );
+                          },
+                          orElse: () => const SizedBox.shrink(),
+                        );
+                      },
+                    ),
+                  ],
+                ),
+              ),
+              _buildSwipeButtons(),
+              const SizedBox(height: 32),
+            ],
+          ),
         ),
       ),
     );
@@ -122,46 +151,52 @@ class _VacanciesScreenState extends State<VacanciesScreen> {
         border: Border.all(color: hintColor),
         borderRadius: BorderRadius.circular(16),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: Stack(
         children: [
-          Row(
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(24),
-                child: Image.network(
-                  vacancy.company.logo,
-                  height: 48,
-                  width: 48,
-                ),
+              Row(
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(24),
+                    child: Image.network(
+                      vacancy.company.logo,
+                      height: 48,
+                      width: 48,
+                    ),
+                  ),
+                  const SizedBox(width: 16),
+                  Text(
+                    vacancy.company.name,
+                    style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                  ),
+                ],
               ),
-              const SizedBox(width: 16),
+              const SizedBox(height: 16),
               Text(
-                vacancy.company.name,
-                style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                vacancy.name,
+                style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w600),
               ),
+              const SizedBox(height: 16),
+              const Text(
+                'Offerings',
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+              ),
+              Text(vacancy.offerings),
+              const SizedBox(height: 16),
+              const Text(
+                'Requirements',
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+              ),
+              Text(vacancy.requirements),
             ],
           ),
-          const SizedBox(height: 16),
-          Text(
-            vacancy.name,
-            style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w600),
-          ),
-          const SizedBox(height: 16),
-          const Text(
-            'Offerings',
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-          ),
-          Text(vacancy.offerings),
-          const SizedBox(height: 16),
-          const Text(
-            'Requirements',
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-          ),
-          Text(vacancy.requirements),
-          const Expanded(child: SizedBox()),
-          SkillTags(
-            skills: vacancy.skillTags,
+          Align(
+            alignment: Alignment.bottomLeft,
+            child: SkillTags(
+              skills: vacancy.skillTags,
+            ),
           ),
         ],
       ),

@@ -3,7 +3,6 @@ import 'package:dio/dio.dart';
 import 'package:http_status_code/http_status_code.dart';
 import 'package:injectable/injectable.dart';
 
-import '../specialists_source/model/reply_dto/reply_dto.dart';
 import 'model/get_vacancies/response/get_vacancies_response_dto.dart';
 import 'model/like_vacancy/request/like_vacancy_request_dto.dart';
 import 'vacancies_source.dart';

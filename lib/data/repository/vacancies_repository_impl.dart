@@ -34,6 +34,7 @@ class VacanciesRepositoryImpl extends VacanciesRepository {
   @override
   Stream<Either<Failure, List<VacancyEntity>>> getVacancies({
     required int initialPageSize,
+    String? skillTags,
   }) async* {
     //TODO: Change it to stream events
     await _vacanciesController.close();
@@ -45,6 +46,7 @@ class VacanciesRepositoryImpl extends VacanciesRepository {
           status: VacancyStatus.open.index,
           pageNumber: pair.first,
           pageSize: pair.second,
+          skillTags: skillTags,
         );
 
         final vacancies = await Stream.fromIterable(response.items).asyncMap((dto) async {
@@ -57,7 +59,7 @@ class VacanciesRepositoryImpl extends VacanciesRepository {
         return Right(vacancies);
       } on ConnectionException {
         return Left(ConnectionFailure());
-      } on UnauthorizedFailure {
+      } on UnauthorizedException {
         return Left(UnauthorizedFailure());
       } on UnknownException {
         return Left(UnknownFailure());

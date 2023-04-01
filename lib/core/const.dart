@@ -1,1 +1,1 @@
-const String baseUrl = 'http://158.160.37.250';
+const String baseUrl = 'https://brics-social.ru';

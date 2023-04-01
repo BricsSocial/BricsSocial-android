@@ -112,7 +112,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   );
 
                   Widget child = SizedBox.shrink(key: UniqueKey());
-
                   if (profileChanged) {
                     child = AppButton(
                       margin: const EdgeInsets.only(left: 24, right: 24, bottom: 16),

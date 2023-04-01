@@ -1,7 +1,3 @@
-import 'dart:io';
-
-import 'package:app_kit/app_kit.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -10,6 +6,7 @@ import '../../../domain/common/entity/specialist_entity/specialist_entity.dart';
 import '../../common/button/button.dart';
 import '../../common/country_dropdown/country_dropdown.dart';
 import '../bloc/bloc.dart';
+import '../common/avatar/avatar.dart';
 
 class ProfileGeneralScreen extends StatefulWidget {
   final ValueNotifier<SpecialistEntity> profile;
@@ -80,6 +77,7 @@ class _ProfileGeneralScreenState extends State<ProfileGeneralScreen> {
                 ),
                 const SizedBox(height: 16),
                 TextField(
+                  readOnly: true,
                   controller: _emailTextController..text = widget.profile.value.email,
                   keyboardType: TextInputType.emailAddress,
                   decoration: const InputDecoration(
@@ -110,20 +108,11 @@ class _ProfileGeneralScreenState extends State<ProfileGeneralScreen> {
   }) {
     return Row(
       children: [
-        _buildAvatar(
-          photo: profile.photo,
-          onTap: () async {
-            final result = await FilePicker.platform.pickFiles(
-              type: FileType.image,
-            );
-            if (result != null && context.mounted) {
-              context.read<ProfileBloc>().add(
-                    ProfileEvent.changeAvatar(
-                      id: profile.id,
-                      avatar: File(result.files.single.path!),
-                    ),
-                  );
-            }
+        Avatar(
+          id: profile.id,
+          url: profile.photo,
+          onAvatarChanged: () {
+            context.read<ProfileBloc>().add(const ProfileEvent.update());
           },
         ),
         const SizedBox(width: 24),
@@ -142,40 +131,6 @@ class _ProfileGeneralScreenState extends State<ProfileGeneralScreen> {
           ],
         )
       ],
-    );
-  }
-
-  Widget _buildAvatar({required String? photo, required VoidCallback onTap}) {
-    final Widget avatar;
-
-    if (photo != null) {
-      avatar = ClipRRect(
-        borderRadius: BorderRadius.circular(32),
-        child: Image.network(
-          photo,
-          height: 64,
-          width: 64,
-          fit: BoxFit.cover,
-        ),
-      );
-    } else {
-      avatar = Container(
-        height: 64,
-        width: 64,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: lightColorScheme.primaryContainer,
-        ),
-        child: Icon(
-          Icons.add_a_photo_outlined,
-          color: lightColorScheme.primary,
-        ),
-      );
-    }
-
-    return BouncingGestureDetector(
-      onTap: onTap,
-      child: avatar,
     );
   }
 }

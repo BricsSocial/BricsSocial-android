@@ -21,7 +21,6 @@ mixin _$ProfileEvent {
     required TResult Function(SpecialistEntity profile) profile,
     required TResult Function() update,
     required TResult Function(SpecialistEntity profile) change,
-    required TResult Function(int id, File avatar) changeAvatar,
     required TResult Function() signOut,
     required TResult Function(String message) failed,
   }) =>
@@ -31,7 +30,6 @@ mixin _$ProfileEvent {
     TResult? Function(SpecialistEntity profile)? profile,
     TResult? Function()? update,
     TResult? Function(SpecialistEntity profile)? change,
-    TResult? Function(int id, File avatar)? changeAvatar,
     TResult? Function()? signOut,
     TResult? Function(String message)? failed,
   }) =>
@@ -41,7 +39,6 @@ mixin _$ProfileEvent {
     TResult Function(SpecialistEntity profile)? profile,
     TResult Function()? update,
     TResult Function(SpecialistEntity profile)? change,
-    TResult Function(int id, File avatar)? changeAvatar,
     TResult Function()? signOut,
     TResult Function(String message)? failed,
     required TResult orElse(),
@@ -52,7 +49,6 @@ mixin _$ProfileEvent {
     required TResult Function(_ProfileEvent value) profile,
     required TResult Function(_ProfileUpdateEvent value) update,
     required TResult Function(_ProfileChangeEvent value) change,
-    required TResult Function(_ProfileChangeAvatarEvent value) changeAvatar,
     required TResult Function(_ProfileSignOutEvent value) signOut,
     required TResult Function(_ProfileFailedEvent value) failed,
   }) =>
@@ -62,7 +58,6 @@ mixin _$ProfileEvent {
     TResult? Function(_ProfileEvent value)? profile,
     TResult? Function(_ProfileUpdateEvent value)? update,
     TResult? Function(_ProfileChangeEvent value)? change,
-    TResult? Function(_ProfileChangeAvatarEvent value)? changeAvatar,
     TResult? Function(_ProfileSignOutEvent value)? signOut,
     TResult? Function(_ProfileFailedEvent value)? failed,
   }) =>
@@ -72,7 +67,6 @@ mixin _$ProfileEvent {
     TResult Function(_ProfileEvent value)? profile,
     TResult Function(_ProfileUpdateEvent value)? update,
     TResult Function(_ProfileChangeEvent value)? change,
-    TResult Function(_ProfileChangeAvatarEvent value)? changeAvatar,
     TResult Function(_ProfileSignOutEvent value)? signOut,
     TResult Function(_ProfileFailedEvent value)? failed,
     required TResult orElse(),
@@ -175,7 +169,6 @@ class _$_ProfileEvent implements _ProfileEvent {
     required TResult Function(SpecialistEntity profile) profile,
     required TResult Function() update,
     required TResult Function(SpecialistEntity profile) change,
-    required TResult Function(int id, File avatar) changeAvatar,
     required TResult Function() signOut,
     required TResult Function(String message) failed,
   }) {
@@ -188,7 +181,6 @@ class _$_ProfileEvent implements _ProfileEvent {
     TResult? Function(SpecialistEntity profile)? profile,
     TResult? Function()? update,
     TResult? Function(SpecialistEntity profile)? change,
-    TResult? Function(int id, File avatar)? changeAvatar,
     TResult? Function()? signOut,
     TResult? Function(String message)? failed,
   }) {
@@ -201,7 +193,6 @@ class _$_ProfileEvent implements _ProfileEvent {
     TResult Function(SpecialistEntity profile)? profile,
     TResult Function()? update,
     TResult Function(SpecialistEntity profile)? change,
-    TResult Function(int id, File avatar)? changeAvatar,
     TResult Function()? signOut,
     TResult Function(String message)? failed,
     required TResult orElse(),
@@ -218,7 +209,6 @@ class _$_ProfileEvent implements _ProfileEvent {
     required TResult Function(_ProfileEvent value) profile,
     required TResult Function(_ProfileUpdateEvent value) update,
     required TResult Function(_ProfileChangeEvent value) change,
-    required TResult Function(_ProfileChangeAvatarEvent value) changeAvatar,
     required TResult Function(_ProfileSignOutEvent value) signOut,
     required TResult Function(_ProfileFailedEvent value) failed,
   }) {
@@ -231,7 +221,6 @@ class _$_ProfileEvent implements _ProfileEvent {
     TResult? Function(_ProfileEvent value)? profile,
     TResult? Function(_ProfileUpdateEvent value)? update,
     TResult? Function(_ProfileChangeEvent value)? change,
-    TResult? Function(_ProfileChangeAvatarEvent value)? changeAvatar,
     TResult? Function(_ProfileSignOutEvent value)? signOut,
     TResult? Function(_ProfileFailedEvent value)? failed,
   }) {
@@ -244,7 +233,6 @@ class _$_ProfileEvent implements _ProfileEvent {
     TResult Function(_ProfileEvent value)? profile,
     TResult Function(_ProfileUpdateEvent value)? update,
     TResult Function(_ProfileChangeEvent value)? change,
-    TResult Function(_ProfileChangeAvatarEvent value)? changeAvatar,
     TResult Function(_ProfileSignOutEvent value)? signOut,
     TResult Function(_ProfileFailedEvent value)? failed,
     required TResult orElse(),
@@ -307,7 +295,6 @@ class _$_ProfileUpdateEvent implements _ProfileUpdateEvent {
     required TResult Function(SpecialistEntity profile) profile,
     required TResult Function() update,
     required TResult Function(SpecialistEntity profile) change,
-    required TResult Function(int id, File avatar) changeAvatar,
     required TResult Function() signOut,
     required TResult Function(String message) failed,
   }) {
@@ -320,7 +307,6 @@ class _$_ProfileUpdateEvent implements _ProfileUpdateEvent {
     TResult? Function(SpecialistEntity profile)? profile,
     TResult? Function()? update,
     TResult? Function(SpecialistEntity profile)? change,
-    TResult? Function(int id, File avatar)? changeAvatar,
     TResult? Function()? signOut,
     TResult? Function(String message)? failed,
   }) {
@@ -333,7 +319,6 @@ class _$_ProfileUpdateEvent implements _ProfileUpdateEvent {
     TResult Function(SpecialistEntity profile)? profile,
     TResult Function()? update,
     TResult Function(SpecialistEntity profile)? change,
-    TResult Function(int id, File avatar)? changeAvatar,
     TResult Function()? signOut,
     TResult Function(String message)? failed,
     required TResult orElse(),
@@ -350,7 +335,6 @@ class _$_ProfileUpdateEvent implements _ProfileUpdateEvent {
     required TResult Function(_ProfileEvent value) profile,
     required TResult Function(_ProfileUpdateEvent value) update,
     required TResult Function(_ProfileChangeEvent value) change,
-    required TResult Function(_ProfileChangeAvatarEvent value) changeAvatar,
     required TResult Function(_ProfileSignOutEvent value) signOut,
     required TResult Function(_ProfileFailedEvent value) failed,
   }) {
@@ -363,7 +347,6 @@ class _$_ProfileUpdateEvent implements _ProfileUpdateEvent {
     TResult? Function(_ProfileEvent value)? profile,
     TResult? Function(_ProfileUpdateEvent value)? update,
     TResult? Function(_ProfileChangeEvent value)? change,
-    TResult? Function(_ProfileChangeAvatarEvent value)? changeAvatar,
     TResult? Function(_ProfileSignOutEvent value)? signOut,
     TResult? Function(_ProfileFailedEvent value)? failed,
   }) {
@@ -376,7 +359,6 @@ class _$_ProfileUpdateEvent implements _ProfileUpdateEvent {
     TResult Function(_ProfileEvent value)? profile,
     TResult Function(_ProfileUpdateEvent value)? update,
     TResult Function(_ProfileChangeEvent value)? change,
-    TResult Function(_ProfileChangeAvatarEvent value)? changeAvatar,
     TResult Function(_ProfileSignOutEvent value)? signOut,
     TResult Function(_ProfileFailedEvent value)? failed,
     required TResult orElse(),
@@ -470,7 +452,6 @@ class _$_ProfileChangeEvent implements _ProfileChangeEvent {
     required TResult Function(SpecialistEntity profile) profile,
     required TResult Function() update,
     required TResult Function(SpecialistEntity profile) change,
-    required TResult Function(int id, File avatar) changeAvatar,
     required TResult Function() signOut,
     required TResult Function(String message) failed,
   }) {
@@ -483,7 +464,6 @@ class _$_ProfileChangeEvent implements _ProfileChangeEvent {
     TResult? Function(SpecialistEntity profile)? profile,
     TResult? Function()? update,
     TResult? Function(SpecialistEntity profile)? change,
-    TResult? Function(int id, File avatar)? changeAvatar,
     TResult? Function()? signOut,
     TResult? Function(String message)? failed,
   }) {
@@ -496,7 +476,6 @@ class _$_ProfileChangeEvent implements _ProfileChangeEvent {
     TResult Function(SpecialistEntity profile)? profile,
     TResult Function()? update,
     TResult Function(SpecialistEntity profile)? change,
-    TResult Function(int id, File avatar)? changeAvatar,
     TResult Function()? signOut,
     TResult Function(String message)? failed,
     required TResult orElse(),
@@ -513,7 +492,6 @@ class _$_ProfileChangeEvent implements _ProfileChangeEvent {
     required TResult Function(_ProfileEvent value) profile,
     required TResult Function(_ProfileUpdateEvent value) update,
     required TResult Function(_ProfileChangeEvent value) change,
-    required TResult Function(_ProfileChangeAvatarEvent value) changeAvatar,
     required TResult Function(_ProfileSignOutEvent value) signOut,
     required TResult Function(_ProfileFailedEvent value) failed,
   }) {
@@ -526,7 +504,6 @@ class _$_ProfileChangeEvent implements _ProfileChangeEvent {
     TResult? Function(_ProfileEvent value)? profile,
     TResult? Function(_ProfileUpdateEvent value)? update,
     TResult? Function(_ProfileChangeEvent value)? change,
-    TResult? Function(_ProfileChangeAvatarEvent value)? changeAvatar,
     TResult? Function(_ProfileSignOutEvent value)? signOut,
     TResult? Function(_ProfileFailedEvent value)? failed,
   }) {
@@ -539,7 +516,6 @@ class _$_ProfileChangeEvent implements _ProfileChangeEvent {
     TResult Function(_ProfileEvent value)? profile,
     TResult Function(_ProfileUpdateEvent value)? update,
     TResult Function(_ProfileChangeEvent value)? change,
-    TResult Function(_ProfileChangeAvatarEvent value)? changeAvatar,
     TResult Function(_ProfileSignOutEvent value)? signOut,
     TResult Function(_ProfileFailedEvent value)? failed,
     required TResult orElse(),
@@ -559,176 +535,6 @@ abstract class _ProfileChangeEvent implements ProfileEvent {
   @JsonKey(ignore: true)
   _$$_ProfileChangeEventCopyWith<_$_ProfileChangeEvent> get copyWith =>
       throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$_ProfileChangeAvatarEventCopyWith<$Res> {
-  factory _$$_ProfileChangeAvatarEventCopyWith(
-          _$_ProfileChangeAvatarEvent value,
-          $Res Function(_$_ProfileChangeAvatarEvent) then) =
-      __$$_ProfileChangeAvatarEventCopyWithImpl<$Res>;
-  @useResult
-  $Res call({int id, File avatar});
-}
-
-/// @nodoc
-class __$$_ProfileChangeAvatarEventCopyWithImpl<$Res>
-    extends _$ProfileEventCopyWithImpl<$Res, _$_ProfileChangeAvatarEvent>
-    implements _$$_ProfileChangeAvatarEventCopyWith<$Res> {
-  __$$_ProfileChangeAvatarEventCopyWithImpl(_$_ProfileChangeAvatarEvent _value,
-      $Res Function(_$_ProfileChangeAvatarEvent) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? avatar = null,
-  }) {
-    return _then(_$_ProfileChangeAvatarEvent(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      avatar: null == avatar
-          ? _value.avatar
-          : avatar // ignore: cast_nullable_to_non_nullable
-              as File,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_ProfileChangeAvatarEvent implements _ProfileChangeAvatarEvent {
-  const _$_ProfileChangeAvatarEvent({required this.id, required this.avatar});
-
-  @override
-  final int id;
-  @override
-  final File avatar;
-
-  @override
-  String toString() {
-    return 'ProfileEvent.changeAvatar(id: $id, avatar: $avatar)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_ProfileChangeAvatarEvent &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.avatar, avatar) || other.avatar == avatar));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, id, avatar);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_ProfileChangeAvatarEventCopyWith<_$_ProfileChangeAvatarEvent>
-      get copyWith => __$$_ProfileChangeAvatarEventCopyWithImpl<
-          _$_ProfileChangeAvatarEvent>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(SpecialistEntity profile) profile,
-    required TResult Function() update,
-    required TResult Function(SpecialistEntity profile) change,
-    required TResult Function(int id, File avatar) changeAvatar,
-    required TResult Function() signOut,
-    required TResult Function(String message) failed,
-  }) {
-    return changeAvatar(id, avatar);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(SpecialistEntity profile)? profile,
-    TResult? Function()? update,
-    TResult? Function(SpecialistEntity profile)? change,
-    TResult? Function(int id, File avatar)? changeAvatar,
-    TResult? Function()? signOut,
-    TResult? Function(String message)? failed,
-  }) {
-    return changeAvatar?.call(id, avatar);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(SpecialistEntity profile)? profile,
-    TResult Function()? update,
-    TResult Function(SpecialistEntity profile)? change,
-    TResult Function(int id, File avatar)? changeAvatar,
-    TResult Function()? signOut,
-    TResult Function(String message)? failed,
-    required TResult orElse(),
-  }) {
-    if (changeAvatar != null) {
-      return changeAvatar(id, avatar);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_ProfileEvent value) profile,
-    required TResult Function(_ProfileUpdateEvent value) update,
-    required TResult Function(_ProfileChangeEvent value) change,
-    required TResult Function(_ProfileChangeAvatarEvent value) changeAvatar,
-    required TResult Function(_ProfileSignOutEvent value) signOut,
-    required TResult Function(_ProfileFailedEvent value) failed,
-  }) {
-    return changeAvatar(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_ProfileEvent value)? profile,
-    TResult? Function(_ProfileUpdateEvent value)? update,
-    TResult? Function(_ProfileChangeEvent value)? change,
-    TResult? Function(_ProfileChangeAvatarEvent value)? changeAvatar,
-    TResult? Function(_ProfileSignOutEvent value)? signOut,
-    TResult? Function(_ProfileFailedEvent value)? failed,
-  }) {
-    return changeAvatar?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_ProfileEvent value)? profile,
-    TResult Function(_ProfileUpdateEvent value)? update,
-    TResult Function(_ProfileChangeEvent value)? change,
-    TResult Function(_ProfileChangeAvatarEvent value)? changeAvatar,
-    TResult Function(_ProfileSignOutEvent value)? signOut,
-    TResult Function(_ProfileFailedEvent value)? failed,
-    required TResult orElse(),
-  }) {
-    if (changeAvatar != null) {
-      return changeAvatar(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _ProfileChangeAvatarEvent implements ProfileEvent {
-  const factory _ProfileChangeAvatarEvent(
-      {required final int id,
-      required final File avatar}) = _$_ProfileChangeAvatarEvent;
-
-  int get id;
-  File get avatar;
-  @JsonKey(ignore: true)
-  _$$_ProfileChangeAvatarEventCopyWith<_$_ProfileChangeAvatarEvent>
-      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -772,7 +578,6 @@ class _$_ProfileSignOutEvent implements _ProfileSignOutEvent {
     required TResult Function(SpecialistEntity profile) profile,
     required TResult Function() update,
     required TResult Function(SpecialistEntity profile) change,
-    required TResult Function(int id, File avatar) changeAvatar,
     required TResult Function() signOut,
     required TResult Function(String message) failed,
   }) {
@@ -785,7 +590,6 @@ class _$_ProfileSignOutEvent implements _ProfileSignOutEvent {
     TResult? Function(SpecialistEntity profile)? profile,
     TResult? Function()? update,
     TResult? Function(SpecialistEntity profile)? change,
-    TResult? Function(int id, File avatar)? changeAvatar,
     TResult? Function()? signOut,
     TResult? Function(String message)? failed,
   }) {
@@ -798,7 +602,6 @@ class _$_ProfileSignOutEvent implements _ProfileSignOutEvent {
     TResult Function(SpecialistEntity profile)? profile,
     TResult Function()? update,
     TResult Function(SpecialistEntity profile)? change,
-    TResult Function(int id, File avatar)? changeAvatar,
     TResult Function()? signOut,
     TResult Function(String message)? failed,
     required TResult orElse(),
@@ -815,7 +618,6 @@ class _$_ProfileSignOutEvent implements _ProfileSignOutEvent {
     required TResult Function(_ProfileEvent value) profile,
     required TResult Function(_ProfileUpdateEvent value) update,
     required TResult Function(_ProfileChangeEvent value) change,
-    required TResult Function(_ProfileChangeAvatarEvent value) changeAvatar,
     required TResult Function(_ProfileSignOutEvent value) signOut,
     required TResult Function(_ProfileFailedEvent value) failed,
   }) {
@@ -828,7 +630,6 @@ class _$_ProfileSignOutEvent implements _ProfileSignOutEvent {
     TResult? Function(_ProfileEvent value)? profile,
     TResult? Function(_ProfileUpdateEvent value)? update,
     TResult? Function(_ProfileChangeEvent value)? change,
-    TResult? Function(_ProfileChangeAvatarEvent value)? changeAvatar,
     TResult? Function(_ProfileSignOutEvent value)? signOut,
     TResult? Function(_ProfileFailedEvent value)? failed,
   }) {
@@ -841,7 +642,6 @@ class _$_ProfileSignOutEvent implements _ProfileSignOutEvent {
     TResult Function(_ProfileEvent value)? profile,
     TResult Function(_ProfileUpdateEvent value)? update,
     TResult Function(_ProfileChangeEvent value)? change,
-    TResult Function(_ProfileChangeAvatarEvent value)? changeAvatar,
     TResult Function(_ProfileSignOutEvent value)? signOut,
     TResult Function(_ProfileFailedEvent value)? failed,
     required TResult orElse(),
@@ -925,7 +725,6 @@ class _$_ProfileFailedEvent implements _ProfileFailedEvent {
     required TResult Function(SpecialistEntity profile) profile,
     required TResult Function() update,
     required TResult Function(SpecialistEntity profile) change,
-    required TResult Function(int id, File avatar) changeAvatar,
     required TResult Function() signOut,
     required TResult Function(String message) failed,
   }) {
@@ -938,7 +737,6 @@ class _$_ProfileFailedEvent implements _ProfileFailedEvent {
     TResult? Function(SpecialistEntity profile)? profile,
     TResult? Function()? update,
     TResult? Function(SpecialistEntity profile)? change,
-    TResult? Function(int id, File avatar)? changeAvatar,
     TResult? Function()? signOut,
     TResult? Function(String message)? failed,
   }) {
@@ -951,7 +749,6 @@ class _$_ProfileFailedEvent implements _ProfileFailedEvent {
     TResult Function(SpecialistEntity profile)? profile,
     TResult Function()? update,
     TResult Function(SpecialistEntity profile)? change,
-    TResult Function(int id, File avatar)? changeAvatar,
     TResult Function()? signOut,
     TResult Function(String message)? failed,
     required TResult orElse(),
@@ -968,7 +765,6 @@ class _$_ProfileFailedEvent implements _ProfileFailedEvent {
     required TResult Function(_ProfileEvent value) profile,
     required TResult Function(_ProfileUpdateEvent value) update,
     required TResult Function(_ProfileChangeEvent value) change,
-    required TResult Function(_ProfileChangeAvatarEvent value) changeAvatar,
     required TResult Function(_ProfileSignOutEvent value) signOut,
     required TResult Function(_ProfileFailedEvent value) failed,
   }) {
@@ -981,7 +777,6 @@ class _$_ProfileFailedEvent implements _ProfileFailedEvent {
     TResult? Function(_ProfileEvent value)? profile,
     TResult? Function(_ProfileUpdateEvent value)? update,
     TResult? Function(_ProfileChangeEvent value)? change,
-    TResult? Function(_ProfileChangeAvatarEvent value)? changeAvatar,
     TResult? Function(_ProfileSignOutEvent value)? signOut,
     TResult? Function(_ProfileFailedEvent value)? failed,
   }) {
@@ -994,7 +789,6 @@ class _$_ProfileFailedEvent implements _ProfileFailedEvent {
     TResult Function(_ProfileEvent value)? profile,
     TResult Function(_ProfileUpdateEvent value)? update,
     TResult Function(_ProfileChangeEvent value)? change,
-    TResult Function(_ProfileChangeAvatarEvent value)? changeAvatar,
     TResult Function(_ProfileSignOutEvent value)? signOut,
     TResult Function(_ProfileFailedEvent value)? failed,
     required TResult orElse(),

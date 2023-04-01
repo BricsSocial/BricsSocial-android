@@ -25,8 +25,8 @@ import 'package:brics_social/data/convertors/vacancy_entity_convertor/vacancy_en
     as _i12;
 import 'package:brics_social/data/convertors/vacancy_entity_convertor/vacancy_entity_convertor_impl.dart'
     as _i13;
-import 'package:brics_social/data/module/memory_module.dart' as _i57;
-import 'package:brics_social/data/module/network_module.dart' as _i58;
+import 'package:brics_social/data/module/memory_module.dart' as _i58;
+import 'package:brics_social/data/module/network_module.dart' as _i59;
 import 'package:brics_social/data/repository/auth_repository_impl.dart' as _i33;
 import 'package:brics_social/data/repository/countries_repository_impl.dart'
     as _i38;
@@ -94,11 +94,13 @@ import 'package:brics_social/domain/vacancies/usecase/like_vacancy_usecase.dart'
     as _i44;
 import 'package:brics_social/domain/vacancies/usecase/load_more_vacancies_usecase.dart'
     as _i46;
-import 'package:brics_social/view/auth/sign_in_screen/bloc/bloc.dart' as _i55;
-import 'package:brics_social/view/auth/sign_up_screen/bloc/bloc.dart' as _i56;
+import 'package:brics_social/view/auth/sign_in_screen/bloc/bloc.dart' as _i56;
+import 'package:brics_social/view/auth/sign_up_screen/bloc/bloc.dart' as _i57;
 import 'package:brics_social/view/common/country_dropdown/bloc/bloc.dart'
+    as _i54;
+import 'package:brics_social/view/profile_screen/bloc/bloc.dart' as _i55;
+import 'package:brics_social/view/profile_screen/common/avatar/cubit/cubit.dart'
     as _i53;
-import 'package:brics_social/view/profile_screen/bloc/bloc.dart' as _i54;
 import 'package:brics_social/view/replies_screen/bloc/bloc.dart' as _i47;
 import 'package:brics_social/view/splash_screen/bloc/bloc.dart' as _i51;
 import 'package:brics_social/view/vacancies_screen/bloc/bloc.dart' as _i52;
@@ -211,23 +213,24 @@ extension GetItInjectableX on _i1.GetIt {
           loadMoreVacanciesUseCase: gh<_i46.LoadMoreVacanciesUseCase>(),
           likeVacancyUseCase: gh<_i44.LikeVacancyUseCase>(),
         ));
-    gh.factory<_i53.CountryDropdownBloc>(
-        () => _i53.CountryDropdownBloc(gh<_i40.GetCountriesListUseCase>()));
-    gh.factory<_i54.ProfileBloc>(() => _i54.ProfileBloc(
+    gh.factory<_i53.AvatarCubit>(() =>
+        _i53.AvatarCubit(changeAvatarUseCase: gh<_i34.ChangeAvatarUseCase>()));
+    gh.factory<_i54.CountryDropdownBloc>(
+        () => _i54.CountryDropdownBloc(gh<_i40.GetCountriesListUseCase>()));
+    gh.factory<_i55.ProfileBloc>(() => _i55.ProfileBloc(
           profileUseCase: gh<_i41.GetProfileUseCase>(),
           changeProfileUseCase: gh<_i35.ChangeProfileUseCase>(),
-          changeAvatarUseCase: gh<_i34.ChangeAvatarUseCase>(),
           updateProfileUseCase: gh<_i29.UpdateProfileUseCase>(),
           signOutUseCase: gh<_i49.SignOutUseCase>(),
         ));
-    gh.factory<_i55.SignInBloc>(
-        () => _i55.SignInBloc(gh<_i48.SignInUseCase>()));
-    gh.factory<_i56.SignUpBloc>(
-        () => _i56.SignUpBloc(gh<_i50.SignUpUseCase>()));
+    gh.factory<_i56.SignInBloc>(
+        () => _i56.SignInBloc(gh<_i48.SignInUseCase>()));
+    gh.factory<_i57.SignUpBloc>(
+        () => _i57.SignUpBloc(gh<_i50.SignUpUseCase>()));
     return this;
   }
 }
 
-class _$MemoryModule extends _i57.MemoryModule {}
+class _$MemoryModule extends _i58.MemoryModule {}
 
-class _$NetworkModule extends _i58.NetworkModule {}
+class _$NetworkModule extends _i59.NetworkModule {}

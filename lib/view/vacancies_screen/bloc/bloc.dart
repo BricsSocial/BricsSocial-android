@@ -24,7 +24,7 @@ class VacanciesBloc extends Bloc<VacanciesEvent, VacanciesState> {
 
   int _currentPage = 1;
 
-  late StreamSubscription _vacanciesSubscription;
+  StreamSubscription? _vacanciesSubscription;
 
   VacanciesBloc({
     required this.getVacanciesUseCase,
@@ -34,6 +34,7 @@ class VacanciesBloc extends Bloc<VacanciesEvent, VacanciesState> {
     on<VacanciesEvent>((event, emit) async {
       await event.map(
         vacancies: (event) async => _mapVacanciesEvent(event, emit),
+        refresh: (event) async => _vacanciesSubscription = await _listenVacancies(skillTags: event.skillTags),
         like: (event) async => likeVacancyUseCase(event.vacancyId),
         load: (event) async => loadMoreVacanciesUseCase(
           LoadVacanciesParams(pageNumber: ++_currentPage, pageSize: _pageSize),
@@ -42,7 +43,16 @@ class VacanciesBloc extends Bloc<VacanciesEvent, VacanciesState> {
       );
     });
 
-    _vacanciesSubscription = getVacanciesUseCase(const LoadVacanciesParams(pageSize: _pageSize)).asyncMap(
+    unawaited(_listenVacancies().then((value) {
+      _vacanciesSubscription = value;
+    }));
+  }
+
+  Future<StreamSubscription> _listenVacancies({String? skillTags}) async {
+    await _vacanciesSubscription?.cancel();
+    _currentPage = 1;
+
+    return getVacanciesUseCase(LoadVacanciesParams(pageSize: _pageSize, skillTags: skillTags)).asyncMap(
       (vacancies) {
         return vacancies.fold(
           (failure) => const VacanciesEvent.failed(message: ''),
@@ -58,7 +68,7 @@ class VacanciesBloc extends Bloc<VacanciesEvent, VacanciesState> {
 
   @override
   Future<void> close() async {
-    await _vacanciesSubscription.cancel();
+    await _vacanciesSubscription?.cancel();
     return super.close();
   }
 }

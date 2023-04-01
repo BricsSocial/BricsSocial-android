@@ -46,7 +46,7 @@ class _ResumeScreenState extends State<ResumeScreen> {
               hintText: 'bio_hint'.tr(),
             ),
             onChanged: (value) {
-              widget.profile.value = widget.profile.value.copyWith(bio: value);
+              widget.profile.value = widget.profile.value.copyWith(bio: value.trim());
             },
           ),
           const SizedBox(height: 16),
@@ -59,7 +59,7 @@ class _ResumeScreenState extends State<ResumeScreen> {
               hintText: 'description_hint'.tr(),
             ),
             onChanged: (value) {
-              widget.profile.value = widget.profile.value.copyWith(about: value);
+              widget.profile.value = widget.profile.value.copyWith(about: value.trim());
             },
           ),
           const SizedBox(height: 16),
